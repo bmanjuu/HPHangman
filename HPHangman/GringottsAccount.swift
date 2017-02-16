@@ -9,10 +9,17 @@
 import Foundation
 
 class GringottsAccount {
-    let owner: User
-    var balance: [String:Int]
     
-    init(owner: User, balance: [String:Int]) {
+    enum money {
+        case galleons, sickles, knuts
+    }
+    
+    let owner: User
+    var balance: [money:Int] = [.galleons : 0,
+                                .sickles : 0,
+                                .knuts : 0]
+    
+    init(owner: User, balance: [money:Int]) {
         self.owner = owner
         self.balance = balance
     }
