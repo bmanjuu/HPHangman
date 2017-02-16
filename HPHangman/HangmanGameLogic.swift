@@ -49,6 +49,7 @@ struct HangmanGameLogic {
     }
     
     static func playGame(userInput: String, secretWord: String) {
+        //may need third parameter for concealed secret word, correct guesses function needs it
         let userGuess = userInput.uppercased()
         print("user guess modified: \(userGuess)")
         
@@ -61,6 +62,7 @@ struct HangmanGameLogic {
                 if String(letter) == userGuess {
                     matchedLetterIndices.append(index)
                 }
+                //can use index here to replace "___" in concealed word, without having to use index and loop through again 
             }
             
             for i in matchedLetterIndices {
