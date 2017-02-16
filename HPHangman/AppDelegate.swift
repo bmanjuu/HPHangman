@@ -13,12 +13,14 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    let store = GameDataStore.sharedInstance
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print("hello its me")
-        // HangmanGameLogic.retrieveRandomWord()
+        print()
         return true
     }
 

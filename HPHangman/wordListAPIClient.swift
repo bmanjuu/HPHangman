@@ -8,28 +8,47 @@
 
 import Foundation
 
-class wordListAPIClient {
+struct wordListAPIClient {
     
-    static let store = GameDataStore.sharedInstance
+    private enum wordListAPIError: Error {
+        case invalidResponse
+        case noDataAvailable
+        case invalidDataConversion
+    }
     
-    func retrieveWords() {
-        print("called function to retrieve word")
-        let session = URLSession(configuration: .default)
+    typealias wordCompletion = ([String], Error?) -> ()
+    
+    static func retrieveWords(_ completion: @escaping wordCompletion) {
         
+        let session = URLSession(configuration: .default)
         let baseURL = URL(string: "http://linkedin-reach.hagbpyjegb.us-west-2.elasticbeanstalk.com/words")
         
         let dataTask = session.dataTask(with: baseURL!, completionHandler: { (data, response, error) in
             
-            if let data = data {
-                do {
-                    let responseData = try NSString(data: data, encoding: String.Encoding.utf8.rawValue)
-                    let words = responseData!.components(separatedBy: "\n")
-                } catch {
-                    print("error: could not get words from word dictionary API")
+            guard error == nil else {
+                print("\(wordListAPIError.invalidResponse): could not get words from word dictionary API")
+                return
+            }
+            
+            guard let responseData = data else {
+                print("\(wordListAPIError.noDataAvailable): no words/data from API call")
+                return
+            }
+            
+            do {
+                guard let responseWords = try NSString(data: responseData, encoding: String.Encoding.utf8.rawValue) else {
+                    print("\(wordListAPIError.invalidDataConversion): could not convert reponse into a string")
+                    return
                 }
+                
+                let words = responseWords.components(separatedBy: "\n")
+                completion(words, nil)
+            } catch {
+                print("\(wordListAPIError.invalidResponse): could not get words from word dictionary API")
+                completion([String](), wordListAPIError.invalidResponse)
             }
         })
-        
         dataTask.resume()
     }
+    
 }

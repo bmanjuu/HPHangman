@@ -11,4 +11,7 @@ import Foundation
 final class GameDataStore {
     static let sharedInstance = GameDataStore()
     private init() {}
+    
+    var words: [String] = []
+    let maxGuesses: Int = 6
 }

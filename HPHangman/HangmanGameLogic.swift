@@ -8,12 +8,23 @@
 
 import Foundation
 
-class HangmanGameLogic {
+struct HangmanGameLogic {
     // let player: User
     // let maxGuesses: Int = 6
+    let store = GameDataStore.sharedInstance
+    var words: [String]
     
-    static func retrieveRandomWord() {
-        //call api to retrieve words 
-        //return random word from array
+    func retrieveRandomWord() -> String {
+        var word = ""
+        
+        wordListAPIClient.retrieveWords({ (words, error) in
+            print("called api client")
+            self.store.words = words
+            print(self.store.words.count)
+        })
+        
+        
+        
+        return word
     }
 }
