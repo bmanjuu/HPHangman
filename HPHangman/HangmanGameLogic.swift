@@ -23,8 +23,7 @@ class HangmanGameLogic {
             if let data = data {
                 do {
                     let responseData = try NSString(data: data, encoding: String.Encoding.utf8.rawValue)
-                    print(responseData)
-                    // completion(MagicAPIDataParser.retrieveAllCardsDataParser(from: responseData), nil)
+                    let words = responseData!.components(separatedBy: "\n")
                 } catch {
                     print("error: could not get words from word dictionary API")
                 }
