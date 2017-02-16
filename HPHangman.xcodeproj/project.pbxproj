@@ -17,6 +17,8 @@
 		A490D0ED1E55E20A004CE638 /* GringottsAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */; };
 		A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0F91E55E842004CE638 /* HangmanGameVC.swift */; };
 		A490D0FC1E55E9BD004CE638 /* HangmanGameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */; };
+		A490D0FE1E55F03F004CE638 /* wordListAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */; };
+		A490D1001E55F21F004CE638 /* GameDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FF1E55F21F004CE638 /* GameDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GringottsAccount.swift; sourceTree = "<group>"; };
 		A490D0F91E55E842004CE638 /* HangmanGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameVC.swift; sourceTree = "<group>"; };
 		A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameLogic.swift; sourceTree = "<group>"; };
+		A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wordListAPIClient.swift; sourceTree = "<group>"; };
+		A490D0FF1E55F21F004CE638 /* GameDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,10 +70,10 @@
 		A490D0D41E55E135004CE638 /* HPHangman */ = {
 			isa = PBXGroup;
 			children = (
-				A490D0F21E55E56D004CE638 /* Other */,
 				A490D0EE1E55E52D004CE638 /* Model */,
 				A490D0F01E55E547004CE638 /* View */,
 				A490D0F11E55E55E004CE638 /* Controller */,
+				A490D0F21E55E56D004CE638 /* Other */,
 			);
 			path = HPHangman;
 			sourceTree = "<group>";
@@ -80,6 +84,9 @@
 				A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */,
 				A490D0EA1E55E1C0004CE638 /* User.swift */,
 				A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */,
+				A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */,
+				A490D0FF1E55F21F004CE638 /* GameDataStore.swift */,
+				A490D0D51E55E135004CE638 /* AppDelegate.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -105,7 +112,6 @@
 		A490D0F21E55E56D004CE638 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				A490D0D51E55E135004CE638 /* AppDelegate.swift */,
 				A490D0DF1E55E135004CE638 /* Assets.xcassets */,
 			);
 			name = Other;
@@ -187,9 +193,11 @@
 				A490D0EB1E55E1C0004CE638 /* User.swift in Sources */,
 				A490D0DE1E55E135004CE638 /* HPHangman.xcdatamodeld in Sources */,
 				A490D0ED1E55E20A004CE638 /* GringottsAccount.swift in Sources */,
+				A490D0FE1E55F03F004CE638 /* wordListAPIClient.swift in Sources */,
 				A490D0D81E55E135004CE638 /* ViewController.swift in Sources */,
 				A490D0D61E55E135004CE638 /* AppDelegate.swift in Sources */,
 				A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */,
+				A490D1001E55F21F004CE638 /* GameDataStore.swift in Sources */,
 				A490D0FC1E55E9BD004CE638 /* HangmanGameLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
