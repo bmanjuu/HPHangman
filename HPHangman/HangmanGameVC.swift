@@ -9,13 +9,22 @@
 import UIKit
 
 class HangmanGameVC: UIViewController {
+    
+    let store = GameDataStore.sharedInstance
 
     @IBOutlet weak var hangmanImage: UIImageView!
+    @IBOutlet weak var secretWordLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let secretWord = self.store.selectedWord
+        print("secret word is: \(secretWord)")
+        self.secretWordLabel.text = String(repeating: " ___ ", count: secretWord.characters.count)
     }
 
     override func didReceiveMemoryWarning() {
