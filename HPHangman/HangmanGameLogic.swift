@@ -25,8 +25,17 @@ struct HangmanGameLogic {
     
     // during game
     static func isValidInput(_ input: String) -> Bool {
+        print("inside valid input function for input: \(input)")
         let validLetters = CharacterSet.letters
-        print(validLetters)
+        
+        if (input.trimmingCharacters(in: validLetters) != "") {
+            print("invalid characters in string")
+            return false
+        }
+        else {
+            print("valid input")
+            return true
+        }
         
 //        switch input.characters.count {
 //        case 1:

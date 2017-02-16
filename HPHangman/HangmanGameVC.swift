@@ -30,10 +30,13 @@ class HangmanGameVC: UIViewController {
     
     @IBAction func guessButtonTapped(_ sender: Any) {
         //check number of guesses
-        guard let input = userInput.text else {
+        if userInput.text?.characters.count == 0 {
             print("please enter a letter or word")
             return //error pop up?
         }
+        
+        let input = userInput.text!
+        print("input is: \(input)")
         
         if HangmanGameLogic.isValidInput(input) {
             let userGuess = input.uppercased().replacingOccurrences(of: " ", with: "")
