@@ -91,6 +91,9 @@
                                 <rect key="frame" x="293" y="542" width="66" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.85208847740000004" blue="0.85618023009999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Guess"/>
+                                <connections>
+                                    <action selector="guessButtonTapped:" destination="BWK-0G-Tde" eventType="touchUpInside" id="cBN-Kd-nkI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="11L-aa-0bn">
                                 <rect key="frame" x="17" y="542" width="106" height="30"/>
@@ -153,11 +156,12 @@
                     <connections>
                         <outlet property="hangmanImage" destination="1ie-2Z-Zho" id="Hg7-yp-nA0"/>
                         <outlet property="secretWordLabel" destination="QUE-Sz-kSz" id="sd1-3V-Zc4"/>
+                        <outlet property="userInput" destination="9UK-Fm-wkT" id="1C4-Ey-S6B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aZ-ej-A9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1076" y="134"/>
+            <point key="canvasLocation" x="993" y="92"/>
         </scene>
     </scenes>
     <resources>

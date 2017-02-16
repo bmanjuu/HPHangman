@@ -13,8 +13,10 @@ final class GameDataStore {
     private init() {}
     
     var words: [String] = []
-    let maxGuesses: Int = 6
     var selectedWord = ""
+    
+    let maxIncorrectGuesses: Int = 6
+    var incorrectGuessCount: Int = 0 
     
     func populateWordsInStore() {
         wordListAPIClient.retrieveWords { (words, error) in
