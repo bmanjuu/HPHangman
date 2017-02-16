@@ -9,22 +9,16 @@
 import Foundation
 
 struct HangmanGameLogic {
-    // let player: User
-    // let maxGuesses: Int = 6
-    let store = GameDataStore.sharedInstance
-    var words: [String]
     
-    func retrieveRandomWord() -> String {
-        var word = ""
-        
-        wordListAPIClient.retrieveWords({ (words, error) in
-            print("called api client")
-            self.store.words = words
-            print(self.store.words.count)
-        })
-        
-        
-        
-        return word
+    static func retrieveRandomWord(from words: [String]) -> String {
+        let randomIndex = Int(arc4random_uniform(UInt32(words.count)))
+        return words[randomIndex]
     }
+    
+    
+    //set up views for letters ... label with "_" repeating for number of words
+    //work on counting guesses
+    //MONIES
+    //levels 
+    //images and make it perdy
 }

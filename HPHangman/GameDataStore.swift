@@ -14,4 +14,11 @@ final class GameDataStore {
     
     var words: [String] = []
     let maxGuesses: Int = 6
+    
+    func populateWordsInStore() {
+        wordListAPIClient.retrieveWords { (words, error) in
+            self.words = words
+            print("inside completion: \(self.words.count)")
+        }
+    }
 }

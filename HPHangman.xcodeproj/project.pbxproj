@@ -19,6 +19,7 @@
 		A490D0FC1E55E9BD004CE638 /* HangmanGameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */; };
 		A490D0FE1E55F03F004CE638 /* wordListAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */; };
 		A490D1001E55F21F004CE638 /* GameDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FF1E55F21F004CE638 /* GameDataStore.swift */; };
+		A490D1021E560F06004CE638 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D1011E560F06004CE638 /* HomeScreenVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameLogic.swift; sourceTree = "<group>"; };
 		A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wordListAPIClient.swift; sourceTree = "<group>"; };
 		A490D0FF1E55F21F004CE638 /* GameDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDataStore.swift; sourceTree = "<group>"; };
+		A490D1011E560F06004CE638 /* HomeScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				A490D0D71E55E135004CE638 /* ViewController.swift */,
+				A490D1011E560F06004CE638 /* HomeScreenVC.swift */,
 				A490D0F91E55E842004CE638 /* HangmanGameVC.swift */,
 			);
 			name = Controller;
@@ -193,6 +196,7 @@
 				A490D0EB1E55E1C0004CE638 /* User.swift in Sources */,
 				A490D0DE1E55E135004CE638 /* HPHangman.xcdatamodeld in Sources */,
 				A490D0ED1E55E20A004CE638 /* GringottsAccount.swift in Sources */,
+				A490D1021E560F06004CE638 /* HomeScreenVC.swift in Sources */,
 				A490D0FE1E55F03F004CE638 /* wordListAPIClient.swift in Sources */,
 				A490D0D81E55E135004CE638 /* ViewController.swift in Sources */,
 				A490D0D61E55E135004CE638 /* AppDelegate.swift in Sources */,

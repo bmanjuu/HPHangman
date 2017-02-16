@@ -10,6 +10,8 @@ import Foundation
 
 struct wordListAPIClient {
     
+    let store = GameDataStore.sharedInstance
+    
     private enum wordListAPIError: Error {
         case invalidResponse
         case noDataAvailable
@@ -40,8 +42,8 @@ struct wordListAPIClient {
                     print("\(wordListAPIError.invalidDataConversion): could not convert reponse into a string")
                     return
                 }
-                
                 let words = responseWords.components(separatedBy: "\n")
+                //self.store.words = responseWords.components(separatedBy: "\n")
                 completion(words, nil)
             } catch {
                 print("\(wordListAPIError.invalidResponse): could not get words from word dictionary API")
@@ -50,5 +52,6 @@ struct wordListAPIClient {
         })
         dataTask.resume()
     }
+    
     
 }
