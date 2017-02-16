@@ -13,13 +13,16 @@ class HomeScreenVC: UIViewController {
     let store = GameDataStore.sharedInstance
 
     @IBAction func enterButton(_ sender: Any) {
+        //MAKE SURE TO HAVE AN ANIMATION WHILE THE WORDS ARE LOADING
         print("button: \(self.store.words.count)")
         print(HangmanGameLogic.retrieveRandomWord(from: self.store.words))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.store.populateWordsInStore()
+        
         // Do any additional setup after loading the view.
     }
 
