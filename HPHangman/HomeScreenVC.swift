@@ -15,7 +15,8 @@ class HomeScreenVC: UIViewController {
     @IBAction func enterButton(_ sender: Any) {
         //MAKE SURE TO HAVE AN ANIMATION WHILE THE WORDS ARE LOADING
         print("button: \(self.store.words.count)")
-        print(HangmanGameLogic.retrieveRandomWord(from: self.store.words))
+        self.store.selectedWord = HangmanGameLogic.retrieveRandomWord(from: self.store.words)
+        print(self.store.selectedWord)
     }
     
     override func viewDidLoad() {
