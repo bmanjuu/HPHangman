@@ -16,6 +16,7 @@
 		A490D0EB1E55E1C0004CE638 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0EA1E55E1C0004CE638 /* User.swift */; };
 		A490D0ED1E55E20A004CE638 /* GringottsAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */; };
 		A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0F91E55E842004CE638 /* HangmanGameVC.swift */; };
+		A490D0FC1E55E9BD004CE638 /* HangmanGameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A490D0EA1E55E1C0004CE638 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GringottsAccount.swift; sourceTree = "<group>"; };
 		A490D0F91E55E842004CE638 /* HangmanGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameVC.swift; sourceTree = "<group>"; };
+		A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			children = (
 				A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */,
 				A490D0EA1E55E1C0004CE638 /* User.swift */,
+				A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				A490D0D81E55E135004CE638 /* ViewController.swift in Sources */,
 				A490D0D61E55E135004CE638 /* AppDelegate.swift in Sources */,
 				A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */,
+				A490D0FC1E55E9BD004CE638 /* HangmanGameLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
