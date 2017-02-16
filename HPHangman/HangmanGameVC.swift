@@ -38,15 +38,8 @@ class HangmanGameVC: UIViewController {
         let input = userInput.text!
         print("input is: \(input)")
         
-        if HangmanGameLogic.isValidInput(input) {
-            let userGuess = input.uppercased().replacingOccurrences(of: " ", with: "")
-            print("user guess modified: \(userGuess)")
-            
-            if self.store.selectedWord.contains(userGuess) || self.store.selectedWord == userGuess {
-                HangmanGameLogic.correctGuess()
-            } else {
-                HangmanGameLogic.incorrectGuess()
-            }
+        if HangmanGameLogic.isValidInput(input, for: self.store.selectedWord) {
+            HangmanGameLogic.playGame(userInput: input, secretWord: self.store.selectedWord)
         } else {
             print("invalid input")
         }
