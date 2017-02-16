@@ -15,6 +15,7 @@
 		A490D0E31E55E135004CE638 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A490D0E11E55E135004CE638 /* LaunchScreen.storyboard */; };
 		A490D0EB1E55E1C0004CE638 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0EA1E55E1C0004CE638 /* User.swift */; };
 		A490D0ED1E55E20A004CE638 /* GringottsAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */; };
+		A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0F91E55E842004CE638 /* HangmanGameVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,9 +26,10 @@
 		A490D0DD1E55E135004CE638 /* HPHangman.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HPHangman.xcdatamodel; sourceTree = "<group>"; };
 		A490D0DF1E55E135004CE638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A490D0E21E55E135004CE638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A490D0E41E55E135004CE638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A490D0E41E55E135004CE638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = HPHangman/Info.plist; sourceTree = "<group>"; };
 		A490D0EA1E55E1C0004CE638 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GringottsAccount.swift; sourceTree = "<group>"; };
+		A490D0F91E55E842004CE638 /* HangmanGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,8 @@
 			isa = PBXGroup;
 			children = (
 				A490D0D41E55E135004CE638 /* HPHangman */,
+				A490D0DC1E55E135004CE638 /* HPHangman.xcdatamodeld */,
+				A490D0E41E55E135004CE638 /* Info.plist */,
 				A490D0D31E55E135004CE638 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,17 +64,48 @@
 		A490D0D41E55E135004CE638 /* HPHangman */ = {
 			isa = PBXGroup;
 			children = (
-				A490D0D51E55E135004CE638 /* AppDelegate.swift */,
-				A490D0EA1E55E1C0004CE638 /* User.swift */,
-				A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */,
-				A490D0D71E55E135004CE638 /* ViewController.swift */,
-				A490D0D91E55E135004CE638 /* Main.storyboard */,
-				A490D0DF1E55E135004CE638 /* Assets.xcassets */,
-				A490D0E11E55E135004CE638 /* LaunchScreen.storyboard */,
-				A490D0E41E55E135004CE638 /* Info.plist */,
-				A490D0DC1E55E135004CE638 /* HPHangman.xcdatamodeld */,
+				A490D0F21E55E56D004CE638 /* Other */,
+				A490D0EE1E55E52D004CE638 /* Model */,
+				A490D0F01E55E547004CE638 /* View */,
+				A490D0F11E55E55E004CE638 /* Controller */,
 			);
 			path = HPHangman;
+			sourceTree = "<group>";
+		};
+		A490D0EE1E55E52D004CE638 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */,
+				A490D0EA1E55E1C0004CE638 /* User.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A490D0F01E55E547004CE638 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A490D0D91E55E135004CE638 /* Main.storyboard */,
+				A490D0E11E55E135004CE638 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A490D0F11E55E55E004CE638 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A490D0D71E55E135004CE638 /* ViewController.swift */,
+				A490D0F91E55E842004CE638 /* HangmanGameVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A490D0F21E55E56D004CE638 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				A490D0D51E55E135004CE638 /* AppDelegate.swift */,
+				A490D0DF1E55E135004CE638 /* Assets.xcassets */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +186,7 @@
 				A490D0ED1E55E20A004CE638 /* GringottsAccount.swift in Sources */,
 				A490D0D81E55E135004CE638 /* ViewController.swift in Sources */,
 				A490D0D61E55E135004CE638 /* AppDelegate.swift in Sources */,
+				A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +358,8 @@
 				A490D0DD1E55E135004CE638 /* HPHangman.xcdatamodel */,
 			);
 			currentVersion = A490D0DD1E55E135004CE638 /* HPHangman.xcdatamodel */;
-			path = HPHangman.xcdatamodeld;
+			name = HPHangman.xcdatamodeld;
+			path = HPHangman/HPHangman.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
