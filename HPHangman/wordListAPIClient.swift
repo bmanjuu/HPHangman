@@ -13,7 +13,7 @@ struct wordListAPIClient {
     let store = GameDataStore.sharedInstance
     
     private enum wordListAPIError: Error {
-        case invalidResponse
+        case invalidAPICall
         case noDataAvailable
         case invalidDataConversion
     }
@@ -28,7 +28,7 @@ struct wordListAPIClient {
         let dataTask = session.dataTask(with: baseURL!, completionHandler: { (data, response, error) in
             
             guard error == nil else {
-                print("\(wordListAPIError.invalidResponse): could not get words from word dictionary API")
+                print("\(wordListAPIError.invalidAPICall): error calling word dictionary API")
                 return
             }
             
@@ -46,8 +46,8 @@ struct wordListAPIClient {
                 //self.store.words = responseWords.components(separatedBy: "\n")
                 completion(words, nil)
             } catch {
-                print("\(wordListAPIError.invalidResponse): could not get words from word dictionary API")
-                completion([String](), wordListAPIError.invalidResponse)
+                print("\(wordListAPIError.invalidAPICall): could not get words from word dictionary API")
+                completion([String](), wordListAPIError.invalidAPICall)
             }
         })
         dataTask.resume()

@@ -20,7 +20,7 @@ struct HangmanGameLogic {
             print("random word: \(randomWord), count: \(randomWord.characters.count)")
             let randomIndex = Int(arc4random_uniform(UInt32(words.count-1)))
             randomWord = words[randomIndex].uppercased()
-        } while randomWord.characters.count < 3 || randomWord.characters.count > 8
+        } while randomWord.characters.count < 3 || randomWord.characters.count > 8 || randomWord.contains(" ")
         
         return randomWord
     }
@@ -52,17 +52,22 @@ struct HangmanGameLogic {
         let userGuess = userInput.uppercased()
         print("user guess modified: \(userGuess)")
         
-        switch userGuess.characters.count {
-        case 1:
-            if secretWord.contains(userGuess) {
-                correctGuess()
+        if userGuess == secretWord {
+            // wonGame()
+        } else if secretWord.contains(userGuess) {
+            // correctGuess()
+            var matchedLetterIndices = [Int]()
+            for (index, letter) in secretWord.characters.enumerated() {
+                if String(letter) == userGuess {
+                    matchedLetterIndices.append(index)
+                }
             }
-        case secretWord.characters.count:
-            if userGuess == secretWord {
-                wonGame()
+            
+            for i in matchedLetterIndices {
+                //replace ___ with letters 
             }
-        default:
-            print("please enter a letter or guess the word")
+        } else {
+            // incorrectGuess()
         }
     }
     
@@ -77,6 +82,7 @@ struct HangmanGameLogic {
     
     static func correctGuess()  {
         //update label to show letter
+        //replace occurrences of letter with input
         var updatedString = ""
     }
     

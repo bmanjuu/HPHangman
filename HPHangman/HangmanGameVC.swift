@@ -11,6 +11,7 @@ import UIKit
 class HangmanGameVC: UIViewController {
     
     let store = GameDataStore.sharedInstance
+    public var hangmanConcealedWord: String = ""
 
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var hangmanImage: UIImageView!
@@ -24,24 +25,26 @@ class HangmanGameVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         let secretWord = self.store.selectedWord
+        self.hangmanConcealedWord = String(repeating: " ___ ", count: secretWord.characters.count)
         print("secret word is: \(secretWord)")
-        self.secretWordLabel.text = String(repeating: " ___ ", count: secretWord.characters.count)
+        self.secretWordLabel.text = self.hangmanConcealedWord
     }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
-        //check number of guesses
+        
+        //check number of guesses?
+        
         if userInput.text?.characters.count == 0 {
             print("please enter a letter or word")
             return //error pop up?
         }
         
-        let input = userInput.text!
-        print("input is: \(input)")
+        let validInput = HangmanGameLogic.isValidInput(userInput.text!, for: self.store.selectedWord)
         
-        if HangmanGameLogic.isValidInput(input, for: self.store.selectedWord) {
-            HangmanGameLogic.playGame(userInput: input, secretWord: self.store.selectedWord)
+        if validInput {
+            HangmanGameLogic.playGame(userInput: userInput.text!, secretWord: self.store.selectedWord)
         } else {
-            print("invalid input")
+            print("invalid input") //display error message
         }
         
     }
