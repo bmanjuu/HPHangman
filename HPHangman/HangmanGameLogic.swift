@@ -14,18 +14,19 @@ struct HangmanGameLogic {
     
     static var game: Results<Game>!
     
-    // before the game starts
-    static func populateWordsInStore() {
-        print("calling API to populate words")
-        wordListAPIClient.retrieveWords { (words, nil) in
-            print("retrieved all words from API")
-        }
-    }
     
     static func retrieveCurrentGame() -> Game {
         let realm = try! Realm()
         let gameResults = realm.objects(Game.self)
         return gameResults[0]
+    }
+    
+    // before game starts 
+    static func populateWordsInStore() {
+        print("calling API to populate words")
+        wordListAPIClient.retrieveWords { (words, nil) in
+            print("retrieved all words from API")
+        }
     }
     
     static func retrieveRandomWord(from words: String) -> String {

@@ -14,14 +14,18 @@ class HomeScreenVC: UIViewController {
     @IBAction func enterButton(_ sender: Any) {
         let currentGame = HangmanGameLogic.retrieveCurrentGame()
         let words = currentGame.words
+        let chosenWord = HangmanGameLogic.retrieveRandomWord(from: words)
         
-        print(HangmanGameLogic.retrieveRandomWord(from: words))
+        let realm = try! Realm()
+        
+        try! realm.write {
+            currentGame.chosenWord = chosenWord
+        }
+        print("THE CHOSEN ONE --> \(currentGame.chosenWord)")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // self.store.populateWordsInStore()
         
         let realm = try! Realm()
         let user = User()

@@ -43,11 +43,4 @@ class Game: Object {
         self.incorrectGuessCount = incorrectGuessCount
     }
     
-//    override class func primaryKey() -> String? {
-//        return "words"
-//    }
-//
-//    override class func indexedProperties() -> [String] {
-//        return ["chosenWord", "concealedWord"]
-//    }
 }
