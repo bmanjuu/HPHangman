@@ -11,7 +11,6 @@
 		A490D0D61E55E135004CE638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0D51E55E135004CE638 /* AppDelegate.swift */; };
 		A490D0D81E55E135004CE638 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0D71E55E135004CE638 /* ViewController.swift */; };
 		A490D0DB1E55E135004CE638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A490D0D91E55E135004CE638 /* Main.storyboard */; };
-		A490D0DE1E55E135004CE638 /* HPHangman.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A490D0DC1E55E135004CE638 /* HPHangman.xcdatamodeld */; };
 		A490D0E01E55E135004CE638 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A490D0DF1E55E135004CE638 /* Assets.xcassets */; };
 		A490D0E31E55E135004CE638 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A490D0E11E55E135004CE638 /* LaunchScreen.storyboard */; };
 		A490D0EB1E55E1C0004CE638 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0EA1E55E1C0004CE638 /* User.swift */; };
@@ -31,10 +30,9 @@
 		A490D0D51E55E135004CE638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A490D0D71E55E135004CE638 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A490D0DA1E55E135004CE638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A490D0DD1E55E135004CE638 /* HPHangman.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HPHangman.xcdatamodel; sourceTree = "<group>"; };
 		A490D0DF1E55E135004CE638 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A490D0E21E55E135004CE638 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A490D0E41E55E135004CE638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = HPHangman/Info.plist; sourceTree = "<group>"; };
+		A490D0E41E55E135004CE638 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A490D0EA1E55E1C0004CE638 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GringottsAccount.swift; sourceTree = "<group>"; };
 		A490D0F91E55E842004CE638 /* HangmanGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameVC.swift; sourceTree = "<group>"; };
@@ -68,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				A490D0D41E55E135004CE638 /* HPHangman */,
-				A490D0DC1E55E135004CE638 /* HPHangman.xcdatamodeld */,
-				A490D0E41E55E135004CE638 /* Info.plist */,
 				A490D0D31E55E135004CE638 /* Products */,
 				F4EC27F8FE16CC91360252F3 /* Pods */,
 				9AD788A8CA99BD6F584F1899 /* Frameworks */,
@@ -131,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				A490D0DF1E55E135004CE638 /* Assets.xcassets */,
+				A490D0E41E55E135004CE638 /* Info.plist */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -269,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A490D0EB1E55E1C0004CE638 /* User.swift in Sources */,
-				A490D0DE1E55E135004CE638 /* HPHangman.xcdatamodeld in Sources */,
 				A490D0ED1E55E20A004CE638 /* GringottsAccount.swift in Sources */,
 				A490D1021E560F06004CE638 /* HomeScreenVC.swift in Sources */,
 				A490D0FE1E55F03F004CE638 /* wordListAPIClient.swift in Sources */,
@@ -441,22 +437,9 @@
 				A490D0E91E55E135004CE638 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		A490D0DC1E55E135004CE638 /* HPHangman.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A490D0DD1E55E135004CE638 /* HPHangman.xcdatamodel */,
-			);
-			currentVersion = A490D0DD1E55E135004CE638 /* HPHangman.xcdatamodel */;
-			name = HPHangman.xcdatamodeld;
-			path = HPHangman/HPHangman.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = A490D0CA1E55E135004CE638 /* Project object */;
 }
