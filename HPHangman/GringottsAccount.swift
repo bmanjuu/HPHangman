@@ -7,27 +7,36 @@
 //
 
 import Foundation
+import Realm
+import RealmSwift
 
-class GringottsAccount {
+class GringottsAccount: Object {
     
-    enum money {
-        case galleons, sickles, knuts
+//    enum money {
+//        case galleons, sickles, knuts
+//    }
+    
+    dynamic var owner: User?
+    dynamic var balance: [Int] = [0,0,0]
+    
+    
+    required init() {
+        super.init()
     }
     
-    let owner: User
-    var balance: [money:Int] = [.galleons : 0,
-                                .sickles : 0,
-                                .knuts : 0]
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
     
-    init(owner: User, balance: [money:Int]) {
+    required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+
+    init(owner: User, balance: [Int]) {
+        super.init()
+        
         self.owner = owner
         self.balance = balance
-    }
-    
-    convenience init(owner: User) {
-        self.init(owner: owner, balance: [.galleons : 0,
-                                          .sickles : 0,
-                                          .knuts : 0])
     }
     
 }

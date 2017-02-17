@@ -31,7 +31,7 @@ class HangmanGameVC: UIViewController {
     }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
-        
+        print("guess button tapped")
         //check number of guesses?
         
         if userInput.text?.characters.count == 0 {
