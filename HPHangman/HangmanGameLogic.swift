@@ -10,8 +10,9 @@ import Foundation
 
 struct HangmanGameLogic {
     
-    static let selectedWord = GameDataStore.sharedInstance.selectedWord
-    static var concealedWord = GameDataStore.sharedInstance.concealedWord
+    static let store = GameDataStore.sharedInstance
+//    static let selectedWord = GameDataStore.sharedInstance.selectedWord
+//    static var concealedWord = GameDataStore.sharedInstance.concealedWord
     
     // before the game starts
     static func retrieveRandomWord(from words: [String]) -> String {
@@ -26,7 +27,7 @@ struct HangmanGameLogic {
         return randomWord
     }
     
-    //initialize User and Gringotts account
+    //initialize User and Gringotts account, perhaps on welcome screen? 
     
     
     // during game
@@ -42,7 +43,7 @@ struct HangmanGameLogic {
         }
         
         //check that input is either 1 letter or a guess for whole word
-        if userInput.characters.count == 1 || userInput.characters.count == GameDataStore.sharedInstance.selectedWord.characters.count {
+        if userInput.characters.count == 1 || userInput.characters.count == store.selectedWord.characters.count {
             return true
         } else {
             print("guess should only be 1 letter or for the whole word. please type in your guess again")
@@ -54,13 +55,11 @@ struct HangmanGameLogic {
     static func playGame(with userInput: String) {
         
         let userGuess = userInput.uppercased()
-//        let selectedWord = GameDataStore.sharedInstance.selectedWord
-//        let concealedWord = GameDataStore.sharedInstance.concealedWord
         print("user guess modified: \(userGuess)")
         
-        if userGuess == self.selectedWord {
+        if userGuess == store.selectedWord {
             // wonGame()
-        } else if self.selectedWord.contains(userGuess) {
+        } else if store.selectedWord.contains(userGuess) {
             correctGuess(userGuess: userGuess)
         } else {
             // incorrectGuess()
@@ -79,10 +78,10 @@ struct HangmanGameLogic {
     static func correctGuess(userGuess: String) {
         //check if guess is a letter or word?
         
-        var concealedWordArray = self.concealedWord.components(separatedBy: "  ") //there are 2 spaces between each underscore
+        var concealedWordArray = store.concealedWord.components(separatedBy: "  ") //there are 2 spaces between each underscore
         
         //check if input letter matches letters in secretWord
-        for (index, letter) in self.selectedWord.characters.enumerated() {
+        for (index, letter) in store.selectedWord.characters.enumerated() {
             if String(letter) == userGuess {
                 concealedWordArray[index] = "  \(letter)  "
             }

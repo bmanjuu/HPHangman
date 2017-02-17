@@ -12,6 +12,8 @@ final class GameDataStore {
     static let sharedInstance = GameDataStore()
     private init() {}
     
+    let user: User
+    
     var words: [String] = []
     var selectedWord = ""
     var concealedWord = ""
