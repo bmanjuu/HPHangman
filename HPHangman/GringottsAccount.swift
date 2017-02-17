@@ -23,4 +23,11 @@ class GringottsAccount {
         self.owner = owner
         self.balance = balance
     }
+    
+    convenience init(owner: User) {
+        self.init(owner: owner, balance: [.galleons : 0,
+                                          .sickles : 0,
+                                          .knuts : 0])
+    }
+    
 }

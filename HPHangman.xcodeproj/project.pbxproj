@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17CEB25CE3E3B9239828A974 /* Pods_HPHangman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 345812F2871EC4AA4C10D2BD /* Pods_HPHangman.framework */; };
 		A490D0D61E55E135004CE638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0D51E55E135004CE638 /* AppDelegate.swift */; };
 		A490D0D81E55E135004CE638 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0D71E55E135004CE638 /* ViewController.swift */; };
 		A490D0DB1E55E135004CE638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A490D0D91E55E135004CE638 /* Main.storyboard */; };
@@ -23,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2EE6A81A463B6DB07FB4D37B /* Pods-HPHangman.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPHangman.release.xcconfig"; path = "Pods/Target Support Files/Pods-HPHangman/Pods-HPHangman.release.xcconfig"; sourceTree = "<group>"; };
+		339CDE8F172F6858BF2BFE58 /* Pods-HPHangman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPHangman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HPHangman/Pods-HPHangman.debug.xcconfig"; sourceTree = "<group>"; };
+		345812F2871EC4AA4C10D2BD /* Pods_HPHangman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPHangman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A490D0D21E55E135004CE638 /* HPHangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HPHangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A490D0D51E55E135004CE638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A490D0D71E55E135004CE638 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,12 +49,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17CEB25CE3E3B9239828A974 /* Pods_HPHangman.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9AD788A8CA99BD6F584F1899 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				345812F2871EC4AA4C10D2BD /* Pods_HPHangman.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A490D0C91E55E135004CE638 = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +71,8 @@
 				A490D0DC1E55E135004CE638 /* HPHangman.xcdatamodeld */,
 				A490D0E41E55E135004CE638 /* Info.plist */,
 				A490D0D31E55E135004CE638 /* Products */,
+				F4EC27F8FE16CC91360252F3 /* Pods */,
+				9AD788A8CA99BD6F584F1899 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +135,15 @@
 			name = Other;
 			sourceTree = "<group>";
 		};
+		F4EC27F8FE16CC91360252F3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				339CDE8F172F6858BF2BFE58 /* Pods-HPHangman.debug.xcconfig */,
+				2EE6A81A463B6DB07FB4D37B /* Pods-HPHangman.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,9 +151,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A490D0E71E55E135004CE638 /* Build configuration list for PBXNativeTarget "HPHangman" */;
 			buildPhases = (
+				B427A4E895D3DDA2A38726A5 /* [CP] Check Pods Manifest.lock */,
 				A490D0CE1E55E135004CE638 /* Sources */,
 				A490D0CF1E55E135004CE638 /* Frameworks */,
 				A490D0D01E55E135004CE638 /* Resources */,
+				3885E9BB5F82C9240B76E163 /* [CP] Embed Pods Frameworks */,
+				C34CAE778E389254B6470DB0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -187,6 +214,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3885E9BB5F82C9240B76E163 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HPHangman/Pods-HPHangman-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B427A4E895D3DDA2A38726A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C34CAE778E389254B6470DB0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HPHangman/Pods-HPHangman-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A490D0CE1E55E135004CE638 /* Sources */ = {
@@ -321,6 +396,7 @@
 		};
 		A490D0E81E55E135004CE638 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 339CDE8F172F6858BF2BFE58 /* Pods-HPHangman.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4E8JHBC5T7;
@@ -334,6 +410,7 @@
 		};
 		A490D0E91E55E135004CE638 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EE6A81A463B6DB07FB4D37B /* Pods-HPHangman.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4E8JHBC5T7;
