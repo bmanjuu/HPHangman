@@ -14,6 +14,7 @@ final class GameDataStore {
     
     var words: [String] = []
     var selectedWord = ""
+    var concealedWord = ""
     
     let maxIncorrectGuesses: Int = 6
     var incorrectGuessCount: Int = 0 

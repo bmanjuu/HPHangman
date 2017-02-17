@@ -10,7 +10,8 @@ import Foundation
 
 struct HangmanGameLogic {
     
-    let store = GameDataStore.sharedInstance
+    static let selectedWord = GameDataStore.sharedInstance.selectedWord
+    static var concealedWord = GameDataStore.sharedInstance.concealedWord
     
     // before the game starts
     static func retrieveRandomWord(from words: [String]) -> String {
@@ -25,12 +26,14 @@ struct HangmanGameLogic {
         return randomWord
     }
     
+    //initialize User and Gringotts account
+    
     
     // during game
-    static func isValidInput(_ input: String, for secretWord: String) -> Bool {
+    static func isValidInput(_ input: String) -> Bool {
         
         let validLetters = CharacterSet.letters
-        let userInput = input.replacingOccurrences(of: " ", with: "")
+        let userInput = input.replacingOccurrences(of: " ", with: "") //in case they have extra spaces? perhaps just replace one at the end
         
         //check that input only contains letters
         if (userInput.trimmingCharacters(in: validLetters) != "") {
@@ -39,7 +42,7 @@ struct HangmanGameLogic {
         }
         
         //check that input is either 1 letter or a guess for whole word
-        if userInput.characters.count == 1 || userInput.characters.count == secretWord.characters.count {
+        if userInput.characters.count == 1 || userInput.characters.count == GameDataStore.sharedInstance.selectedWord.characters.count {
             return true
         } else {
             print("guess should only be 1 letter or for the whole word. please type in your guess again")
@@ -48,26 +51,17 @@ struct HangmanGameLogic {
         return false
     }
     
-    static func playGame(userInput: String, secretWord: String) {
-        //may need third parameter for concealed secret word, correct guesses function needs it
+    static func playGame(with userInput: String) {
+        
         let userGuess = userInput.uppercased()
+//        let selectedWord = GameDataStore.sharedInstance.selectedWord
+//        let concealedWord = GameDataStore.sharedInstance.concealedWord
         print("user guess modified: \(userGuess)")
         
-        if userGuess == secretWord {
+        if userGuess == self.selectedWord {
             // wonGame()
-        } else if secretWord.contains(userGuess) {
-            // correctGuess()
-            var matchedLetterIndices = [Int]()
-            for (index, letter) in secretWord.characters.enumerated() {
-                if String(letter) == userGuess {
-                    matchedLetterIndices.append(index)
-                }
-                //can use index here to replace "___" in concealed word, without having to use index and loop through again 
-            }
-            
-            for i in matchedLetterIndices {
-                //replace ___ with letters 
-            }
+        } else if self.selectedWord.contains(userGuess) {
+            correctGuess(userGuess: userGuess)
         } else {
             // incorrectGuess()
         }
@@ -82,10 +76,26 @@ struct HangmanGameLogic {
         //add letter to incorrect guess array
     }
     
-    static func correctGuess()  {
-        //update label to show letter
-        //replace occurrences of letter with input
-        var updatedString = ""
+    static func correctGuess(userGuess: String) {
+        //check if guess is a letter or word?
+        
+        var concealedWordArray = self.concealedWord.components(separatedBy: "  ") //there are 2 spaces between each underscore
+        
+        //check if input letter matches letters in secretWord
+        for (index, letter) in self.selectedWord.characters.enumerated() {
+            if String(letter) == userGuess {
+                concealedWordArray[index] = "  \(letter)  "
+            }
+        }
+        
+        //check to see if there are any underscores left
+        if !concealedWordArray.contains("___") {
+            wonGame()
+        }
+        
+        let updatedString = concealedWordArray.joined()
+        // return updatedString
+        //instead of returning, should it just call the update view function?
     }
     
     // after game ends

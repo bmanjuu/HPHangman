@@ -39,18 +39,19 @@ class HangmanGameVC: UIViewController {
             return //error pop up?
         }
         
-        let validInput = HangmanGameLogic.isValidInput(userInput.text!, for: self.store.selectedWord)
+        let validInput = HangmanGameLogic.isValidInput(userInput.text!)
         
         if validInput {
-            HangmanGameLogic.playGame(userInput: userInput.text!, secretWord: self.store.selectedWord)
+           // HangmanGameLogic.playGame(userInput: userInput.text!)
         } else {
             print("invalid input") //display error message
         }
         
     }
     
-    static func updateWord() {
-        
+    static func updateConcealedWord(to word: String) {
+        // let newWord = GameDataStore.sharedInstance.selectedWord
+        // self.hangmanConcealedWord = word
     }
 
     override func didReceiveMemoryWarning() {
