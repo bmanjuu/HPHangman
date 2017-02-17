@@ -17,7 +17,7 @@ class GringottsAccount: Object {
 //    }
     
     dynamic var owner: User?
-    dynamic var balance: [Int] = [0,0,0]
+    dynamic var balance: Int = 0
     
     
     required init() {
@@ -32,7 +32,7 @@ class GringottsAccount: Object {
         super.init(value: value, schema: schema)
     }
 
-    init(owner: User, balance: [Int]) {
+    init(owner: User, balance: Int) {
         super.init()
         
         self.owner = owner

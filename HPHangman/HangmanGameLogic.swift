@@ -7,27 +7,40 @@
 //
 
 import Foundation
+import Realm
+import RealmSwift
 
 struct HangmanGameLogic {
     
-    static let store = GameDataStore.sharedInstance
-//    static let selectedWord = GameDataStore.sharedInstance.selectedWord
-//    static var concealedWord = GameDataStore.sharedInstance.concealedWord
+    static var game: Results<Game>!
     
     // before the game starts
-    static func retrieveRandomWord(from words: [String]) -> String {
+    static func populateWordsInStore() {
+        print("calling API to populate words")
+        wordListAPIClient.retrieveWords { (words, nil) in
+            print("retrieved all words from API")
+        }
+    }
+    
+    static func retrieveCurrentGame() -> Game {
+        let realm = try! Realm()
+        let gameResults = realm.objects(Game.self)
+        return gameResults[0]
+    }
+    
+    static func retrieveRandomWord(from words: String) -> String {
+        
+        let wordsArray = words.components(separatedBy: "\n")
         var randomWord = ""
         
         repeat {
             print("random word: \(randomWord), count: \(randomWord.characters.count)")
-            let randomIndex = Int(arc4random_uniform(UInt32(words.count-1)))
-            randomWord = words[randomIndex].uppercased()
+            let randomIndex = Int(arc4random_uniform(UInt32(wordsArray.count-1)))
+            randomWord = wordsArray[randomIndex].uppercased()
         } while randomWord.characters.count < 3 || randomWord.characters.count > 8 || randomWord.contains(" ")
         
         return randomWord
     }
-    
-    //initialize User and Gringotts account, perhaps on welcome screen? 
     
     
     // during game
@@ -43,11 +56,11 @@ struct HangmanGameLogic {
         }
         
         //check that input is either 1 letter or a guess for whole word
-        if userInput.characters.count == 1 || userInput.characters.count == store.selectedWord.characters.count {
-            return true
-        } else {
-            print("guess should only be 1 letter or for the whole word. please type in your guess again")
-        }
+//        if userInput.characters.count == 1 || userInput.characters.count == store.selectedWord.characters.count {
+//            return true
+//        } else {
+//            print("guess should only be 1 letter or for the whole word. please type in your guess again")
+//        }
         
         return false
     }
@@ -57,13 +70,13 @@ struct HangmanGameLogic {
         let userGuess = userInput.uppercased()
         print("user guess modified: \(userGuess)")
         
-        if userGuess == store.selectedWord {
-            // wonGame()
-        } else if store.selectedWord.contains(userGuess) {
-            correctGuess(userGuess: userGuess)
-        } else {
-            // incorrectGuess()
-        }
+//        if userGuess == store.selectedWord {
+//            // wonGame()
+//        } else if store.selectedWord.contains(userGuess) {
+//            correctGuess(userGuess: userGuess)
+//        } else {
+//            // incorrectGuess()
+//        }
     }
     
     static func buyALetter() {
@@ -78,21 +91,21 @@ struct HangmanGameLogic {
     static func correctGuess(userGuess: String) {
         //check if guess is a letter or word?
         
-        var concealedWordArray = store.concealedWord.components(separatedBy: "  ") //there are 2 spaces between each underscore
+ //       var concealedWordArray = store.concealedWord.components(separatedBy: "  ") //there are 2 spaces between each underscore
         
         //check if input letter matches letters in secretWord
-        for (index, letter) in store.selectedWord.characters.enumerated() {
-            if String(letter) == userGuess {
-                concealedWordArray[index] = "  \(letter)  "
-            }
-        }
+//        for (index, letter) in store.selectedWord.characters.enumerated() {
+//            if String(letter) == userGuess {
+//                concealedWordArray[index] = "  \(letter)  "
+//            }
+//        }
         
         //check to see if there are any underscores left
-        if !concealedWordArray.contains("___") {
-            wonGame()
-        }
-        
-        let updatedString = concealedWordArray.joined()
+//        if !concealedWordArray.contains("___") {
+//            wonGame()
+//        }
+//        
+//        let updatedString = concealedWordArray.joined()
         // return updatedString
         //instead of returning, should it just call the update view function?
     }

@@ -11,8 +11,9 @@ import Realm
 import RealmSwift
 
 class User: Object {
+    
     dynamic var name: String = ""
-    dynamic var gringottsAccount: String = "gringotts"
+    dynamic var gringottsAccount: GringottsAccount?
     
     required init() {
         super.init()
@@ -26,7 +27,7 @@ class User: Object {
         super.init(value: value, schema: schema)
     }
     
-    init(name: String, gringottsAccount: String) {
+    init(name: String, gringottsAccount: GringottsAccount) {
         super.init()
         
         self.name = name

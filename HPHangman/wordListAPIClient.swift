@@ -7,10 +7,9 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct wordListAPIClient {
-    
-    let store = GameDataStore.sharedInstance
     
     private enum wordListAPIError: Error {
         case invalidAPICall
@@ -18,9 +17,10 @@ struct wordListAPIClient {
         case invalidDataConversion
     }
     
-    typealias wordCompletion = ([String], Error?) -> ()
+    typealias wordCompletion = (String, Error?) -> ()
     
     static func retrieveWords(_ completion: @escaping wordCompletion) {
+        print("in function to retrieve words! WHEEE")
         
         let session = URLSession(configuration: .default)
         let baseURL = URL(string: "http://linkedin-reach.hagbpyjegb.us-west-2.elasticbeanstalk.com/words")
@@ -42,12 +42,22 @@ struct wordListAPIClient {
                     print("\(wordListAPIError.invalidDataConversion): could not convert reponse into a string")
                     return
                 }
-                let words = responseWords.components(separatedBy: "\n")
-                //self.store.words = responseWords.components(separatedBy: "\n")
-                completion(words, nil)
+                
+                if let realm = try? Realm() {
+                    let gameResults = realm.objects(Game.self)
+                    let game = gameResults[0]
+                    
+                    try! realm.write {
+                        game.words = String(responseWords)
+                        print("\(game.words.components(separatedBy: "\n").count)")
+                        print("added words from API response")
+                    }
+                }
+                completion(String(responseWords), nil)
+                
             } catch {
                 print("\(wordListAPIError.invalidAPICall): could not get words from word dictionary API")
-                completion([String](), wordListAPIError.invalidAPICall)
+                completion(String(), wordListAPIError.invalidAPICall)
             }
         })
         dataTask.resume()

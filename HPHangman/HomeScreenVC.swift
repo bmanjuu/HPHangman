@@ -7,22 +7,37 @@
 //
 
 import UIKit
+import RealmSwift
 
 class HomeScreenVC: UIViewController {
 
-    let store = GameDataStore.sharedInstance
-
     @IBAction func enterButton(_ sender: Any) {
-        //MAKE SURE TO HAVE AN ANIMATION WHILE THE WORDS ARE LOADING
-        print("button: \(self.store.words.count)")
-        self.store.selectedWord = HangmanGameLogic.retrieveRandomWord(from: self.store.words)
-        print(self.store.selectedWord)
+        let currentGame = HangmanGameLogic.retrieveCurrentGame()
+        let words = currentGame.words
+        
+        print(HangmanGameLogic.retrieveRandomWord(from: words))
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.store.populateWordsInStore()
+        // self.store.populateWordsInStore()
+        
+        let realm = try! Realm()
+        let user = User()
+        let userGringottsAccount = GringottsAccount()
+        let game = Game()
+        
+        user.gringottsAccount = userGringottsAccount
+        game.player = user
+        
+        try! realm.write {
+            realm.add(game)
+            realm.add(user)
+            realm.add(userGringottsAccount)
+        }
+        
+        HangmanGameLogic.populateWordsInStore()
         
         // Do any additional setup after loading the view.
     }
