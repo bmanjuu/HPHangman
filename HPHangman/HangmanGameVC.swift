@@ -12,8 +12,6 @@ import RealmSwift
 class HangmanGameVC: UIViewController {
     
     public var hangmanConcealedWord: String = ""
-    
-    var game: Results<Game>!
 
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var hangmanImage: UIImageView!
@@ -27,17 +25,14 @@ class HangmanGameVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-//        let realm = try! Realm()
-//        game = realm.objects(Game)
-//        
-//        let secretWord = game.chosenWord
-//        
-//        try! realm.write {
-//            game.concealedWord = String(repeating: " ___ ", count: secretWord.characters.count)
-//        }
-//        // self.hangmanConcealedWord = String(repeating: " ___ ", count: secretWord.characters.count)
-//        print("secret word is: \(secretWord)")
-//        self.secretWordLabel.text = game.concealedWord
+        let realm = try! Realm()
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        
+        try! realm.write {
+            game.concealedWord = String(repeating: " ___ ", count: game.chosenWord.characters.count)
+        }
+
+        self.secretWordLabel.text = game.concealedWord
     }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
