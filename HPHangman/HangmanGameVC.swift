@@ -36,7 +36,6 @@ class HangmanGameVC: UIViewController {
     }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
-        print("guess button tapped")
         //check number of guesses?
         
         if userInput.text?.characters.count == 0 {
@@ -47,17 +46,14 @@ class HangmanGameVC: UIViewController {
         let validInput = HangmanGameLogic.isValidInput(userInput.text!)
         
         if validInput {
-           // HangmanGameLogic.playGame(userInput: userInput.text!)
+            HangmanGameLogic.playGame(with: userInput.text!)
+            self.secretWordLabel.text = HangmanGameLogic.retrieveCurrentGame().concealedWord
         } else {
             print("invalid input") //display error message
         }
         
     }
     
-    static func updateConcealedWord(to word: String) {
-        // let newWord = GameDataStore.sharedInstance.selectedWord
-        // self.hangmanConcealedWord = word
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

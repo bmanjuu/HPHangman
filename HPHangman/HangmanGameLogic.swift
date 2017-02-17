@@ -14,7 +14,6 @@ struct HangmanGameLogic {
     
     static var game: Results<Game>!
     
-    
     static func retrieveCurrentGame() -> Game {
         let realm = try! Realm()
         let gameResults = realm.objects(Game.self)
@@ -47,8 +46,10 @@ struct HangmanGameLogic {
     // during game
     static func isValidInput(_ input: String) -> Bool {
         
+        let chosenWord = retrieveCurrentGame().chosenWord
+        
         let validLetters = CharacterSet.letters
-        let userInput = input.replacingOccurrences(of: " ", with: "") //in case they have extra spaces? perhaps just replace one at the end
+        let userInput = input.replacingOccurrences(of: " ", with: "") //perhaps just replace one at the end
         
         //check that input only contains letters
         if (userInput.trimmingCharacters(in: validLetters) != "") {
@@ -57,11 +58,11 @@ struct HangmanGameLogic {
         }
         
         //check that input is either 1 letter or a guess for whole word
-//        if userInput.characters.count == 1 || userInput.characters.count == store.selectedWord.characters.count {
-//            return true
-//        } else {
-//            print("guess should only be 1 letter or for the whole word. please type in your guess again")
-//        }
+        if userInput.characters.count == 1 || userInput.characters.count == chosenWord.characters.count {
+            return true
+        } else {
+            print("guess should only be 1 letter or for the whole word. please type in your guess again")
+        }
         
         return false
     }
@@ -69,15 +70,16 @@ struct HangmanGameLogic {
     static func playGame(with userInput: String) {
         
         let userGuess = userInput.uppercased()
+        let chosenWord = retrieveCurrentGame().chosenWord
         print("user guess modified: \(userGuess)")
         
-//        if userGuess == store.selectedWord {
-//            // wonGame()
-//        } else if store.selectedWord.contains(userGuess) {
-//            correctGuess(userGuess: userGuess)
-//        } else {
-//            // incorrectGuess()
-//        }
+        if userGuess == chosenWord {
+            // wonGame()
+        } else if chosenWord.contains(userGuess) {
+            correctGuess(userGuess: userGuess)
+        } else {
+            // incorrectGuess()
+        }
     }
     
     static func buyALetter() {
@@ -91,24 +93,39 @@ struct HangmanGameLogic {
     
     static func correctGuess(userGuess: String) {
         //check if guess is a letter or word?
+        let chosenWord = retrieveCurrentGame().chosenWord
+        let concealedWord = retrieveCurrentGame().concealedWord
         
- //       var concealedWordArray = store.concealedWord.components(separatedBy: "  ") //there are 2 spaces between each underscore
+        var concealedWordArray = concealedWord.components(separatedBy: "  ") //there are 2 spaces between each underscore
         
-        //check if input letter matches letters in secretWord
-//        for (index, letter) in store.selectedWord.characters.enumerated() {
-//            if String(letter) == userGuess {
-//                concealedWordArray[index] = "  \(letter)  "
-//            }
-//        }
+        // check if input letter matches letters in secretWord
+        for (index, letter) in chosenWord.characters.enumerated() {
+            if String(letter) == userGuess {
+                concealedWordArray[index] = "  \(letter)  "
+            }
+        }
         
         //check to see if there are any underscores left
-//        if !concealedWordArray.contains("___") {
-//            wonGame()
-//        }
-//        
-//        let updatedString = concealedWordArray.joined()
-        // return updatedString
-        //instead of returning, should it just call the update view function?
+        if !concealedWordArray.contains("___") {
+            wonGame()
+        }
+        
+        updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
+        
+        // instead of returning, should it just call the update view function?
+    }
+    
+    static func updateConcealedWord(to word: String)  {
+        
+        let previousConcealedWord = HangmanGameLogic.retrieveCurrentGame().concealedWord
+        let realm = try! Realm()
+        let currentGame = HangmanGameLogic.retrieveCurrentGame()
+        
+        try! realm.write {
+            currentGame.concealedWord = word
+        }
+        
+        print("concealed word has been updated from: \(previousConcealedWord)")
     }
     
     // after game ends

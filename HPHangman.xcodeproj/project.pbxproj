@@ -98,8 +98,8 @@
 				A490D0EA1E55E1C0004CE638 /* User.swift */,
 				A471EEA51E57672B00E3EE71 /* Game.swift */,
 				A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */,
-				A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */,
 				A490D0D51E55E135004CE638 /* AppDelegate.swift */,
+				A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
