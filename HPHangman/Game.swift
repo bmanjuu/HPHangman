@@ -17,6 +17,7 @@ class Game: Object {
     dynamic var words: String = ""
     dynamic var chosenWord: String = ""
     dynamic var concealedWord: String = ""
+    //keep track of old guesses, no repeats 
     
     dynamic var maxIncorrectGuesses: Int = 6
     dynamic var incorrectGuessCount: Int = 0

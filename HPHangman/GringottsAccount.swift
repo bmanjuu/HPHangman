@@ -18,7 +18,7 @@ class GringottsAccount: Object {
     
     dynamic var owner: User?
     dynamic var balance: Int = 0
-    
+    // different variables for diff denominations? 
     
     required init() {
         super.init()

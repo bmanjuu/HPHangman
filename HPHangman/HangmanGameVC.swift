@@ -29,7 +29,7 @@ class HangmanGameVC: UIViewController {
         let game = HangmanGameLogic.retrieveCurrentGame()
         
         try! realm.write {
-            game.concealedWord = String(repeating: " ___ ", count: game.chosenWord.characters.count)
+            game.concealedWord = String(repeating: "___  ", count: game.chosenWord.characters.count)
         }
 
         self.secretWordLabel.text = game.concealedWord

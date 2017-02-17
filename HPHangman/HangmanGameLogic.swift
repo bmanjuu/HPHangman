@@ -101,7 +101,9 @@ struct HangmanGameLogic {
         // check if input letter matches letters in secretWord
         for (index, letter) in chosenWord.characters.enumerated() {
             if String(letter) == userGuess {
-                concealedWordArray[index] = "  \(letter)  "
+                print("before: \(concealedWordArray)")
+                concealedWordArray[index] = "\(letter)"
+                print("after: \(concealedWordArray)")
             }
         }
         
@@ -111,21 +113,16 @@ struct HangmanGameLogic {
         }
         
         updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
-        
-        // instead of returning, should it just call the update view function?
     }
     
     static func updateConcealedWord(to word: String)  {
         
-        let previousConcealedWord = HangmanGameLogic.retrieveCurrentGame().concealedWord
         let realm = try! Realm()
         let currentGame = HangmanGameLogic.retrieveCurrentGame()
         
         try! realm.write {
             currentGame.concealedWord = word
         }
-        
-        print("concealed word has been updated from: \(previousConcealedWord)")
     }
     
     // after game ends
