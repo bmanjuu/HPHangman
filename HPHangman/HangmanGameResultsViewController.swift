@@ -13,6 +13,7 @@ import RealmSwift
 class HangmanGameResultsViewController: UIViewController {
     
     static var gameStatus: Bool?
+    //ibaction button to start a new game, call function to get a new word here
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +26,8 @@ class HangmanGameResultsViewController: UIViewController {
         let realm = try! Realm()
         gameStatus = HangmanGameLogic.retrieveCurrentGame().wonGame
         
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        //call function to get new word 
+        //depending on the status, display different images, text and maybe music?
+        
     }
 
     override func didReceiveMemoryWarning() {
