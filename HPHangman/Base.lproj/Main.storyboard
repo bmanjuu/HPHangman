@@ -168,6 +168,7 @@
                         <outlet property="hangmanImage" destination="1ie-2Z-Zho" id="Hg7-yp-nA0"/>
                         <outlet property="secretWordLabel" destination="QUE-Sz-kSz" id="AMB-f6-W1w"/>
                         <outlet property="userInput" destination="9UK-Fm-wkT" id="1C4-Ey-S6B"/>
+                        <segue destination="BqB-mw-Oy4" kind="show" identifier="presentResultsVC" id="t0C-j9-lma"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aZ-ej-A9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -175,22 +176,22 @@
             <point key="canvasLocation" x="990" y="110"/>
         </scene>
         <!--Hangman Game Results View Controller-->
-        <scene sceneID="ZPk-7O-Ab7">
+        <scene sceneID="86j-dE-jcI">
             <objects>
-                <viewController id="LYr-Db-ODI" customClass="HangmanGameResultsViewController" customModule="HPHangman" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BqB-mw-Oy4" customClass="HangmanGameResultsViewController" customModule="HPHangman" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ze6-bU-Moj"/>
-                        <viewControllerLayoutGuide type="bottom" id="WGX-9K-eTL"/>
+                        <viewControllerLayoutGuide type="top" id="1c4-PF-dxQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="uBO-oU-bZ4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="naK-ZA-M82">
+                    <view key="view" contentMode="scaleToFill" id="Mw0-Jm-9pX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cU0-Vz-syX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MS0-Km-dAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1849" y="37"/>
+            <point key="canvasLocation" x="1813" y="111"/>
         </scene>
     </scenes>
     <resources>

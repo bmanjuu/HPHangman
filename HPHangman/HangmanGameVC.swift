@@ -58,30 +58,36 @@ class HangmanGameVC: UIViewController {
             self.guessesLabel.text = game.guessesSoFar
             self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
             self.secretWordLabel.text = game.concealedWord
+            
+            
+            
             if game.wonGame {
+                print("changing color")
                 self.secretWordLabel.textColor = UIColor.green
+                self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+            } else if game.incorrectGuessCount == 6 {
+                self.secretWordLabel.textColor = UIColor.red
+                self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
             }
+
         } else {
             print("invalid input") //display error message
         }
         
         self.userInput.text = ""
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let destinationVC = segue.destination as? HangmanGameResultsViewController
     }
     */
 

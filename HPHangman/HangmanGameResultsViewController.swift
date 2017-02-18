@@ -17,7 +17,7 @@ class HangmanGameResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("viewDidLoad: PRESENTING RESULTS VC!")
         // Do any additional setup after loading the view.
     }
     

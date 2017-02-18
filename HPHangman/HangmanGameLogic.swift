@@ -78,7 +78,6 @@ struct HangmanGameLogic {
             return false
         }
         
-        return false
     }
     
     static func playGame(with userInput: String) {
@@ -201,6 +200,8 @@ struct HangmanGameLogic {
             playerAccount.knuts += winningsEarned["knuts"]!
         }
         print("galleons: \(playerAccount.galleons), sickles: \(playerAccount.sickles), knuts: \(playerAccount.knuts)")
+        
+        print("going to new vc here?")
         //go to new vc
         //notification for congratulations and to play again
         //add sounds here?  
@@ -209,6 +210,13 @@ struct HangmanGameLogic {
     
     static func lostGame() {
         print("Oh no! Harry was discovered by Voldemort!")
+        let realm = try! Realm()
+        let game = retrieveCurrentGame()
+        
+        try! realm.write {
+            game.concealedWord = game.chosenWord
+        }
+        
         //go to new vc 
         //notification to try again
         //add sounds here?
