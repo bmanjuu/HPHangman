@@ -263,21 +263,31 @@ struct HangmanGameLogic {
     }
     
     static func revealRandomLetter() {
-        //gets stuck here when revealing last letter 
+        //gets stuck here when revealing last letter
         print("called reveal random letter")
         let game = HangmanGameLogic.retrieveCurrentGame()
         let chosenWordArray = Array(game.chosenWord.characters)
         var concealedWordArray = game.concealedWord.components(separatedBy: "  ")
-        var randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
         
-        while concealedWordArray[randomIndex] != ("___") {
-            randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
+        let numberOfLettersLeft = concealedWordArray.filter({ $0.contains("___") }).count
+        print("\(numberOfLettersLeft) letters left to reveal")
+        
+        if numberOfLettersLeft == 1 {
+            print("revealing last letter")
+            let remainingIndexOfLetter = Int(concealedWordArray.index(of: "___")!)
+            concealedWordArray[remainingIndexOfLetter] = "\(chosenWordArray[remainingIndexOfLetter])"
+        } else {
+            var randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
+            
+            while concealedWordArray[randomIndex] != ("___") {
+                randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
+            }
+            // should account for when chosen letter has multiple occurrences
+            
+            concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
         }
-        // should account for when chosen letter has multiple occurrences
         
-        concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
         print("concealed word array will be updated to: \(concealedWordArray.joined(separator: "  "))")
-        
         updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
     }
     
