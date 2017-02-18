@@ -42,8 +42,7 @@ class HomeScreenVC: UIViewController {
         }
         
         HangmanGameLogic.populateWordsInStore()
-        
-        // Do any additional setup after loading the view.
+
     }
 
     override func didReceiveMemoryWarning() {

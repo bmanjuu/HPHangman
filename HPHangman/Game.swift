@@ -13,6 +13,7 @@ import RealmSwift
 class Game: Object {
     
     dynamic var player: User?
+    dynamic var wonGame: Bool = false
     
     dynamic var words: String = ""
     dynamic var chosenWord: String = ""
@@ -34,9 +35,10 @@ class Game: Object {
         super.init(value: value, schema: schema)
     }
     
-    init(player: User, words: String, chosenWord: String, concealedWord: String, guessesSoFar: String, maxIncorrectGuesses: Int, incorrectGuessCount: Int) {
+    init(player: User, wonGame: Bool, words: String, chosenWord: String, concealedWord: String, guessesSoFar: String, maxIncorrectGuesses: Int, incorrectGuessCount: Int) {
         super.init()
         self.player = player
+        self.wonGame = wonGame
         self.words = words
         self.chosenWord = chosenWord
         self.concealedWord = concealedWord

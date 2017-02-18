@@ -10,8 +10,6 @@ import UIKit
 import RealmSwift
 
 class HangmanGameVC: UIViewController {
-    
-    public var hangmanConcealedWord: String = ""
 
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var hangmanImage: UIImageView!

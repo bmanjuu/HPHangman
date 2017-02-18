@@ -163,6 +163,24 @@
             </objects>
             <point key="canvasLocation" x="993" y="92"/>
         </scene>
+        <!--Hangman Game Results View Controller-->
+        <scene sceneID="ZPk-7O-Ab7">
+            <objects>
+                <viewController id="LYr-Db-ODI" customClass="HangmanGameResultsViewController" customModule="HPHangman" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ze6-bU-Moj"/>
+                        <viewControllerLayoutGuide type="bottom" id="WGX-9K-eTL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="naK-ZA-M82">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cU0-Vz-syX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1825" y="91"/>
+        </scene>
     </scenes>
     <resources>
         <image name="HarryPotter" width="970" height="545"/>

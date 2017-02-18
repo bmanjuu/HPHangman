@@ -87,7 +87,7 @@ struct HangmanGameLogic {
         print("user guess modified: \(userGuess)")
         
         if userGuess == chosenWord {
-            // wonGame()
+            wonGame()
         } else if chosenWord.contains(userGuess) {
             correctGuess(userGuess: userGuess)
         } else {
@@ -155,8 +155,9 @@ struct HangmanGameLogic {
         
         let realm = try! Realm()
         
-        let numberOfIncorrectGuesses = retrieveCurrentGame().incorrectGuessCount
-        let playerAccount = retrieveCurrentGame().player!.gringottsAccount!
+        let game = retrieveCurrentGame()
+        let numberOfIncorrectGuesses = game.incorrectGuessCount
+        let playerAccount = game.player!.gringottsAccount!
         var winningsEarned = ["galleons": 0, "sickles": 0, "knuts": 0]
         //enum for denominations?
         
@@ -190,12 +191,14 @@ struct HangmanGameLogic {
         }
         
         try! realm.write {
+            game.wonGame = true
             playerAccount.galleons += winningsEarned["galleons"]!
             playerAccount.sickles += winningsEarned["sickles"]!
             playerAccount.knuts += winningsEarned["knuts"]!
         }
         
         print("galleons: \(playerAccount.galleons), sickles: \(playerAccount.sickles), knuts: \(playerAccount.knuts)")
+        //go to new vc
         //notification for congratulations and to play again
         //add sounds here?  
         
@@ -203,13 +206,26 @@ struct HangmanGameLogic {
     
     static func lostGame() {
         print("Oh no! Harry was discovered by Voldemort!")
+        //go to new vc 
         //notification to try again
         //add sounds here?
     }
     
-    static func startNewGame() {
+    static func getNewWord() {
         // new button should pop up? 
         // animation while everything clears / reloads
-//        clear chosenWord, concealedWord, guessesSoFar, incorrectGuessCount
+        let realm = try! Realm()
+        let game = retrieveCurrentGame()
+        
+        let newWord = retrieveRandomWord(from: game.words)
+        
+        //reset appropriate game properties
+        try! realm.write {
+            game.chosenWord = newWord
+            game.concealedWord = String(repeating: "___  ", count: newWord.characters.count)
+            game.guessesSoFar = ""
+            game.incorrectGuessCount = 0
+        }
+        
     }
 }
