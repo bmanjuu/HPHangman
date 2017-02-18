@@ -195,11 +195,11 @@ struct HangmanGameLogic {
         try! realm.write {
             game.wonGame = true
             game.concealedWord = game.chosenWord
+            
             playerAccount.galleons += winningsEarned["galleons"]!
             playerAccount.sickles += winningsEarned["sickles"]!
             playerAccount.knuts += winningsEarned["knuts"]!
         }
-        
         print("galleons: \(playerAccount.galleons), sickles: \(playerAccount.sickles), knuts: \(playerAccount.knuts)")
         //go to new vc
         //notification for congratulations and to play again

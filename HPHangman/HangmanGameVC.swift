@@ -58,6 +58,9 @@ class HangmanGameVC: UIViewController {
             self.guessesLabel.text = game.guessesSoFar
             self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
             self.secretWordLabel.text = game.concealedWord
+            if game.wonGame {
+                self.secretWordLabel.textColor = UIColor.green
+            }
         } else {
             print("invalid input") //display error message
         }
