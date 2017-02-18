@@ -11,9 +11,14 @@ import RealmSwift
 
 class HangmanGameVC: UIViewController {
 
+    @IBOutlet weak var gringottsAccountBalance: UILabel!
+
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var hangmanImage: UIImageView!
     @IBOutlet weak var secretWordLabel: UILabel!
+    
+    @IBOutlet weak var guessesLabel: UILabel!
+    @IBOutlet weak var chancesLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +36,15 @@ class HangmanGameVC: UIViewController {
         }
 
         self.secretWordLabel.text = game.concealedWord
+        self.guessesLabel.text = ""
+        self.chancesLabel.text = "6"
+        self.gringottsAccountBalance.text = "galleons: \(game.player!.gringottsAccount!.galleons), sickles: \(game.player!.gringottsAccount!.sickles), knuts: \(game.player!.gringottsAccount!.knuts)"
     }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
         //check number of guesses?
+        
+        let game = HangmanGameLogic.retrieveCurrentGame()
         
         if userInput.text?.characters.count == 0 {
             print("please enter a letter or word")
@@ -45,11 +55,14 @@ class HangmanGameVC: UIViewController {
         
         if validInput {
             HangmanGameLogic.playGame(with: userInput.text!)
-            self.secretWordLabel.text = HangmanGameLogic.retrieveCurrentGame().concealedWord
+            self.guessesLabel.text = game.guessesSoFar
+            self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
+            self.secretWordLabel.text = game.concealedWord
         } else {
             print("invalid input") //display error message
         }
         
+        self.userInput.text = ""
     }
     
 

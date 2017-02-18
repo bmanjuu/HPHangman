@@ -57,18 +57,10 @@
                                 <rect key="frame" x="0.0" y="60" width="375" height="364"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2M-sc-rEt">
-                                <rect key="frame" x="205" y="31" width="154" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2M-sc-rEt">
+                                <rect key="frame" x="88" y="31" width="271" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.50438989140000001" green="0.8331151832" blue="0.50942938429999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jw-jg-fko">
-                                <rect key="frame" x="16" y="31" width="64" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.37067730560000001" green="0.7826202552" blue="0.74829819539999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -80,7 +72,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type in letter or word" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9UK-Fm-wkT">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="type in letter or word" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9UK-Fm-wkT">
                                 <rect key="frame" x="15" y="504" width="343" height="30"/>
                                 <color key="backgroundColor" red="0.62367057540000004" green="0.77307815359999998" blue="1" alpha="0.79964539010000002" colorSpace="calibratedRGB"/>
                                 <nil key="textColor"/>
@@ -128,10 +120,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Money" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jw-jg-fko">
+                                <rect key="frame" x="16" y="31" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.37067730560000001" green="0.7826202552" blue="0.74829819539999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zft-QZ-tX7" firstAttribute="top" secondItem="11L-aa-0bn" secondAttribute="bottom" constant="25" id="2Yd-Cj-hCz"/>
+                            <constraint firstItem="zft-QZ-tX7" firstAttribute="centerY" secondItem="QNk-Vl-tXO" secondAttribute="centerY" id="357-kP-rL2"/>
                             <constraint firstItem="QNk-Vl-tXO" firstAttribute="top" secondItem="xjc-K7-fOa" secondAttribute="bottom" constant="25" id="3Wh-Jl-oLb"/>
                             <constraint firstItem="1ie-2Z-Zho" firstAttribute="centerX" secondItem="3hU-du-f0T" secondAttribute="centerX" id="9gm-R2-Fvf"/>
                             <constraint firstItem="xjc-K7-fOa" firstAttribute="leading" secondItem="11L-aa-0bn" secondAttribute="trailing" constant="170" id="Elg-aa-yA5"/>
@@ -151,6 +152,7 @@
                             <constraint firstItem="z6T-2k-iHs" firstAttribute="centerX" secondItem="QNk-Vl-tXO" secondAttribute="centerX" id="eqY-pw-I1y"/>
                             <constraint firstItem="9UK-Fm-wkT" firstAttribute="top" secondItem="QUE-Sz-kSz" secondAttribute="bottom" constant="18" id="hZU-Pa-39g"/>
                             <constraint firstItem="QUE-Sz-kSz" firstAttribute="centerX" secondItem="3hU-du-f0T" secondAttribute="centerX" id="j8Q-0z-LSM"/>
+                            <constraint firstItem="11L-aa-0bn" firstAttribute="centerY" secondItem="xjc-K7-fOa" secondAttribute="centerY" id="l64-tV-0mL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QNk-Vl-tXO" secondAttribute="trailing" id="mbd-RK-394"/>
                             <constraint firstItem="uTW-75-fVJ" firstAttribute="centerX" secondItem="zft-QZ-tX7" secondAttribute="centerX" id="sXw-9i-Rup"/>
                             <constraint firstItem="1ie-2Z-Zho" firstAttribute="top" secondItem="97y-9O-aHj" secondAttribute="bottom" constant="40" id="sw8-0x-ch4"/>
@@ -160,14 +162,17 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chancesLabel" destination="z6T-2k-iHs" id="jwN-ch-bSg"/>
+                        <outlet property="gringottsAccountBalance" destination="t2M-sc-rEt" id="tnM-Wp-I4M"/>
+                        <outlet property="guessesLabel" destination="uTW-75-fVJ" id="ytX-Yv-PMC"/>
                         <outlet property="hangmanImage" destination="1ie-2Z-Zho" id="Hg7-yp-nA0"/>
-                        <outlet property="secretWordLabel" destination="QUE-Sz-kSz" id="sd1-3V-Zc4"/>
+                        <outlet property="secretWordLabel" destination="QUE-Sz-kSz" id="AMB-f6-W1w"/>
                         <outlet property="userInput" destination="9UK-Fm-wkT" id="1C4-Ey-S6B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aZ-ej-A9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1002" y="37"/>
+            <point key="canvasLocation" x="990" y="110"/>
         </scene>
         <!--Hangman Game Results View Controller-->
         <scene sceneID="ZPk-7O-Ab7">

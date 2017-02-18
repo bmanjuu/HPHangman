@@ -60,21 +60,22 @@ struct HangmanGameLogic {
             return false
         }
         
-        if guessesSoFar.contains(userInput) {
-            print("guessed \(userInput) already")
-            return false
-        } else {
-            try! realm.write {
-                currentGame.guessesSoFar.append(userInput)
-            }
-            print(currentGame.guessesSoFar)
-        }
-        
-        //check that input is either 1 letter or a guess for whole word
         if userInput.characters.count == 1 || userInput.characters.count == chosenWord.characters.count {
-            return true
+            
+            if guessesSoFar.contains(userInput) {
+                print("guessed \(userInput) already")
+                return false
+            } else {
+                try! realm.write {
+                    currentGame.guessesSoFar.append("\(userInput) ")
+                }
+                print(currentGame.guessesSoFar)
+                return true
+            }
+            
         } else {
             print("guess should only be 1 letter or for the whole word. please type in your guess again")
+            return false
         }
         
         return false
@@ -96,7 +97,7 @@ struct HangmanGameLogic {
     }
     
     static func buyALetter() {
-        //cost: 2 sickles
+        //cost: 10 sickles
     }
     
     static func incorrectGuess() {

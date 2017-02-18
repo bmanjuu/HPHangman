@@ -12,7 +12,7 @@ import RealmSwift
 
 class HangmanGameResultsViewController: UIViewController {
     
-    static var gameStatus: Bool?
+    public var gameStatus: Bool?
     //ibaction button to start a new game, call function to get a new word here
 
     override func viewDidLoad() {
