@@ -26,11 +26,10 @@ class HangmanGameResultsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //pass information about win/loss here 
+ 
         self.resultsTextLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         self.displayWinningsLabel.isHidden = true
         
-        let realm = try! Realm()
         gameStatus = HangmanGameLogic.retrieveCurrentGame().wonGame
         let userGringottsAccount = HangmanGameLogic.retrieveCurrentGame().player!.gringottsAccount!
         
@@ -38,27 +37,37 @@ class HangmanGameResultsViewController: UIViewController {
         
         //depending on the status, display different images, text and maybe music?
         if gameStatus! {
-            // show winning picture and text
             self.resultsImage.image = UIImage(named: "hpCastleImage")
-            self.resultsTextLabel.text = "HOORAY!\n You saved Harry and the Wizarding World from the wrath of Lord Voldemort!\n The Ministry has rewarded you with: "
+            self.resultsTextLabel.text = "HOORAY! \nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \nThe Ministry has rewarded you with: "
             self.displayWinningsLabel.isHidden = false
             self.displayWinningsLabel.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
         } else {
-            // show losing picture and ask to try again
             self.resultsImage.image = UIImage(named: "hpLostGame")
-            self.resultsTextLabel.text = "Oh no!\n Voldemort got a hold of Harry!\n You still have another chance to save him! Would you like to play again?"
+            self.resultsTextLabel.text = "Oh no! \nVoldemort got a hold of Harry! \nYou still have another chance to save him! Would you like to play again?"
         }
         
     }
     
     @IBAction func playAgainButtonTapped(_ sender: Any) {
-        //reset everything
-        //segue back to other vc
-        //retrieve new word
+        self.performSegue(withIdentifier: "playAgain", sender:nil)
     }
 
     @IBAction func exitButtonTapped(_ sender: Any) {
         //segue to conclusion/thank you view controller
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let realm = try! Realm()
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        
+        try! realm.write {
+            //resetting values
+            game.chosenWord = ""
+            game.concealedWord = ""
+            game.incorrectGuessCount = 0
+            game.guessesSoFar = ""
+            game.wonGame = false
+        }
     }
     
     override func didReceiveMemoryWarning() {

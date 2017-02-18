@@ -239,6 +239,7 @@
                                 <state key="normal" title="Play Again"/>
                                 <connections>
                                     <action selector="playAgainButtonTapped:" destination="BqB-mw-Oy4" eventType="touchUpInside" id="0Kf-k7-bTc"/>
+                                    <segue destination="BWK-0G-Tde" kind="show" identifier="playAgain" id="7A1-yN-KUe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -277,4 +278,7 @@
     <resources>
         <image name="hpBattleImage" width="640" height="360"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="7A1-yN-KUe"/>
+    </inferredMetricsTieBreakers>
 </document>

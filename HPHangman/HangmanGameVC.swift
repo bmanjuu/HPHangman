@@ -26,41 +26,28 @@ class HangmanGameVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func buyALetterButtonTapped(_ sender: Any) {
-        let realm = try! Realm()
-        let game = HangmanGameLogic.retrieveCurrentGame()
-        let userGringottsAccount = game.player!.gringottsAccount!
-        
-        if HangmanGameLogic.hasSufficientFunds() {
-            //update all labels
-            self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
-            self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
-            self.secretWordLabel.text = game.concealedWord
-        } else {
-            print("insufficient funds") //display error
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         
-        //retrieve random word here?
-        
         let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()
+        let words = game.words
+        let chosenWord = HangmanGameLogic.retrieveRandomWord(from: words)
         
         try! realm.write {
+            game.chosenWord = chosenWord
             game.concealedWord = String(repeating: "___  ", count: game.chosenWord.characters.count)
         }
-
+        
+        print("THE CHOSEN ONE --> \(game.chosenWord)")
+        
         self.secretWordLabel.text = game.concealedWord
-        self.guessesLabel.text = ""
-        self.chancesLabel.text = "6"
+        self.guessesLabel.text = game.guessesSoFar
+        self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
         self.gringottsAccountBalance.text = "galleons: \(game.player!.gringottsAccount!.galleons), sickles: \(game.player!.gringottsAccount!.sickles), knuts: \(game.player!.gringottsAccount!.knuts)"
     }
     
+    
     @IBAction func guessButtonTapped(_ sender: Any) {
-        //check number of guesses?
-        
         let game = HangmanGameLogic.retrieveCurrentGame()
         
         let validInput = HangmanGameLogic.isValidInput(userInput.text!)
@@ -91,6 +78,22 @@ class HangmanGameVC: UIViewController {
         self.userInput.text = ""
     }
 
+    
+    @IBAction func buyALetterButtonTapped(_ sender: Any) {
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        let userGringottsAccount = game.player!.gringottsAccount!
+        
+        if HangmanGameLogic.hasSufficientFunds() {
+            //update all labels after changing account balance and updating word to reveal an extra letter 
+            self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
+            self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
+            self.secretWordLabel.text = game.concealedWord
+        } else {
+            print("insufficient funds") //display error
+        }
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

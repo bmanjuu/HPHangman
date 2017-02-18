@@ -12,16 +12,10 @@ import RealmSwift
 class HomeScreenVC: UIViewController {
 
     @IBAction func enterButton(_ sender: Any) {
-        let currentGame = HangmanGameLogic.retrieveCurrentGame()
-        let words = currentGame.words
-        let chosenWord = HangmanGameLogic.retrieveRandomWord(from: words)
+        //display storyline here
+        //then when user presses enter again, ask for name or just go into game
         
-        let realm = try! Realm()
         
-        try! realm.write {
-            currentGame.chosenWord = chosenWord
-        }
-        print("THE CHOSEN ONE --> \(currentGame.chosenWord)")
     }
     
     override func viewDidLoad() {

@@ -200,11 +200,6 @@ struct HangmanGameLogic {
         }
         print("galleons: \(playerAccount.galleons), sickles: \(playerAccount.sickles), knuts: \(playerAccount.knuts)")
         
-        print("going to new vc here?")
-        //go to new vc
-        //notification for congratulations and to play again
-        //add sounds here?  
-        
     }
     
     static func lostGame() {
@@ -215,10 +210,6 @@ struct HangmanGameLogic {
         try! realm.write {
             game.concealedWord = game.chosenWord
         }
-        
-        //go to new vc 
-        //notification to try again
-        //add sounds here?
     }
     
     static func getNewWord() {
@@ -236,7 +227,6 @@ struct HangmanGameLogic {
             game.guessesSoFar = ""
             game.incorrectGuessCount = 0
         }
-       //new word will be retrieved when
     }
     
     static func hasSufficientFunds() -> Bool {
@@ -258,11 +248,9 @@ struct HangmanGameLogic {
                 userGringottsAccount.galleons -= price["galleons"]!
                 userGringottsAccount.sickles -= price["sickles"]!
                 userGringottsAccount.knuts -= price["knuts"]!
-                
             }
             
             revealRandomLetter()
-            
             return true
         }
         
@@ -270,7 +258,6 @@ struct HangmanGameLogic {
     }
     
     static func revealRandomLetter() {
-        let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()
         let chosenWordArray = Array(game.chosenWord.characters)
         var concealedWordArray = game.concealedWord.components(separatedBy: "  ")
@@ -279,7 +266,7 @@ struct HangmanGameLogic {
         while concealedWordArray[randomIndex].contains("__") {
             randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
         }
-        // have to account for when letter has multiple occurrences
+        // should account for when chosen letter has multiple occurrences
         
         concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
         
