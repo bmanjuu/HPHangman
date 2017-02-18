@@ -38,7 +38,6 @@ class HangmanGameVC: UIViewController {
     @IBAction func guessButtonTapped(_ sender: Any) {
         //check number of guesses?
         
-        
         if userInput.text?.characters.count == 0 {
             print("please enter a letter or word")
             return //error pop up?

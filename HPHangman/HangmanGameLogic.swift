@@ -91,7 +91,7 @@ struct HangmanGameLogic {
         } else if chosenWord.contains(userGuess) {
             correctGuess(userGuess: userGuess)
         } else {
-            // incorrectGuess()
+            incorrectGuess()
         }
     }
     
@@ -101,7 +101,17 @@ struct HangmanGameLogic {
     
     static func incorrectGuess() {
         //update label about incorrect guesses
-        //add letter to incorrect guess array
+        let realm = try! Realm()
+        let currentGame = retrieveCurrentGame()
+        
+        try! realm.write {
+            currentGame.incorrectGuessCount += 1
+        }
+        
+        if currentGame.incorrectGuessCount == 6 {
+            lostGame()
+        }
+        
     }
     
     static func correctGuess(userGuess: String) {
@@ -122,6 +132,7 @@ struct HangmanGameLogic {
         
         //check to see if there are any underscores left
         if !concealedWordArray.contains("___") {
+            print("won game!")
             wonGame()
         }
         
@@ -140,6 +151,7 @@ struct HangmanGameLogic {
     
     // after game ends
     static func wonGame() {
+        print("You've helped Harry defeat Voldemort!")
         //money earned based on number of guesses used to win game
         //1 guess: 10 galleons, 20 sickles, and 50 knuts
         //2: 5 galleons, 20 sickles, 30 knuts
@@ -150,6 +162,6 @@ struct HangmanGameLogic {
     }
     
     static func lostGame() {
-        
+        print("Oh no! Harry was discovered by Voldemort!")
     }
 }
