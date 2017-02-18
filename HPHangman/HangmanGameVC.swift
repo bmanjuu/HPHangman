@@ -80,14 +80,18 @@ class HangmanGameVC: UIViewController {
 
     
     @IBAction func buyALetterButtonTapped(_ sender: Any) {
+        print("buy a letter button tapped")
         let game = HangmanGameLogic.retrieveCurrentGame()
         let userGringottsAccount = game.player!.gringottsAccount!
         
         if HangmanGameLogic.hasSufficientFunds() {
             //update all labels after changing account balance and updating word to reveal an extra letter 
-            self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
-            self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
-            self.secretWordLabel.text = game.concealedWord
+            print("has sufficient funds")
+            DispatchQueue.main.async {
+                self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
+                self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
+                self.secretWordLabel.text = game.concealedWord
+            }
         } else {
             print("insufficient funds") //display error
         }

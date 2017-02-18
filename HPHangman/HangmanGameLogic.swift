@@ -141,11 +141,14 @@ struct HangmanGameLogic {
     
     static func updateConcealedWord(to word: String)  {
         
+        print("called update concealed word")
+        
         let realm = try! Realm()
         let currentGame = HangmanGameLogic.retrieveCurrentGame()
         
         try! realm.write {
             currentGame.concealedWord = word
+            print("updated concealed word in realm")
         }
     }
     
@@ -230,6 +233,7 @@ struct HangmanGameLogic {
     }
     
     static func hasSufficientFunds() -> Bool {
+        print("checking for sufficient funds")
         
         let price = ["galleons": 1,
                      "sickles": 2,
@@ -243,6 +247,8 @@ struct HangmanGameLogic {
                                   "knuts" : userGringottsAccount.knuts]
         
         if currentUserBalance["galleons"]! >= price["galleons"]! && currentUserBalance["sickles"]! >= price["sickles"]! && currentUserBalance["knuts"]! >= price["knuts"]! {
+            
+            print("taking money out of the user's account")
             
             try! realm.write {
                 userGringottsAccount.galleons -= price["galleons"]!
@@ -258,17 +264,19 @@ struct HangmanGameLogic {
     }
     
     static func revealRandomLetter() {
+        print("called reveal random letter")
         let game = HangmanGameLogic.retrieveCurrentGame()
         let chosenWordArray = Array(game.chosenWord.characters)
         var concealedWordArray = game.concealedWord.components(separatedBy: "  ")
         var randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
         
-        while concealedWordArray[randomIndex].contains("__") {
+        while concealedWordArray[randomIndex] != ("___") {
             randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
         }
         // should account for when chosen letter has multiple occurrences
         
         concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
+        print("concealed word array will be updated to: \(concealedWordArray.joined(separator: "  "))")
         
         updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
     }
