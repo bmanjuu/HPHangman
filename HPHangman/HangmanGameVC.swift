@@ -88,11 +88,16 @@ class HangmanGameVC: UIViewController {
             print("has sufficient funds")
             HangmanGameLogic.revealRandomLetter()
             
-            DispatchQueue.main.async {
-                self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
-                self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
-                self.secretWordLabel.text = game.concealedWord
+            self.secretWordLabel.text = game.concealedWord
+            self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
+            
+            if game.wonGame {
+                self.secretWordLabel.textColor = UIColor.green
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
+                    self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                }
             }
+            
         } else {
             print("insufficient funds") //display error
         }

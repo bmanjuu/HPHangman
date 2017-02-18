@@ -215,23 +215,6 @@ struct HangmanGameLogic {
         }
     }
     
-    static func getNewWord() {
-        // new button should pop up? 
-        // animation while everything clears / reloads
-        let realm = try! Realm()
-        let game = retrieveCurrentGame()
-        
-        let newWord = retrieveRandomWord(from: game.words)
-        
-        //reset appropriate game properties
-        try! realm.write {
-            game.chosenWord = newWord
-            game.concealedWord = String(repeating: "___  ", count: newWord.characters.count)
-            game.guessesSoFar = ""
-            game.incorrectGuessCount = 0
-        }
-    }
-    
     static func hasSufficientFunds() -> Bool {
         print("checking for sufficient funds")
         
@@ -265,6 +248,7 @@ struct HangmanGameLogic {
     static func revealRandomLetter() {
         //gets stuck here when revealing last letter
         print("called reveal random letter")
+        
         let game = HangmanGameLogic.retrieveCurrentGame()
         let chosenWordArray = Array(game.chosenWord.characters)
         var concealedWordArray = game.concealedWord.components(separatedBy: "  ")
@@ -276,6 +260,10 @@ struct HangmanGameLogic {
             print("revealing last letter")
             let remainingIndexOfLetter = Int(concealedWordArray.index(of: "___")!)
             concealedWordArray[remainingIndexOfLetter] = "\(chosenWordArray[remainingIndexOfLetter])"
+            
+            wonGame()
+            return
+            
         } else {
             var randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
             
@@ -285,11 +273,26 @@ struct HangmanGameLogic {
             // should account for when chosen letter has multiple occurrences
             
             concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
+            print("concealed word array will be updated to: \(concealedWordArray.joined(separator: "  "))")
+            updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
         }
-        
-        print("concealed word array will be updated to: \(concealedWordArray.joined(separator: "  "))")
-        updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
     }
     
-    
 }
+
+//    static func getNewWord() {
+//        // new button should pop up?
+//        // animation while everything clears / reloads
+//        let realm = try! Realm()
+//        let game = retrieveCurrentGame()
+//
+//        let newWord = retrieveRandomWord(from: game.words)
+//
+//        //reset appropriate game properties
+//        try! realm.write {
+//            game.chosenWord = newWord
+//            game.concealedWord = String(repeating: "___  ", count: newWord.characters.count)
+//            game.guessesSoFar = ""
+//            game.incorrectGuessCount = 0
+//        }
+//    }
