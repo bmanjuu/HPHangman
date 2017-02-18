@@ -246,7 +246,9 @@ struct HangmanGameLogic {
                                   "sickles" : userGringottsAccount.sickles,
                                   "knuts" : userGringottsAccount.knuts]
         
-        if currentUserBalance["galleons"]! >= price["galleons"]! && currentUserBalance["sickles"]! >= price["sickles"]! && currentUserBalance["knuts"]! >= price["knuts"]! {
+        if currentUserBalance["galleons"]! >= price["galleons"]! &&
+            currentUserBalance["sickles"]! >= price["sickles"]! &&
+            currentUserBalance["knuts"]! >= price["knuts"]! {
             
             print("taking money out of the user's account")
             
@@ -255,15 +257,13 @@ struct HangmanGameLogic {
                 userGringottsAccount.sickles -= price["sickles"]!
                 userGringottsAccount.knuts -= price["knuts"]!
             }
-            
-            revealRandomLetter()
             return true
         }
-        
         return false
     }
     
     static func revealRandomLetter() {
+        //gets stuck here when revealing last letter 
         print("called reveal random letter")
         let game = HangmanGameLogic.retrieveCurrentGame()
         let chosenWordArray = Array(game.chosenWord.characters)

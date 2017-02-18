@@ -85,8 +85,9 @@ class HangmanGameVC: UIViewController {
         let userGringottsAccount = game.player!.gringottsAccount!
         
         if HangmanGameLogic.hasSufficientFunds() {
-            //update all labels after changing account balance and updating word to reveal an extra letter 
             print("has sufficient funds")
+            HangmanGameLogic.revealRandomLetter()
+            
             DispatchQueue.main.async {
                 self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
                 self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
