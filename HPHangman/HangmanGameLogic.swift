@@ -197,7 +197,8 @@ struct HangmanGameLogic {
         
         print("galleons: \(playerAccount.galleons), sickles: \(playerAccount.sickles), knuts: \(playerAccount.knuts)")
         //notification for congratulations and to play again
-        //add sounds here?
+        //add sounds here?  
+        
     }
     
     static func lostGame() {
