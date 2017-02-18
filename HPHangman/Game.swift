@@ -17,7 +17,7 @@ class Game: Object {
     dynamic var words: String = ""
     dynamic var chosenWord: String = ""
     dynamic var concealedWord: String = ""
-    //keep track of old guesses, no repeats 
+    dynamic var guessesSoFar: String = ""
     
     dynamic var maxIncorrectGuesses: Int = 6
     dynamic var incorrectGuessCount: Int = 0
@@ -34,12 +34,13 @@ class Game: Object {
         super.init(value: value, schema: schema)
     }
     
-    init(player: User, words: String, chosenWord: String, concealedWord: String, maxIncorrectGuesses: Int, incorrectGuessCount: Int) {
+    init(player: User, words: String, chosenWord: String, concealedWord: String, guessesSoFar: String, maxIncorrectGuesses: Int, incorrectGuessCount: Int) {
         super.init()
         self.player = player
         self.words = words
         self.chosenWord = chosenWord
         self.concealedWord = concealedWord
+        self.guessesSoFar = guessesSoFar
         self.maxIncorrectGuesses = maxIncorrectGuesses
         self.incorrectGuessCount = incorrectGuessCount
     }

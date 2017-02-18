@@ -46,7 +46,10 @@ struct HangmanGameLogic {
     // during game
     static func isValidInput(_ input: String) -> Bool {
         
-        let chosenWord = retrieveCurrentGame().chosenWord
+        let realm = try! Realm()
+        let currentGame = retrieveCurrentGame()
+        let chosenWord = currentGame.chosenWord
+        let guessesSoFar = currentGame.guessesSoFar
         
         let validLetters = CharacterSet.letters
         let userInput = input.replacingOccurrences(of: " ", with: "") //perhaps just replace one at the end
@@ -55,6 +58,16 @@ struct HangmanGameLogic {
         if (userInput.trimmingCharacters(in: validLetters) != "") {
             print("invalid characters in string")
             return false
+        }
+        
+        if guessesSoFar.contains(userInput) {
+            print("guessed \(userInput) already")
+            return false
+        } else {
+            try! realm.write {
+                currentGame.guessesSoFar.append(userInput)
+            }
+            print(currentGame.guessesSoFar)
         }
         
         //check that input is either 1 letter or a guess for whole word
