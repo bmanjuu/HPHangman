@@ -26,16 +26,16 @@ class HangmanGameVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func buyAChanceButtonTapped(_ sender: Any) {
-        
+    @IBAction func buyALetterButtonTapped(_ sender: Any) {
         let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()
         let userGringottsAccount = game.player!.gringottsAccount!
         
         if HangmanGameLogic.hasSufficientFunds() {
+            //update all labels
             self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
             self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
-            //CONCEALED TEXT LABEL CHANGES HERE 
+            self.secretWordLabel.text = game.concealedWord
         } else {
             print("insufficient funds") //display error
         }
@@ -63,11 +63,6 @@ class HangmanGameVC: UIViewController {
         
         let game = HangmanGameLogic.retrieveCurrentGame()
         
-        if userInput.text?.characters.count == 0 {
-            print("please enter a letter or word")
-            return //error pop up?
-        }
-        
         let validInput = HangmanGameLogic.isValidInput(userInput.text!)
         
         if validInput {
@@ -77,12 +72,17 @@ class HangmanGameVC: UIViewController {
             self.secretWordLabel.text = game.concealedWord
             
             if game.wonGame {
-                print("changing color")
                 self.secretWordLabel.textColor = UIColor.green
-                self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                }
+                
             } else if game.incorrectGuessCount == 6 {
                 self.secretWordLabel.textColor = UIColor.red
                 self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                }
             }
 
         } else {

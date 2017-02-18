@@ -12,7 +12,7 @@ import RealmSwift
 
 struct HangmanGameLogic {
     
-    static var game: Results<Game>!
+    // static var game: Results<Game>!
     
     static func retrieveCurrentGame() -> Game {
         let realm = try! Realm()
@@ -46,38 +46,41 @@ struct HangmanGameLogic {
     // during game
     static func isValidInput(_ input: String) -> Bool {
         
+        if input.characters.count == 0 {
+            print("please enter a letter or word")
+            return false
+        }
+        
         let realm = try! Realm()
         let currentGame = retrieveCurrentGame()
         let chosenWord = currentGame.chosenWord
         let guessesSoFar = currentGame.guessesSoFar
         
-        let validLetters = CharacterSet.letters
-        let userInput = input.replacingOccurrences(of: " ", with: "") //perhaps just replace one at the end
-        
         //check that input only contains letters
+        let validLetters = CharacterSet.letters
+        let userInput = input.replacingOccurrences(of: " ", with: "").uppercased() //perhaps just replace one at the end
+        
         if (userInput.trimmingCharacters(in: validLetters) != "") {
             print("invalid characters in string")
             return false
         }
         
+        //check that input is only 1 letter or a guess for the whole word
         if userInput.characters.count == 1 || userInput.characters.count == chosenWord.characters.count {
             
             if guessesSoFar.contains(userInput) {
                 print("guessed \(userInput) already")
                 return false
             } else {
-                try! realm.write {
-                    currentGame.guessesSoFar.append("\(userInput) ")
-                }
-                print(currentGame.guessesSoFar)
                 return true
             }
-            
+
         } else {
             print("guess should only be 1 letter or for the whole word. please type in your guess again")
             return false
         }
         
+        return false
     }
     
     static func playGame(with userInput: String) {
@@ -91,21 +94,18 @@ struct HangmanGameLogic {
         } else if chosenWord.contains(userGuess) {
             correctGuess(userGuess: userGuess)
         } else {
-            incorrectGuess()
+            incorrectGuess(userGuess: userGuess)
         }
     }
     
-    static func buyALetter() {
-        //cost: 10 sickles
-    }
-    
-    static func incorrectGuess() {
-        //update label about incorrect guesses
+    static func incorrectGuess(userGuess: String) {
+
         let realm = try! Realm()
         let currentGame = retrieveCurrentGame()
         
         try! realm.write {
             currentGame.incorrectGuessCount += 1
+            currentGame.guessesSoFar.append("\(userGuess) ")
         }
         
         if currentGame.incorrectGuessCount == 6 {
@@ -115,7 +115,6 @@ struct HangmanGameLogic {
     }
     
     static func correctGuess(userGuess: String) {
-        //check if guess is a letter or word?
         let chosenWord = retrieveCurrentGame().chosenWord
         let concealedWord = retrieveCurrentGame().concealedWord
         
@@ -245,8 +244,7 @@ struct HangmanGameLogic {
         let price = ["galleons": 1,
                      "sickles": 2,
                      "knuts": 3]
-        
-        //grab current user balance
+ 
         let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()
         let userGringottsAccount = game.player!.gringottsAccount!
@@ -256,32 +254,36 @@ struct HangmanGameLogic {
         
         if currentUserBalance["galleons"]! >= price["galleons"]! && currentUserBalance["sickles"]! >= price["sickles"]! && currentUserBalance["knuts"]! >= price["knuts"]! {
             
-            // if check user balance is true then
             try! realm.write {
                 userGringottsAccount.galleons -= price["galleons"]!
                 userGringottsAccount.sickles -= price["sickles"]!
                 userGringottsAccount.knuts -= price["knuts"]!
                 
-                game.incorrectGuessCount -= 1
-                
-                //change concealedWord
             }
+            
+            revealRandomLetter()
+            
             return true
-        } else {
-            return false
         }
+        
+        return false
     }
     
-    static func revealRandomLetterIn(_ word: String) -> String {
+    static func revealRandomLetter() {
         let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()
-        let chosenWord = game.chosenWord
-        var updatedConcealedWord = ""
+        let chosenWordArray = Array(game.chosenWord.characters)
+        var concealedWordArray = game.concealedWord.components(separatedBy: "  ")
+        var randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
         
+        while concealedWordArray[randomIndex].contains("__") {
+            randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
+        }
+        // have to account for when letter chosen has multiples present
         
+        concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
         
-        
-        return updatedConcealedWord
+        updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
     }
     
     
