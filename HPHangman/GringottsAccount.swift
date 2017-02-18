@@ -17,8 +17,9 @@ class GringottsAccount: Object {
 //    }
     
     dynamic var owner: User?
-    dynamic var balance: Int = 0
-    // different variables for diff denominations? 
+    dynamic var galleons: Int = 0
+    dynamic var sickles: Int = 0
+    dynamic var knuts: Int = 0
     
     required init() {
         super.init()
@@ -32,11 +33,13 @@ class GringottsAccount: Object {
         super.init(value: value, schema: schema)
     }
 
-    init(owner: User, balance: Int) {
+    init(owner: User, galleons: Int, sickles: Int, knuts: Int) {
         super.init()
         
         self.owner = owner
-        self.balance = balance
+        self.galleons = galleons
+        self.sickles = sickles
+        self.knuts = knuts
     }
     
 }

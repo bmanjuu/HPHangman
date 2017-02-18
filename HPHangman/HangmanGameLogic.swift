@@ -152,16 +152,63 @@ struct HangmanGameLogic {
     // after game ends
     static func wonGame() {
         print("You've helped Harry defeat Voldemort!")
-        //money earned based on number of guesses used to win game
-        //1 guess: 10 galleons, 20 sickles, and 50 knuts
-        //2: 5 galleons, 20 sickles, 30 knuts
-        //3:
-        //4:
-        //5:
-        //6:
+        
+        let realm = try! Realm()
+        
+        let numberOfIncorrectGuesses = retrieveCurrentGame().incorrectGuessCount
+        let playerAccount = retrieveCurrentGame().player!.gringottsAccount!
+        var winningsEarned = ["galleons": 0, "sickles": 0, "knuts": 0]
+        //enum for denominations?
+        
+        switch numberOfIncorrectGuesses {
+        case 0:
+            winningsEarned["galleons"] = 30
+            winningsEarned["sickles"] = 25
+            winningsEarned["knuts"] = 50
+        case 1:
+            winningsEarned["galleons"] = 25
+            winningsEarned["sickles"] = 20
+            winningsEarned["knuts"] = 45
+        case 2:
+            winningsEarned["galleons"] = 20
+            winningsEarned["sickles"] = 15
+            winningsEarned["knuts"] = 40
+        case 3:
+            winningsEarned["galleons"] = 15
+            winningsEarned["sickles"] = 10
+            winningsEarned["knuts"] = 35
+        case 4:
+            winningsEarned["galleons"] = 10
+            winningsEarned["sickles"] = 5
+            winningsEarned["knuts"] = 30
+        case 5:
+            winningsEarned["galleons"] = 5
+            winningsEarned["sickles"] = 5
+            winningsEarned["knuts"] = 25
+        default:
+            print("error with distributing winnings")
+        }
+        
+        try! realm.write {
+            playerAccount.galleons += winningsEarned["galleons"]!
+            playerAccount.sickles += winningsEarned["sickles"]!
+            playerAccount.knuts += winningsEarned["knuts"]!
+        }
+        
+        print("galleons: \(playerAccount.galleons), sickles: \(playerAccount.sickles), knuts: \(playerAccount.knuts)")
+        //notification for congratulations and to play again
+        //add sounds here?
     }
     
     static func lostGame() {
         print("Oh no! Harry was discovered by Voldemort!")
+        //notification to try again
+        //add sounds here?
+    }
+    
+    static func startNewGame() {
+        // new button should pop up? 
+        // animation while everything clears / reloads
+//        clear chosenWord, concealedWord, guessesSoFar, incorrectGuessCount
     }
 }
