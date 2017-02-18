@@ -279,7 +279,7 @@ struct HangmanGameLogic {
         while concealedWordArray[randomIndex].contains("__") {
             randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
         }
-        // have to account for when letter chosen has multiples present
+        // have to account for when letter has multiple occurrences
         
         concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
         
