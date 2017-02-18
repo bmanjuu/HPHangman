@@ -73,14 +73,13 @@ class HangmanGameVC: UIViewController {
             
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
                     self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
                 }
                 
             } else if game.incorrectGuessCount == 6 {
                 self.secretWordLabel.textColor = UIColor.red
-                self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
                     self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
                 }
             }
