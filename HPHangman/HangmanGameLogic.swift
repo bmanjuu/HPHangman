@@ -131,13 +131,14 @@ struct HangmanGameLogic {
             }
         }
         
+        updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
+        
         //check to see if there are any underscores left
         if !concealedWordArray.contains("___") {
             print("won game!")
             wonGame()
         }
         
-        updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
     }
     
     static func updateConcealedWord(to word: String)  {
@@ -193,6 +194,7 @@ struct HangmanGameLogic {
         
         try! realm.write {
             game.wonGame = true
+            game.concealedWord = game.chosenWord
             playerAccount.galleons += winningsEarned["galleons"]!
             playerAccount.sickles += winningsEarned["sickles"]!
             playerAccount.knuts += winningsEarned["knuts"]!
