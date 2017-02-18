@@ -218,9 +218,9 @@ struct HangmanGameLogic {
     static func hasSufficientFunds() -> Bool {
         print("checking for sufficient funds")
         
-        let price = ["galleons": 1,
-                     "sickles": 2,
-                     "knuts": 3]
+        let price = ["galleons": 10,
+                     "sickles": 20,
+                     "knuts": 30]
  
         let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()
@@ -246,7 +246,6 @@ struct HangmanGameLogic {
     }
     
     static func revealRandomLetter() {
-        //gets stuck here when revealing last letter
         print("called reveal random letter")
         
         let game = HangmanGameLogic.retrieveCurrentGame()
@@ -280,9 +279,11 @@ struct HangmanGameLogic {
     
 }
 
+//  v2: if user wants to change/get a new word in the middle of a game
 //    static func getNewWord() {
-//        // new button should pop up?
+//        // add button for this functionality
 //        // animation while everything clears / reloads
+//
 //        let realm = try! Realm()
 //        let game = retrieveCurrentGame()
 //
