@@ -237,6 +237,52 @@ struct HangmanGameLogic {
             game.guessesSoFar = ""
             game.incorrectGuessCount = 0
         }
-        
+       //new word will be retrieved when
     }
+    
+    static func hasSufficientFunds() -> Bool {
+        
+        let price = ["galleons": 1,
+                     "sickles": 2,
+                     "knuts": 3]
+        
+        //grab current user balance
+        let realm = try! Realm()
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        let userGringottsAccount = game.player!.gringottsAccount!
+        var currentUserBalance = ["galleons" : userGringottsAccount.galleons,
+                                  "sickles" : userGringottsAccount.sickles,
+                                  "knuts" : userGringottsAccount.knuts]
+        
+        if currentUserBalance["galleons"]! >= price["galleons"]! && currentUserBalance["sickles"]! >= price["sickles"]! && currentUserBalance["knuts"]! >= price["knuts"]! {
+            
+            // if check user balance is true then
+            try! realm.write {
+                userGringottsAccount.galleons -= price["galleons"]!
+                userGringottsAccount.sickles -= price["sickles"]!
+                userGringottsAccount.knuts -= price["knuts"]!
+                
+                game.incorrectGuessCount -= 1
+                
+                //change concealedWord
+            }
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static func revealRandomLetterIn(_ word: String) -> String {
+        let realm = try! Realm()
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        let chosenWord = game.chosenWord
+        var updatedConcealedWord = ""
+        
+        
+        
+        
+        return updatedConcealedWord
+    }
+    
+    
 }

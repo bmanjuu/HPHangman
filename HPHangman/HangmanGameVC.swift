@@ -26,7 +26,24 @@ class HangmanGameVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func buyAChanceButtonTapped(_ sender: Any) {
+        
+        let realm = try! Realm()
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        let userGringottsAccount = game.player!.gringottsAccount!
+        
+        if HangmanGameLogic.hasSufficientFunds() {
+            self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
+            self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
+            //CONCEALED TEXT LABEL CHANGES HERE 
+        } else {
+            print("insufficient funds") //display error
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
+        
+        //retrieve random word here?
         
         let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()
@@ -58,8 +75,6 @@ class HangmanGameVC: UIViewController {
             self.guessesLabel.text = game.guessesSoFar
             self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
             self.secretWordLabel.text = game.concealedWord
-            
-            
             
             if game.wonGame {
                 print("changing color")
