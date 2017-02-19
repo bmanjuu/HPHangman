@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import AVFoundation
 
 class HangmanGameVC: UIViewController {
 
@@ -46,6 +47,9 @@ class HangmanGameVC: UIViewController {
         self.gringottsAccountBalance.text = "galleons: \(game.player!.gringottsAccount!.galleons), sickles: \(game.player!.gringottsAccount!.sickles), knuts: \(game.player!.gringottsAccount!.knuts)"
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        BackgroundMusic.playSong("DuringGamePlay")
+    }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
         let game = HangmanGameLogic.retrieveCurrentGame()

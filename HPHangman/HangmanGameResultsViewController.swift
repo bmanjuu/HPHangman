@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import Realm
 import RealmSwift
+import AVFoundation
 
 class HangmanGameResultsViewController: UIViewController {
     
@@ -54,6 +54,16 @@ class HangmanGameResultsViewController: UIViewController {
 
     @IBAction func exitButtonTapped(_ sender: Any) {
         //segue to conclusion/thank you view controller
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        if gameStatus! {
+            BackgroundMusic.playSong("Win")
+        } else {
+            BackgroundMusic.playSong("Lose")
+        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

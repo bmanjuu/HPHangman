@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import AVFoundation
 
 class HomeScreenVC: UIViewController {
 
@@ -37,6 +38,10 @@ class HomeScreenVC: UIViewController {
         
         HangmanGameLogic.populateWordsInStore()
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+       // BackgroundMusic.playSong("Intro")
     }
 
     override func didReceiveMemoryWarning() {

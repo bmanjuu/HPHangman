@@ -15,7 +15,8 @@ class BackgroundMusic {
     
     static func playSong(_ songName: String) {
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "\(songName)", ofType: "mp3")))
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "\(songName)", ofType: "mp3")!))
+            audioPlayer.play()
         } catch {
             print(error)
         }
