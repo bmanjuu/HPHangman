@@ -12,8 +12,6 @@ import RealmSwift
 
 struct HangmanGameLogic {
     
-    // static var game: Results<Game>!
-    
     static func retrieveCurrentGame() -> Game {
         let realm = try! Realm()
         let gameResults = realm.objects(Game.self)
