@@ -16,6 +16,7 @@ struct BackgroundMusic {
     static func playSong(_ songName: String) {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "\(songName)", ofType: "mp3")!))
+            audioPlayer.numberOfLoops = -1
             audioPlayer.prepareToPlay()
             audioPlayer.play()
         } catch {

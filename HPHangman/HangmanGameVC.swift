@@ -8,9 +8,8 @@
 
 import UIKit
 import RealmSwift
-import AVFoundation
 
-class HangmanGameVC: UIViewController {
+class HangmanGameVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var gringottsAccountBalance: UILabel!
 
@@ -21,9 +20,11 @@ class HangmanGameVC: UIViewController {
     @IBOutlet weak var guessesLabel: UILabel!
     @IBOutlet weak var chancesLabel: UILabel!
     
+    static var activeTextField: UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.hideKeyboardWhenTappedAround()
         // Do any additional setup after loading the view.
     }
     

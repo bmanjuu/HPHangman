@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import AVFoundation
 
 class HomeScreenVC: UIViewController {
 
@@ -20,6 +19,7 @@ class HomeScreenVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         let realm = try! Realm()
         let user = User()
@@ -63,4 +63,15 @@ class HomeScreenVC: UIViewController {
     }
     */
 
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
