@@ -67,16 +67,22 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
+                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
                     self.present(HangmanAlerts.endGameAlert(true), animated: true, completion: nil)
-                    self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                    self.present(HangmanAlerts.endGameAlert(true), animated: true, completion: { 
+                        self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                    })
+                    
                 }
                 
             } else if game.incorrectGuessCount == 6 {
                 self.secretWordLabel.textColor = UIColor.red
+                self.present(HangmanAlerts.endGameAlert(false), animated: true, completion: nil)
+                self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
-                    self.present(HangmanAlerts.endGameAlert(false), animated: true, completion: nil)
-                    self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                    
                 }
             }
             
