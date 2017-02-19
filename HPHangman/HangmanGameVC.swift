@@ -120,6 +120,9 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() //dismisses keyboard
         return true
@@ -141,8 +144,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             return true
         }
     }
-    
-    
     
     /*
     // MARK: - Navigation
