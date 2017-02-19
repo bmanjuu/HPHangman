@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iaT-xP-oaB">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iaT-xP-oaB">
                                 <rect key="frame" x="64" y="318" width="246" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -61,11 +61,13 @@
                             <constraint firstItem="UXu-Ib-7SE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3GQ-dn-dqM"/>
                             <constraint firstItem="ij2-UV-icD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3xy-pM-4iV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GiS-h6-nLx" secondAttribute="trailing" constant="78" id="5Bo-d1-iUa"/>
+                            <constraint firstItem="iaT-xP-oaB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="48" id="5lg-tg-cBy"/>
                             <constraint firstItem="ij2-UV-icD" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7kv-Vx-AOj"/>
                             <constraint firstAttribute="trailing" secondItem="ZQD-KE-k2g" secondAttribute="trailing" id="843-th-2ZU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UXu-Ib-7SE" secondAttribute="trailing" constant="125" id="Ee1-JF-A48"/>
                             <constraint firstItem="ZQD-KE-k2g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ha1-cu-OrM"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UXu-Ib-7SE" secondAttribute="bottom" constant="281" id="I2Q-WV-har"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iaT-xP-oaB" secondAttribute="trailing" constant="49" id="RZe-W1-dRt"/>
                             <constraint firstItem="GiS-h6-nLx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="78" id="TDb-MH-Rip"/>
                             <constraint firstItem="UXu-Ib-7SE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="124" id="UUQ-bz-u6o"/>
                             <constraint firstItem="iaT-xP-oaB" firstAttribute="centerY" secondItem="ZQD-KE-k2g" secondAttribute="centerY" id="Xxk-ng-0uN"/>
@@ -340,20 +342,13 @@
                                     <segue destination="BWK-0G-Tde" kind="show" id="qVd-Mb-ka2"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="buz-sV-0VJ">
-                                <rect key="frame" x="40" y="354" width="196" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DeM-2l-aKT">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.35526915689999999" green="0.16143303519999999" blue="0.76556364529999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <connections>
-                        <outlet property="testing" destination="buz-sV-0VJ" id="hZw-yY-Uc3"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t2z-ej-m1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
