@@ -55,6 +55,8 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
+        self.userInput.resignFirstResponder()
+        
         let game = HangmanGameLogic.retrieveCurrentGame()
         
         let validInput = HangmanGameLogic.isValidInput(userInput.text!)
@@ -67,13 +69,10 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
+                self.present(HangmanAlerts.endGameAlert(true), animated: true, completion: nil)
                 
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
-                    self.present(HangmanAlerts.endGameAlert(true), animated: true, completion: nil)
-                    self.present(HangmanAlerts.endGameAlert(true), animated: true, completion: { 
-                        self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
-                    })
-                    
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
                 }
                 
             } else if game.incorrectGuessCount == 6 {

@@ -15,13 +15,13 @@ struct BackgroundMusic {
     
     static func playSong(_ songName: String) {
         
-        let audioSession = AVAudioSession.sharedInstance()
-        
-        do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.duckOthers)
-        } catch {
-            print("could not set ambient audio session")
-        }
+//        let audioSession = AVAudioSession.sharedInstance()
+//        
+//        do {
+//            try audioSession.setCategory(AVAudioSessionCategoryPlayback, with: AVAudioSessionCategoryOptions.duckOthers)
+//        } catch {
+//            print("could not set ambient audio session")
+//        }
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "\(songName)", ofType: "mp3")!))

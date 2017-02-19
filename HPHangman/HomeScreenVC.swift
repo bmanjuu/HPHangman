@@ -10,22 +10,23 @@ import UIKit
 import RealmSwift
 
 class HomeScreenVC: UIViewController, UITextFieldDelegate {
-
-    var name: String?
     
     @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var welcomeToGryffindor: UIImageView!
     
+    @IBOutlet weak var welcomeContainerView: UIView!
     
-    @IBAction func enterButton(_ sender: Any) {
-        
-        
-        //then when user presses enter again, ask for name or just go into game
-        
+    @IBAction func alohomoraTapped(_ sender: Any) {
+        self.usernameTextField.isHidden = true
+        self.welcomeToGryffindor.isHidden = true
+        self.welcomeContainerView.isHidden = false
+        BackgroundMusic.playSong("Intro")
     }
     
     override func viewDidLoad() {
         print("view did load of welcome screen")
         super.viewDidLoad()
+        self.welcomeContainerView.isHidden = true
         
         usernameTextField.delegate = self
         
@@ -36,7 +37,7 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         let userGringottsAccount = GringottsAccount()
         let game = Game()
         
-        user.name = self.name! 
+        user.name = self.usernameTextField.text!
         user.gringottsAccount = userGringottsAccount
         game.player = user
         
@@ -48,15 +49,6 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         
         HangmanGameLogic.populateWordsInStore()
 
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        print("view will appear of welcome screen")
-        BackgroundMusic.playSong("Intro")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        BackgroundMusic.stopPlayingSong()
     }
 
     override func didReceiveMemoryWarning() {
