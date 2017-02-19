@@ -16,7 +16,6 @@ class HomeScreenVC: UIViewController {
         //display storyline here
         //then when user presses enter again, ask for name or just go into game
         
-        
     }
     
     override func viewDidLoad() {
@@ -40,8 +39,12 @@ class HomeScreenVC: UIViewController {
 
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-       // BackgroundMusic.playSong("Intro")
+    override func viewWillAppear(_ animated: Bool) {
+        BackgroundMusic.playSong("Intro")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        BackgroundMusic.stopPlayingSong()
     }
 
     override func didReceiveMemoryWarning() {

@@ -29,6 +29,8 @@ class HangmanGameVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        BackgroundMusic.playSong("DuringGameplay")
+        
         let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()
         let words = game.words
@@ -45,10 +47,6 @@ class HangmanGameVC: UIViewController {
         self.guessesLabel.text = game.guessesSoFar
         self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
         self.gringottsAccountBalance.text = "galleons: \(game.player!.gringottsAccount!.galleons), sickles: \(game.player!.gringottsAccount!.sickles), knuts: \(game.player!.gringottsAccount!.knuts)"
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        BackgroundMusic.playSong("DuringGamePlay")
     }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
@@ -107,6 +105,9 @@ class HangmanGameVC: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        BackgroundMusic.stopPlayingSong()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

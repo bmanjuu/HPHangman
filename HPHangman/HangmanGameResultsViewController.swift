@@ -26,11 +26,18 @@ class HangmanGameResultsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        gameStatus = HangmanGameLogic.retrieveCurrentGame().wonGame
+        
+        if gameStatus! {
+            BackgroundMusic.playSong("Win")
+        } else {
+            BackgroundMusic.playSong("Lose")
+        }
  
         self.resultsTextLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         self.displayWinningsLabel.isHidden = true
         
-        gameStatus = HangmanGameLogic.retrieveCurrentGame().wonGame
         let userGringottsAccount = HangmanGameLogic.retrieveCurrentGame().player!.gringottsAccount!
         
         self.userGringottsBalanceLabel.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
@@ -56,16 +63,6 @@ class HangmanGameResultsViewController: UIViewController {
         //segue to conclusion/thank you view controller
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        if gameStatus! {
-            BackgroundMusic.playSong("Win")
-        } else {
-            BackgroundMusic.playSong("Lose")
-        }
-        
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()
@@ -78,6 +75,8 @@ class HangmanGameResultsViewController: UIViewController {
             game.guessesSoFar = ""
             game.wonGame = false
         }
+        
+        BackgroundMusic.stopPlayingSong()
     }
     
     override func didReceiveMemoryWarning() {

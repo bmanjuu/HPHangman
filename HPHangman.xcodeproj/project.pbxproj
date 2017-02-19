@@ -21,7 +21,10 @@
 		A490D1021E560F06004CE638 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D1011E560F06004CE638 /* HomeScreenVC.swift */; };
 		A4E8C3671E57D67A0081E6AA /* HangmanGameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C3661E57D67A0081E6AA /* HangmanGameResultsViewController.swift */; };
 		A4FB04781E592394006EBE79 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FB04771E592393006EBE79 /* BackgroundMusic.swift */; };
-		A4FB047A1E592706006EBE79 /* HPHangman Music in Resources */ = {isa = PBXBuildFile; fileRef = A4FB04791E592706006EBE79 /* HPHangman Music */; };
+		A4FB047F1E5932D4006EBE79 /* DuringGameplay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4FB047B1E5932D4006EBE79 /* DuringGameplay.mp3 */; };
+		A4FB04801E5932D4006EBE79 /* Intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4FB047C1E5932D4006EBE79 /* Intro.mp3 */; };
+		A4FB04811E5932D4006EBE79 /* Lose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4FB047D1E5932D4006EBE79 /* Lose.mp3 */; };
+		A4FB04821E5932D4006EBE79 /* Win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4FB047E1E5932D4006EBE79 /* Win.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +46,10 @@
 		A490D1011E560F06004CE638 /* HomeScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
 		A4E8C3661E57D67A0081E6AA /* HangmanGameResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameResultsViewController.swift; sourceTree = "<group>"; };
 		A4FB04771E592393006EBE79 /* BackgroundMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
-		A4FB04791E592706006EBE79 /* HPHangman Music */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "HPHangman Music"; sourceTree = "<group>"; };
+		A4FB047B1E5932D4006EBE79 /* DuringGameplay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DuringGameplay.mp3; path = "HPHangman Music/DuringGameplay.mp3"; sourceTree = "<group>"; };
+		A4FB047C1E5932D4006EBE79 /* Intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Intro.mp3; path = "HPHangman Music/Intro.mp3"; sourceTree = "<group>"; };
+		A4FB047D1E5932D4006EBE79 /* Lose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Lose.mp3; path = "HPHangman Music/Lose.mp3"; sourceTree = "<group>"; };
+		A4FB047E1E5932D4006EBE79 /* Win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Win.mp3; path = "HPHangman Music/Win.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,7 @@
 				A490D0EE1E55E52D004CE638 /* Model */,
 				A490D0F01E55E547004CE638 /* View */,
 				A490D0F11E55E55E004CE638 /* Controller */,
+				A4FB04831E593319006EBE79 /* Music */,
 				A490D0F21E55E56D004CE638 /* Other */,
 			);
 			path = HPHangman;
@@ -131,11 +138,21 @@
 		A490D0F21E55E56D004CE638 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				A4FB04791E592706006EBE79 /* HPHangman Music */,
 				A490D0DF1E55E135004CE638 /* Assets.xcassets */,
 				A490D0E41E55E135004CE638 /* Info.plist */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		A4FB04831E593319006EBE79 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				A4FB047B1E5932D4006EBE79 /* DuringGameplay.mp3 */,
+				A4FB047C1E5932D4006EBE79 /* Intro.mp3 */,
+				A4FB047D1E5932D4006EBE79 /* Lose.mp3 */,
+				A4FB047E1E5932D4006EBE79 /* Win.mp3 */,
+			);
+			name = Music;
 			sourceTree = "<group>";
 		};
 		F4EC27F8FE16CC91360252F3 /* Pods */ = {
@@ -184,6 +201,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 4E8JHBC5T7;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -210,9 +232,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4FB047F1E5932D4006EBE79 /* DuringGameplay.mp3 in Resources */,
+				A4FB04811E5932D4006EBE79 /* Lose.mp3 in Resources */,
 				A490D0E31E55E135004CE638 /* LaunchScreen.storyboard in Resources */,
+				A4FB04821E5932D4006EBE79 /* Win.mp3 in Resources */,
 				A490D0E01E55E135004CE638 /* Assets.xcassets in Resources */,
-				A4FB047A1E592706006EBE79 /* HPHangman Music in Resources */,
+				A4FB04801E5932D4006EBE79 /* Intro.mp3 in Resources */,
 				A490D0DB1E55E135004CE638 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
