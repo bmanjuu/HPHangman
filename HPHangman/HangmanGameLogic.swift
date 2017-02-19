@@ -211,6 +211,7 @@ struct HangmanGameLogic {
         try! realm.write {
             game.concealedWord = game.chosenWord
         }
+        
     }
     
     static func hasSufficientFunds() -> Bool {

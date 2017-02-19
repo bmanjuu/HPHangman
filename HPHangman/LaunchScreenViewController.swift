@@ -14,11 +14,8 @@ class LaunchScreenViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initialTextField.becomeFirstResponder()
-        self.initialTextField.resignFirstResponder()
-        print("done setting up textfield stuff")
         
-        //timer for 1.5 seconds before segue-ing to the welcome screen 
+        initialTextField.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -34,7 +31,7 @@ class LaunchScreenViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+        textField.resignFirstResponder()
         return true
     }
     

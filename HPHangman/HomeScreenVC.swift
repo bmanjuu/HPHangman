@@ -26,6 +26,9 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         print("view did load of welcome screen")
         super.viewDidLoad()
+        
+        usernameTextField.delegate = self
+        
         self.hideKeyboardWhenTappedAround()
         
         let realm = try! Realm()
@@ -59,6 +62,15 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 

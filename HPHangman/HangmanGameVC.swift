@@ -68,12 +68,14 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
+                    self.present(HangmanAlerts.endGameAlert(true), animated: true, completion: nil)
                     self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
                 }
                 
             } else if game.incorrectGuessCount == 6 {
                 self.secretWordLabel.textColor = UIColor.red
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
+                    self.present(HangmanAlerts.endGameAlert(false), animated: true, completion: nil)
                     self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
                 }
             }
@@ -101,12 +103,14 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
+                    self.present(HangmanAlerts.endGameAlert(true), animated: true, completion: nil)
                     self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
                 }
             }
             
         } else {
-            print("insufficient funds") //display error
+            print("insufficient funds")
+            self.present(HangmanAlerts.insufficientFunds(), animated: true, completion: nil)
         }
     }
     
