@@ -24,13 +24,15 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view did load")
         
         self.hideKeyboardWhenTappedAround()
-        
         userInput.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("view will appear")
         
         BackgroundMusic.playSong("DuringGameplay")
         
@@ -124,11 +126,15 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField){
-        scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+        DispatchQueue.main.async {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField){
-        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        DispatchQueue.main.async {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -11,6 +11,8 @@ import RealmSwift
 
 class HomeScreenVC: UIViewController {
 
+    @IBOutlet weak var usernameTextField: UITextField!
+    
     @IBAction func enterButton(_ sender: Any) {
         //display storyline here
         //then when user presses enter again, ask for name or just go into game
@@ -20,6 +22,8 @@ class HomeScreenVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        self.usernameTextField.becomeFirstResponder()
+        self.usernameTextField.resignFirstResponder()
         
         let realm = try! Realm()
         let user = User()
