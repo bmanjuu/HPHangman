@@ -20,12 +20,11 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var guessesLabel: UILabel!
     @IBOutlet weak var chancesLabel: UILabel!
     
-    static var activeTextField: UITextField?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        // Do any additional setup after loading the view.
+        
+        userInput.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,12 +114,42 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    //TEXTFIELD DELEGATE METHODS
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() //dismisses keyboard
+        return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        //can also validate input text here!!
+        
+        let inputTextLength = textField.text!.characters.count + string.characters.count
+        
+        if inputTextLength > HangmanGameLogic.retrieveCurrentGame().chosenWord.characters.count {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as? HangmanGameResultsViewController
+     
     }
     */
 
