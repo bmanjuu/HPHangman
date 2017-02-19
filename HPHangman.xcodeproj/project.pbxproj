@@ -19,6 +19,7 @@
 		A490D0FC1E55E9BD004CE638 /* HangmanGameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */; };
 		A490D0FE1E55F03F004CE638 /* wordListAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */; };
 		A490D1021E560F06004CE638 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D1011E560F06004CE638 /* HomeScreenVC.swift */; };
+		A4B04B501E5A0D4F000447D6 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B04B4F1E5A0D4F000447D6 /* LaunchScreenViewController.swift */; };
 		A4E8C3671E57D67A0081E6AA /* HangmanGameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C3661E57D67A0081E6AA /* HangmanGameResultsViewController.swift */; };
 		A4FB04781E592394006EBE79 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FB04771E592393006EBE79 /* BackgroundMusic.swift */; };
 		A4FB047F1E5932D4006EBE79 /* DuringGameplay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4FB047B1E5932D4006EBE79 /* DuringGameplay.mp3 */; };
@@ -44,6 +45,7 @@
 		A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameLogic.swift; sourceTree = "<group>"; };
 		A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wordListAPIClient.swift; sourceTree = "<group>"; };
 		A490D1011E560F06004CE638 /* HomeScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
+		A4B04B4F1E5A0D4F000447D6 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		A4E8C3661E57D67A0081E6AA /* HangmanGameResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameResultsViewController.swift; sourceTree = "<group>"; };
 		A4FB04771E592393006EBE79 /* BackgroundMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
 		A4FB047B1E5932D4006EBE79 /* DuringGameplay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DuringGameplay.mp3; path = "HPHangman Music/DuringGameplay.mp3"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		A490D0F11E55E55E004CE638 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A4B04B4F1E5A0D4F000447D6 /* LaunchScreenViewController.swift */,
 				A490D1011E560F06004CE638 /* HomeScreenVC.swift */,
 				A490D0F91E55E842004CE638 /* HangmanGameVC.swift */,
 				A4E8C3661E57D67A0081E6AA /* HangmanGameResultsViewController.swift */,
@@ -306,6 +309,7 @@
 				A490D0D61E55E135004CE638 /* AppDelegate.swift in Sources */,
 				A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */,
 				A490D0FC1E55E9BD004CE638 /* HangmanGameLogic.swift in Sources */,
+				A4B04B501E5A0D4F000447D6 /* LaunchScreenViewController.swift in Sources */,
 				A4FB04781E592394006EBE79 /* BackgroundMusic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

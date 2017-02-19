@@ -26,13 +26,13 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         print("view did load")
         
+        self.view.sendSubview(toBack: scrollView)
         self.hideKeyboardWhenTappedAround()
         userInput.delegate = self
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear")
         
         BackgroundMusic.playSong("DuringGameplay")
         

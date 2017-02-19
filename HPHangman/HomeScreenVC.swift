@@ -9,27 +9,31 @@
 import UIKit
 import RealmSwift
 
-class HomeScreenVC: UIViewController {
+class HomeScreenVC: UIViewController, UITextFieldDelegate {
 
+    var name: String?
+    
     @IBOutlet weak var usernameTextField: UITextField!
     
+    
     @IBAction func enterButton(_ sender: Any) {
-        //display storyline here
+        
+        
         //then when user presses enter again, ask for name or just go into game
         
     }
     
     override func viewDidLoad() {
+        print("view did load of welcome screen")
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        self.usernameTextField.becomeFirstResponder()
-        self.usernameTextField.resignFirstResponder()
         
         let realm = try! Realm()
         let user = User()
         let userGringottsAccount = GringottsAccount()
         let game = Game()
         
+        user.name = self.name! 
         user.gringottsAccount = userGringottsAccount
         game.player = user
         
@@ -44,6 +48,7 @@ class HomeScreenVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("view will appear of welcome screen")
         BackgroundMusic.playSong("Intro")
     }
     
