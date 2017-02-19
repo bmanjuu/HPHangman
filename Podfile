@@ -7,7 +7,6 @@ target 'HPHangman' do
 
   # Pods for HPHangman
   pod 'RealmSwift'
-  pod 'IQKeyboardManagerSwift'
 
 end
 

@@ -10,9 +10,11 @@ import UIKit
 import RealmSwift
 
 class HangmanGameVC: UIViewController, UITextFieldDelegate {
-
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var gringottsAccountBalance: UILabel!
-
+    
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var hangmanImage: UIImageView!
     @IBOutlet weak var secretWordLabel: UILabel!
@@ -22,6 +24,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.hideKeyboardWhenTappedAround()
         
         userInput.delegate = self
@@ -72,14 +75,14 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
                     self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
                 }
             }
-
+            
         } else {
             print("invalid input") //display error message
         }
         
         self.userInput.text = ""
     }
-
+    
     
     @IBAction func buyALetterButtonTapped(_ sender: Any) {
         print("buy a letter button tapped")
@@ -113,18 +116,24 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     
     //TEXTFIELD DELEGATE METHODS
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField){
+        scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField){
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder() //dismisses keyboard
+        self.guessButtonTapped(textField)
         return true
     }
     
@@ -146,12 +155,12 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     }
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // MARK: - Navigation
      
-    }
-    */
-
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     
+     }
+     */
+    
 }

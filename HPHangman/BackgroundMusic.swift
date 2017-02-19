@@ -20,16 +20,15 @@ struct BackgroundMusic {
             audioPlayer.prepareToPlay()
             audioPlayer.play()
         } catch {
-            print("can't play music :(")
+            print(LocalizedError.self)
         }
     }
     
     static func stopPlayingSong() {
-        print("stopping music for this vc")
         audioPlayer.stop()
     }
     
-    static func checkMusic() -> Bool {
+    static func isMusicPlaying() -> Bool {
         if audioPlayer.isPlaying {
             return true
         } else {
