@@ -12,13 +12,16 @@ import RealmSwift
 class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var gringottsAccountBalance: UILabel!
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var hangmanImage: UIImageView!
     @IBOutlet weak var secretWordLabel: UILabel!
     @IBOutlet weak var guessesLabel: UILabel!
     @IBOutlet weak var chancesLabel: UILabel!
-
+    @IBOutlet weak var knutsBalance: UILabel!
+    @IBOutlet weak var sicklesBalance: UILabel!
+    @IBOutlet weak var galleonsBalance: UILabel!
+    
+    
     var displayAlert: UIAlertController?
     
     override func viewDidLoad() {
@@ -47,11 +50,18 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         print("THE CHOSEN ONE --> \(game.chosenWord)")
         
         self.userInput.layer.borderWidth = 1.0
+        self.userInput.layer.borderColor = UIColor.blue.cgColor
+        
+        self.guessesLabel.frame = CGRect(x: 20, y: 20, width: 200, height: 800)
+        self.guessesLabel.sizeToFit()
+        self.guessesLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         
         self.secretWordLabel.text = game.concealedWord
         self.guessesLabel.text = game.guessesSoFar
         self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
-        self.gringottsAccountBalance.text = "galleons: \(game.player!.gringottsAccount!.galleons), sickles: \(game.player!.gringottsAccount!.sickles), knuts: \(game.player!.gringottsAccount!.knuts)"
+        self.galleonsBalance.text = "\(game.player!.gringottsAccount!.galleons)"
+        self.sicklesBalance.text = "\(game.player!.gringottsAccount!.sickles)"
+        self.knutsBalance.text = "\(game.player!.gringottsAccount!.knuts)"
     }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
@@ -108,7 +118,9 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             HangmanGameLogic.revealRandomLetter()
             
             self.secretWordLabel.text = game.concealedWord
-            self.gringottsAccountBalance.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
+            self.galleonsBalance.text = "\(userGringottsAccount.galleons)"
+            self.sicklesBalance.text = "\(userGringottsAccount.sickles)"
+            self.knutsBalance.text = "\(userGringottsAccount.knuts)"
             
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
@@ -122,10 +134,8 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
                     
                     displayAlert!.addAction(okButtonTapped)
                     self.present(displayAlert!, animated: true, completion: nil)
-                    
                 }
             }
-            
         } else {
             print("insufficient funds")
             self.present(HangmanAlerts.insufficientFundsAlert(), animated: true, completion: nil)
@@ -149,7 +159,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         DispatchQueue.main.async {
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
         }
     }
     
@@ -170,8 +180,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        //can also validate input text here!!
         
         let inputTextLength = textField.text!.characters.count + string.characters.count
         

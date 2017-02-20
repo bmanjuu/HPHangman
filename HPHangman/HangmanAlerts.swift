@@ -11,15 +11,6 @@ import UIKit
 
 struct HangmanAlerts {
     
-    static func invalidInputAlert() {
-//        let animation = CABasicAnimation(keyPath: "position")
-//        animation.duration = 0.07
-//        animation.repeatCount = 4
-//        animation.autoreverses = true
-//        animation.fromValue = NSValue(CGPoint: CGPointMake(txtField.center.x - 10, txtField.center.y))
-//        animation.toValue = NSValue(CGPoint: CGPointMake(txtField.center.x + 10, txtField.center.y))
-    }
-    
     static func insufficientFundsAlert() -> UIAlertController {
         let alertController = UIAlertController(title: "Oh no!", message: "Insufficient funds to buy a letter", preferredStyle: UIAlertControllerStyle.alert)
         
@@ -50,10 +41,6 @@ struct HangmanAlerts {
         
         return alertController
 
-    }
-    
-    static func internetConnectionAlert() {
-        
     }
     
 }

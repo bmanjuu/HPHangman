@@ -39,10 +39,7 @@ class HangmanGameResultsViewController: UIViewController {
         self.displayWinningsLabel.isHidden = true
         
         let userGringottsAccount = HangmanGameLogic.retrieveCurrentGame().player!.gringottsAccount!
-        
-        self.userGringottsBalanceLabel.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
-        
-        //depending on the status, display different images, text and maybe music?
+
         if gameStatus! {
             self.resultsImage.image = UIImage(named: "hpCastleImage")
             self.resultsTextLabel.text = "HOORAY! \nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \nThe Ministry has rewarded you with: "
@@ -57,10 +54,6 @@ class HangmanGameResultsViewController: UIViewController {
     
     @IBAction func playAgainButtonTapped(_ sender: Any) {
         self.performSegue(withIdentifier: "playAgain", sender:nil)
-    }
-
-    @IBAction func exitButtonTapped(_ sender: Any) {
-        //segue to conclusion/thank you view controller
     }
     
     override func viewWillDisappear(_ animated: Bool) {

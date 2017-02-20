@@ -49,7 +49,6 @@ struct HangmanGameLogic {
             return false
         }
         
-        let realm = try! Realm()
         let currentGame = retrieveCurrentGame()
         let chosenWord = currentGame.chosenWord
         let guessesSoFar = currentGame.guessesSoFar

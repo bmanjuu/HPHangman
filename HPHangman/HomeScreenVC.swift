@@ -49,6 +49,8 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         self.hideKeyboardWhenTappedAround()
         self.storylineView.isHidden = true
         self.storyText.text = "Voldemort is back. \n\n You have been chosen to help Harry in his fight against the Dark Lord through a perilous game of Hangman. \n\nBe careful though! With each incorrect guess, Voldemort gets closer to capturing Harry and taking over the wizarding world. \n\nWe're counting on you!"
+        self.enterButton.layer.borderColor = UIColor.white.cgColor
+        self.enterButton.layer.borderWidth = 1.0
         
         let realm = try! Realm()
         
