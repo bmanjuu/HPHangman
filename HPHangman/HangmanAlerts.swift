@@ -24,7 +24,7 @@ struct HangmanAlerts {
         }
         
         alertController.addAction(okAction)
-        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+        // UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
         
     }
     
@@ -43,16 +43,13 @@ struct HangmanAlerts {
         
         let alertController = UIAlertController(title: " ", message: "\(alertText)", preferredStyle: UIAlertControllerStyle.alert)
         
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) { (_) in
-            HangmanGameVC().present(HangmanGameResultsViewController(), animated: true, completion: nil)
-        }
-        
-        
-        alertController.addAction(okAction)
+//        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) { (_) in
+//            print("clicked ok")
+//        }
+//        
+//        alertController.addAction(okAction)
         
         print("alert text: \(alertText)")
-        
-        // UIApplication.shared.keyWindow?.present(alertController, animated: true, completion: nil)
         print("end of alert")
         
         return alertController

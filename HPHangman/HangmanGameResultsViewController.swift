@@ -50,7 +50,7 @@ class HangmanGameResultsViewController: UIViewController {
             self.displayWinningsLabel.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
         } else {
             self.resultsImage.image = UIImage(named: "hpLostGame")
-            self.resultsTextLabel.text = "Oh no! \nVoldemort got a hold of Harry! \nYou still have another chance to save him! Would you like to play again?"
+            self.resultsTextLabel.text = "Oh no! \nVoldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"
         }
         
     }

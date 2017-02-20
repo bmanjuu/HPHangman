@@ -66,18 +66,25 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
             self.secretWordLabel.text = game.concealedWord
             
+            var displayAlert: UIAlertController?
+            
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
-                
-                DispatchQueue.main.async {
-                    self.present(HangmanAlerts.endGameAlert(gameWon: true), animated: true, completion: nil)
-                }
-                
+                displayAlert = HangmanAlerts.endGameAlert(gameWon: true)
             } else if game.incorrectGuessCount == 6 {
                 self.secretWordLabel.textColor = UIColor.red
+                displayAlert = HangmanAlerts.endGameAlert(gameWon: false)
+            }
+            
+            if displayAlert != nil {
+                let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                    (result : UIAlertAction) -> Void in
+                    print("ok tapped")
+                    self.performSegue(withIdentifier: "presentResultsVC", sender: nil)
+                }
                 
-                HangmanAlerts.endGameAlert(gameWon: false)
-                self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                displayAlert!.addAction(okButtonTapped)
+                self.present(displayAlert!, animated: true, completion: nil)
             }
             
         } else {
