@@ -294,7 +294,7 @@ We've been expecting you...</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yVF-d9-pf1">
-                                <rect key="frame" x="0.0" y="40" width="375" height="384"/>
+                                <rect key="frame" x="0.0" y="60" width="375" height="364"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Way-mm-ojV">
@@ -311,14 +311,6 @@ We've been expecting you...</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOd-eA-3Z9">
-                                <rect key="frame" x="16" y="617" width="90" height="30"/>
-                                <color key="backgroundColor" red="0.93158949609999997" green="0.1141858009" blue="0.30011454139999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Exit"/>
-                                <connections>
-                                    <action selector="exitButtonTapped:" destination="BqB-mw-Oy4" eventType="touchUpInside" id="Fe9-ue-VqJ"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g14-qs-l3p">
                                 <rect key="frame" x="88" y="31" width="271" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -335,8 +327,8 @@ We've been expecting you...</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAT-sF-Q85">
-                                <rect key="frame" x="269" y="617" width="90" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SAT-sF-Q85">
+                                <rect key="frame" x="142" y="617" width="90" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.85208847740000004" blue="0.85618023009999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Play Again"/>
                                 <connections>
@@ -350,19 +342,15 @@ We've been expecting you...</string>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="3N4-ac-2M0"/>
                             <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="SAT-sF-Q85" secondAttribute="bottom" constant="20" id="4UN-55-zFl"/>
                             <constraint firstItem="qzR-8Z-yWq" firstAttribute="width" secondItem="Way-mm-ojV" secondAttribute="width" id="I3t-zc-NKW"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="hOd-eA-3Z9" secondAttribute="leading" id="Mca-4L-4uK"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Way-mm-ojV" secondAttribute="leading" id="Mk2-Gc-UZD"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Way-mm-ojV" secondAttribute="trailing" id="O3Y-ZI-r69"/>
                             <constraint firstItem="Way-mm-ojV" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="Rgr-S1-146"/>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="width" secondItem="Mw0-Jm-9pX" secondAttribute="width" id="TWZ-VX-pG0"/>
                             <constraint firstItem="qzR-8Z-yWq" firstAttribute="top" secondItem="Way-mm-ojV" secondAttribute="bottom" constant="8" id="VTI-0w-aGB"/>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="top" secondItem="1c4-PF-dxQ" secondAttribute="bottom" constant="40" id="a0m-eL-Ach"/>
-                            <constraint firstItem="hOd-eA-3Z9" firstAttribute="centerY" secondItem="SAT-sF-Q85" secondAttribute="centerY" id="d3J-z7-o1Y"/>
                             <constraint firstItem="Way-mm-ojV" firstAttribute="top" secondItem="yVF-d9-pf1" secondAttribute="bottom" constant="16" id="e9H-Q5-Dfp"/>
                             <constraint firstItem="qzR-8Z-yWq" firstAttribute="centerX" secondItem="Way-mm-ojV" secondAttribute="centerX" id="kYl-L0-OP5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="SAT-sF-Q85" secondAttribute="trailing" id="qPV-iS-VWd"/>
                             <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="yVF-d9-pf1" secondAttribute="bottom" constant="243" id="w4V-I6-jPs"/>
-                            <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="hOd-eA-3Z9" secondAttribute="bottom" constant="20" id="wpm-zZ-C2i"/>
                         </constraints>
                     </view>
                     <connections>

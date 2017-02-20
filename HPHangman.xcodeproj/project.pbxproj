@@ -110,10 +110,10 @@
 				A471EEA51E57672B00E3EE71 /* Game.swift */,
 				A490D0EA1E55E1C0004CE638 /* User.swift */,
 				A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */,
-				A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */,
 				A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */,
-				A4FB04771E592393006EBE79 /* BackgroundMusic.swift */,
+				A490D0FB1E55E9BD004CE638 /* HangmanGameLogic.swift */,
 				A4B04B511E5A24CA000447D6 /* HangmanAlerts.swift */,
+				A4FB04771E592393006EBE79 /* BackgroundMusic.swift */,
 				A490D0D51E55E135004CE638 /* AppDelegate.swift */,
 			);
 			name = Model;

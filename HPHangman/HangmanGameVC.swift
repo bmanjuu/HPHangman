@@ -12,15 +12,14 @@ import RealmSwift
 class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var gringottsAccountBalance: UILabel!
-    
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var hangmanImage: UIImageView!
     @IBOutlet weak var secretWordLabel: UILabel!
-    
     @IBOutlet weak var guessesLabel: UILabel!
     @IBOutlet weak var chancesLabel: UILabel!
+
+    var displayAlert: UIAlertController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +46,8 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         print("THE CHOSEN ONE --> \(game.chosenWord)")
         
+        self.userInput.layer.borderWidth = 1.0
+        
         self.secretWordLabel.text = game.concealedWord
         self.guessesLabel.text = game.guessesSoFar
         self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
@@ -57,8 +58,8 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.userInput.resignFirstResponder()
         
         let game = HangmanGameLogic.retrieveCurrentGame()
-        
         let validInput = HangmanGameLogic.isValidInput(userInput.text!)
+        let incorrectGuessCountBeforeTurn = game.incorrectGuessCount
         
         if validInput {
             HangmanGameLogic.playGame(with: userInput.text!)
@@ -66,7 +67,9 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
             self.secretWordLabel.text = game.concealedWord
             
-            var displayAlert: UIAlertController?
+            if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
+                self.hangmanImage.alpha -= 0.18
+            }
             
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
@@ -88,10 +91,10 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             }
             
         } else {
-            print("invalid input") //shaky textfield
+            print("invalid input")
         }
         
-        self.userInput.text = ""
+            self.userInput.text = ""
     }
     
     
@@ -109,16 +112,23 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
-                HangmanAlerts.endGameAlert(gameWon: true)
-                
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
-                    self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                displayAlert = HangmanAlerts.endGameAlert(gameWon: true)
+                if displayAlert != nil {
+                    let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                        (result : UIAlertAction) -> Void in
+                        print("ok tapped")
+                        self.performSegue(withIdentifier: "presentResultsVC", sender: nil)
+                    }
+                    
+                    displayAlert!.addAction(okButtonTapped)
+                    self.present(displayAlert!, animated: true, completion: nil)
+                    
                 }
             }
             
         } else {
             print("insufficient funds")
-            HangmanAlerts.insufficientFundsAlert()
+            self.present(HangmanAlerts.insufficientFundsAlert(), animated: true, completion: nil)
         }
     }
     
@@ -150,7 +160,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder() //dismisses keyboard
+        textField.resignFirstResponder()
         self.guessButtonTapped(textField)
         return true
     }
@@ -171,6 +181,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             return true
         }
     }
+    
     
     /*
      // MARK: - Navigation

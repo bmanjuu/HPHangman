@@ -97,7 +97,7 @@ struct HangmanGameLogic {
     }
     
     static func incorrectGuess(userGuess: String) {
-
+        
         let realm = try! Realm()
         let currentGame = retrieveCurrentGame()
         
@@ -199,6 +199,7 @@ struct HangmanGameLogic {
             playerAccount.sickles += winningsEarned["sickles"]!
             playerAccount.knuts += winningsEarned["knuts"]!
         }
+        
         print("galleons: \(playerAccount.galleons), sickles: \(playerAccount.sickles), knuts: \(playerAccount.knuts)")
         
     }
@@ -218,8 +219,8 @@ struct HangmanGameLogic {
         print("checking for sufficient funds")
         
         let price = ["galleons": 10,
-                     "sickles": 20,
-                     "knuts": 30]
+                     "sickles": 10,
+                     "knuts": 10]
  
         let realm = try! Realm()
         let game = HangmanGameLogic.retrieveCurrentGame()

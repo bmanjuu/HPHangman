@@ -11,21 +11,26 @@ import UIKit
 
 struct HangmanAlerts {
     
-    static func internetConnectionAlert() {
-        
+    static func invalidInputAlert() {
+//        let animation = CABasicAnimation(keyPath: "position")
+//        animation.duration = 0.07
+//        animation.repeatCount = 4
+//        animation.autoreverses = true
+//        animation.fromValue = NSValue(CGPoint: CGPointMake(txtField.center.x - 10, txtField.center.y))
+//        animation.toValue = NSValue(CGPoint: CGPointMake(txtField.center.x + 10, txtField.center.y))
     }
     
-    static func insufficientFundsAlert() {
+    static func insufficientFundsAlert() -> UIAlertController {
         let alertController = UIAlertController(title: "Oh no!", message: "Insufficient funds to buy a letter", preferredStyle: UIAlertControllerStyle.alert)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+        let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             (result : UIAlertAction) -> Void in
-            print("You pressed OK")
+            print("OK button tapped")
         }
         
-        alertController.addAction(okAction)
-        // UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+        alertController.addAction(okButtonTapped)
         
+        return alertController
     }
     
     static func endGameAlert(gameWon: Bool) -> UIAlertController {
@@ -43,17 +48,12 @@ struct HangmanAlerts {
         
         let alertController = UIAlertController(title: " ", message: "\(alertText)", preferredStyle: UIAlertControllerStyle.alert)
         
-//        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) { (_) in
-//            print("clicked ok")
-//        }
-//        
-//        alertController.addAction(okAction)
-        
-        print("alert text: \(alertText)")
-        print("end of alert")
-        
         return alertController
 
+    }
+    
+    static func internetConnectionAlert() {
+        
     }
     
 }
