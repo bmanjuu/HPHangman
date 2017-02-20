@@ -15,7 +15,7 @@ struct HangmanAlerts {
         
     }
     
-    static func insufficientFunds() -> UIAlertController {
+    static func insufficientFundsAlert() {
         let alertController = UIAlertController(title: "Oh no!", message: "Insufficient funds to buy a letter", preferredStyle: UIAlertControllerStyle.alert)
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
@@ -24,29 +24,36 @@ struct HangmanAlerts {
         }
         
         alertController.addAction(okAction)
+        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
         
-        return alertController
     }
     
-    static func endGameAlert(_ gameStatus: Bool) -> UIAlertController {
+    static func endGameAlert(gameWon: Bool) -> UIAlertController {
+        
+        print("end game alert called")
         
         var alertText = ""
         let chosenWord = HangmanGameLogic.retrieveCurrentGame().chosenWord
         
-        if gameStatus {
-            alertText = "Cheers! You guessed \(chosenWord) correctly!"
+        if gameWon {
+            alertText = "Brilliant! \n\(chosenWord) was correct!"
         } else {
-            alertText = "Fiddle sticks! The correct word was \(chosenWord)"
+            alertText = "Fiddle sticks! \nThe correct word was \(chosenWord)"
         }
         
         let alertController = UIAlertController(title: " ", message: "\(alertText)", preferredStyle: UIAlertControllerStyle.alert)
         
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-            (result : UIAlertAction) -> Void in
-            print("You pressed OK")
+        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) { (_) in
+            HangmanGameVC().present(HangmanGameResultsViewController(), animated: true, completion: nil)
         }
         
+        
         alertController.addAction(okAction)
+        
+        print("alert text: \(alertText)")
+        
+        // UIApplication.shared.keyWindow?.present(alertController, animated: true, completion: nil)
+        print("end of alert")
         
         return alertController
 

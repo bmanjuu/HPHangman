@@ -26,7 +26,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         print("view did load")
         
-        self.view.sendSubview(toBack: scrollView)
         self.hideKeyboardWhenTappedAround()
         userInput.delegate = self
         
@@ -51,7 +50,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.secretWordLabel.text = game.concealedWord
         self.guessesLabel.text = game.guessesSoFar
         self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
-        //gringotts account is nil for some reason 
         self.gringottsAccountBalance.text = "galleons: \(game.player!.gringottsAccount!.galleons), sickles: \(game.player!.gringottsAccount!.sickles), knuts: \(game.player!.gringottsAccount!.knuts)"
     }
     
@@ -70,24 +68,20 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
-                self.present(HangmanAlerts.endGameAlert(true), animated: true, completion: nil)
                 
                 DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
+                    self.present(HangmanAlerts.endGameAlert(gameWon: true), animated: true, completion: nil)
                 }
                 
             } else if game.incorrectGuessCount == 6 {
                 self.secretWordLabel.textColor = UIColor.red
-                self.present(HangmanAlerts.endGameAlert(false), animated: true, completion: nil)
-                self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
                 
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
-                    
-                }
+                HangmanAlerts.endGameAlert(gameWon: false)
+                self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
             }
             
         } else {
-            print("invalid input") //display error message
+            print("invalid input") //shaky textfield
         }
         
         self.userInput.text = ""
@@ -108,15 +102,16 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             
             if game.wonGame {
                 self.secretWordLabel.textColor = UIColor.green
+                HangmanAlerts.endGameAlert(gameWon: true)
+                
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.6) {
-                    self.present(HangmanAlerts.endGameAlert(true), animated: true, completion: nil)
                     self.performSegue(withIdentifier: "presentResultsVC", sender:nil)
                 }
             }
             
         } else {
             print("insufficient funds")
-            self.present(HangmanAlerts.insufficientFunds(), animated: true, completion: nil)
+            HangmanAlerts.insufficientFundsAlert()
         }
     }
     
