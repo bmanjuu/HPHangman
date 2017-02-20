@@ -51,6 +51,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.secretWordLabel.text = game.concealedWord
         self.guessesLabel.text = game.guessesSoFar
         self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
+        //gringotts account is nil for some reason 
         self.gringottsAccountBalance.text = "galleons: \(game.player!.gringottsAccount!.galleons), sickles: \(game.player!.gringottsAccount!.sickles), knuts: \(game.player!.gringottsAccount!.knuts)"
     }
     
@@ -136,7 +137,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         DispatchQueue.main.async {
-            self.scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 200), animated: true)
         }
     }
     

@@ -22,68 +22,118 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gryffindorPortrait" translatesAutoresizingMaskIntoConstraints="NO" id="ZQD-KE-k2g">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greatHall" translatesAutoresizingMaskIntoConstraints="NO" id="ZQD-KE-k2g">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Greetings, Muggle. What is the password?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GiS-h6-nLx">
-                                <rect key="frame" x="94" y="268" width="187" height="42"/>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iaT-xP-oaB">
+                                <rect key="frame" x="64" y="318" width="246" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXu-Ib-7SE">
+                                <rect key="frame" x="140" y="356" width="94" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Enter">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="enterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ebf-BH-mi6"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GiS-h6-nLx">
+                                <rect key="frame" x="70" y="245" width="234" height="76"/>
+                                <string key="text">Greetings, Muggle. 
+We've been expecting you...</string>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iaT-xP-oaB">
-                                <rect key="frame" x="64" y="318" width="246" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXu-Ib-7SE">
-                                <rect key="frame" x="140" y="356" width="94" height="30"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Alohomora">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="alohomoraTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Q4-To-drL"/>
-                                </connections>
-                            </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ij2-UV-icD">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcW-Bo-Cfd">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.50438989140000001" green="0.8331151832" blue="0.50942938429999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <connections>
-                                    <segue destination="Tan-Yr-3Lx" kind="embed" id="bPK-Ed-7kf"/>
-                                </connections>
-                            </containerView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greatHall" translatesAutoresizingMaskIntoConstraints="NO" id="V3R-te-ztF">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="15" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQ9-Qk-XdX">
+                                        <rect key="frame" x="80" y="196" width="214" height="274"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <string key="userLabel">Voldemort is back and you have been chosen to help Harry in his fight against the Dark Lord through a perilous game of Hangman.   Be careful--with each incorrect guess, Voldemort gets closer to capturing Harry and taking over the wizarding world. We're depending on you!</string>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QeQ-1k-BTR">
+                                        <rect key="frame" x="153" y="478" width="68" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Ready?">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.30002024570000002" green="0.44876415530000002" blue="0.85152159689999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="BWK-0G-Tde" kind="show" id="dwi-kd-5Vw"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpr-gE-nj5">
+                                        <rect key="frame" x="0.0" y="167" width="375" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.37067730560000001" green="0.7826202552" blue="0.74829819539999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="dQ9-Qk-XdX" firstAttribute="top" secondItem="lcW-Bo-Cfd" secondAttribute="topMargin" constant="188" id="3uA-aX-qm5"/>
+                                    <constraint firstItem="qpr-gE-nj5" firstAttribute="centerX" secondItem="lcW-Bo-Cfd" secondAttribute="centerX" id="9MQ-Xx-Xs1"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="QeQ-1k-BTR" secondAttribute="trailing" constant="146" id="IhF-Jr-YVO"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="QeQ-1k-BTR" secondAttribute="bottom" constant="151" id="NuD-PZ-MgM"/>
+                                    <constraint firstItem="dQ9-Qk-XdX" firstAttribute="leading" secondItem="lcW-Bo-Cfd" secondAttribute="leadingMargin" constant="72" id="Sc0-iJ-rRn"/>
+                                    <constraint firstItem="V3R-te-ztF" firstAttribute="top" secondItem="qpr-gE-nj5" secondAttribute="bottom" constant="-188" id="Y6b-jm-AiE"/>
+                                    <constraint firstAttribute="trailing" secondItem="V3R-te-ztF" secondAttribute="trailing" id="YfK-t3-bFu"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="dQ9-Qk-XdX" secondAttribute="trailing" constant="73" id="asy-gg-JqE"/>
+                                    <constraint firstItem="QeQ-1k-BTR" firstAttribute="leading" secondItem="lcW-Bo-Cfd" secondAttribute="leadingMargin" constant="145" id="bVm-Zo-rTA"/>
+                                    <constraint firstAttribute="bottom" secondItem="V3R-te-ztF" secondAttribute="bottom" id="fgD-lg-Cx9"/>
+                                    <constraint firstItem="qpr-gE-nj5" firstAttribute="width" secondItem="lcW-Bo-Cfd" secondAttribute="width" id="gkY-ez-21e"/>
+                                    <constraint firstItem="V3R-te-ztF" firstAttribute="top" secondItem="lcW-Bo-Cfd" secondAttribute="top" id="iB7-Le-Xdt"/>
+                                    <constraint firstItem="V3R-te-ztF" firstAttribute="leading" secondItem="lcW-Bo-Cfd" secondAttribute="leading" id="lwz-cQ-Aji"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="dQ9-Qk-XdX" secondAttribute="bottom" constant="189" id="qjW-bx-a1u"/>
+                                    <constraint firstItem="dQ9-Qk-XdX" firstAttribute="top" secondItem="qpr-gE-nj5" secondAttribute="bottom" constant="8" id="wM2-j6-OGN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="GiS-h6-nLx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="54" id="21H-l8-dzp"/>
                             <constraint firstItem="UXu-Ib-7SE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3GQ-dn-dqM"/>
-                            <constraint firstItem="ij2-UV-icD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3xy-pM-4iV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GiS-h6-nLx" secondAttribute="trailing" constant="78" id="5Bo-d1-iUa"/>
                             <constraint firstItem="iaT-xP-oaB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="48" id="5lg-tg-cBy"/>
-                            <constraint firstItem="ij2-UV-icD" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7kv-Vx-AOj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="lcW-Bo-Cfd" secondAttribute="bottom" id="5og-HE-fbJ"/>
                             <constraint firstAttribute="trailing" secondItem="ZQD-KE-k2g" secondAttribute="trailing" id="843-th-2ZU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UXu-Ib-7SE" secondAttribute="trailing" constant="125" id="Ee1-JF-A48"/>
                             <constraint firstItem="ZQD-KE-k2g" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ha1-cu-OrM"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UXu-Ib-7SE" secondAttribute="bottom" constant="281" id="I2Q-WV-har"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GiS-h6-nLx" secondAttribute="trailing" constant="55" id="OPV-Qz-1i9"/>
+                            <constraint firstAttribute="trailing" secondItem="lcW-Bo-Cfd" secondAttribute="trailing" id="R1g-gK-Sx0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iaT-xP-oaB" secondAttribute="trailing" constant="49" id="RZe-W1-dRt"/>
-                            <constraint firstItem="GiS-h6-nLx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="78" id="TDb-MH-Rip"/>
+                            <constraint firstItem="lcW-Bo-Cfd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="SNr-8t-395"/>
                             <constraint firstItem="UXu-Ib-7SE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="124" id="UUQ-bz-u6o"/>
                             <constraint firstItem="iaT-xP-oaB" firstAttribute="centerY" secondItem="ZQD-KE-k2g" secondAttribute="centerY" id="Xxk-ng-0uN"/>
+                            <constraint firstItem="lcW-Bo-Cfd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="dkE-jn-1Hg"/>
+                            <constraint firstItem="GiS-h6-nLx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="225" id="g27-jR-kBi"/>
                             <constraint firstItem="ZQD-KE-k2g" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="g9Y-eZ-zfe"/>
-                            <constraint firstItem="ij2-UV-icD" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="jll-F0-Oyg"/>
                             <constraint firstItem="iaT-xP-oaB" firstAttribute="centerX" secondItem="ZQD-KE-k2g" secondAttribute="centerX" id="kI6-kl-qI1"/>
-                            <constraint firstItem="GiS-h6-nLx" firstAttribute="centerX" secondItem="iaT-xP-oaB" secondAttribute="centerX" id="mdb-zq-LbV"/>
-                            <constraint firstItem="GiS-h6-nLx" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="248" id="spE-GT-vEa"/>
+                            <constraint firstItem="UXu-Ib-7SE" firstAttribute="top" secondItem="iaT-xP-oaB" secondAttribute="bottom" constant="8" id="nPL-jK-AtD"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GiS-h6-nLx" secondAttribute="bottom" constant="346" id="pd0-Ok-6CL"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZQD-KE-k2g" secondAttribute="bottom" id="uxs-T6-hqz"/>
-                            <constraint firstItem="ij2-UV-icD" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="x1M-FV-xp1"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="enterButton" destination="UXu-Ib-7SE" id="blC-2P-28d"/>
+                        <outlet property="muggleGreetings" destination="GiS-h6-nLx" id="YP0-9E-6lp"/>
+                        <outlet property="nameLabel" destination="qpr-gE-nj5" id="FkR-L9-bLy"/>
+                        <outlet property="storyText" destination="dQ9-Qk-XdX" id="ejT-r2-CZN"/>
+                        <outlet property="storylineView" destination="lcW-Bo-Cfd" id="frD-jB-Ove"/>
                         <outlet property="usernameTextField" destination="iaT-xP-oaB" id="Lbu-YP-jP2"/>
-                        <outlet property="welcomeContainerView" destination="ij2-UV-icD" id="Tvc-K2-fpo"/>
-                        <outlet property="welcomeToGryffindor" destination="ZQD-KE-k2g" id="399-zD-kjI"/>
+                        <outlet property="welcomeToHogwarts" destination="ZQD-KE-k2g" id="6Ug-vX-Onu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -244,7 +294,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yVF-d9-pf1">
-                                <rect key="frame" x="0.0" y="60" width="375" height="364"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="384"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Way-mm-ojV">
@@ -326,40 +376,12 @@
             </objects>
             <point key="canvasLocation" x="1614" y="108"/>
         </scene>
-        <!--Home Screen Container View Controller-->
-        <scene sceneID="KpK-NV-Jkd">
-            <objects>
-                <viewController id="Tan-Yr-3Lx" customClass="HomeScreenContainerViewController" customModule="HPHangman" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="jqk-LS-4IM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yRL-UB-fVc">
-                                <rect key="frame" x="172" y="354" width="119" height="111"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Go"/>
-                                <connections>
-                                    <segue destination="BWK-0G-Tde" kind="show" id="qVd-Mb-ka2"/>
-                                </connections>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DeM-2l-aKT">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="t2z-ej-m1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="48.799999999999997" y="897.30134932533736"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="gryffindorPortrait" width="462" height="700"/>
+        <image name="greatHall" width="1620" height="1708"/>
         <image name="hpBattleImage" width="640" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qVd-Mb-ka2"/>
+        <segue reference="dwi-kd-5Vw"/>
     </inferredMetricsTieBreakers>
 </document>

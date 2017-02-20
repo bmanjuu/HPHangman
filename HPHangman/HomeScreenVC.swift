@@ -11,44 +11,67 @@ import RealmSwift
 
 class HomeScreenVC: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var muggleGreetings: UILabel!
     @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var welcomeToGryffindor: UIImageView!
+    @IBOutlet weak var welcomeToHogwarts: UIImageView!
+    @IBOutlet weak var enterButton: UIButton!
     
-    @IBOutlet weak var welcomeContainerView: UIView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var storylineView: UIView!
+    @IBOutlet weak var storyText: UILabel!
     
-    @IBAction func alohomoraTapped(_ sender: Any) {
+    @IBAction func enterButtonTapped(_ sender: Any) {
+        self.usernameTextField.resignFirstResponder()
+        
+        self.nameLabel.text = "\(usernameTextField.text!.lowercased().capitalized),"
+        print("username will be: \(usernameTextField.text!)")
+        
+        let realm = try! Realm()
+        try! realm.write {
+            HangmanGameLogic.retrieveCurrentGame().player!.name = usernameTextField.text!
+        }
+        
+        self.muggleGreetings.isHidden = true
         self.usernameTextField.isHidden = true
-        self.welcomeToGryffindor.isHidden = true
-        self.welcomeContainerView.isHidden = false
+        self.enterButton.isHidden = true
+        self.storylineView.isHidden = false
+        
+        //song has to be here b/c its when user is done with textfield
         BackgroundMusic.playSong("Intro")
+
     }
     
     override func viewDidLoad() {
         print("view did load of welcome screen")
         super.viewDidLoad()
-        self.welcomeContainerView.isHidden = true
         
         usernameTextField.delegate = self
-        
         self.hideKeyboardWhenTappedAround()
+        self.storylineView.isHidden = true
+        self.storyText.text = "Voldemort is back. \n\n You have been chosen to help Harry in his fight against the Dark Lord through a perilous game of Hangman. \n\nBe careful though! With each incorrect guess, Voldemort gets closer to capturing Harry and taking over the wizarding world. \n\nWe're counting on you!"
         
         let realm = try! Realm()
-        let user = User()
-        let userGringottsAccount = GringottsAccount()
-        let game = Game()
         
-        user.name = self.usernameTextField.text!
+        let user = User()
+        let game = Game()
+        let userGringottsAccount = GringottsAccount()
+        
         user.gringottsAccount = userGringottsAccount
         game.player = user
         
         try! realm.write {
-            realm.add(game)
             realm.add(user)
             realm.add(userGringottsAccount)
+            realm.add(game)
         }
+        print("GAME IS: \(game)")
         
         HangmanGameLogic.populateWordsInStore()
-
+        print("end welcome view did load")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //this will not be called unless container view also disappears 
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,20 +84,25 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         textField.resignFirstResponder()
+        self.enterButtonTapped(textField)
+        
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let inputTextLength = textField.text!.characters.count + string.characters.count
+        
+        if inputTextLength == 0 {
+            return false
+        } else {
+            return true
+        }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+ 
 
 }
 
