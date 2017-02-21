@@ -20,6 +20,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var knutsBalance: UILabel!
     @IBOutlet weak var sicklesBalance: UILabel!
     @IBOutlet weak var galleonsBalance: UILabel!
+    @IBOutlet weak var stormyBackgroundImage: UIImageView!
     
     
     var displayAlert: UIAlertController?
@@ -30,6 +31,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         self.hideKeyboardWhenTappedAround()
         userInput.delegate = self
+        self.view.sendSubview(toBack: self.stormyBackgroundImage)
         
     }
     
@@ -52,9 +54,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.userInput.layer.borderWidth = 1.0
         self.userInput.layer.borderColor = UIColor.blue.cgColor
         
-        self.guessesLabel.frame = CGRect(x: 20, y: 20, width: 200, height: 800)
-        self.guessesLabel.sizeToFit()
-        self.guessesLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
         
         self.secretWordLabel.text = game.concealedWord
         self.guessesLabel.text = game.guessesSoFar
