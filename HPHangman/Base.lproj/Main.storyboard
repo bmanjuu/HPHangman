@@ -410,22 +410,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yVF-d9-pf1">
                                 <rect key="frame" x="0.0" y="70" width="375" height="218"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qs-QG-3ia">
-                                <rect key="frame" x="147" y="563" width="82" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.76446492519999998" green="0.77528633440000005" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Play Again">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playAgainButtonTapped:" destination="BqB-mw-Oy4" eventType="touchUpInside" id="Dmg-4h-InU"/>
-                                    <segue destination="BWK-0G-Tde" kind="show" identifier="playAgain" id="Pk7-Df-7cR"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NO0-cH-gDW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NO0-cH-gDW">
                                 <rect key="frame" x="121" y="493" width="68" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">Galleons
 Sickles
 Knuts</string>
@@ -433,9 +419,8 @@ Knuts</string>
                                 <color key="textColor" red="0.66197956790000001" green="1" blue="0.68276820490000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OqZ-rz-wjT">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OqZ-rz-wjT">
                                 <rect key="frame" x="197" y="494" width="32" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <string key="text">###
 ###
 ###</string>
@@ -455,19 +440,35 @@ text :)</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qs-QG-3ia">
+                                <rect key="frame" x="146" y="583" width="82" height="33"/>
+                                <color key="backgroundColor" red="0.76446492519999998" green="0.77528633440000005" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <state key="normal" title="Play Again">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playAgainButtonTapped:" destination="BqB-mw-Oy4" eventType="touchUpInside" id="Dmg-4h-InU"/>
+                                    <segue destination="BWK-0G-Tde" kind="show" identifier="playAgain" id="Pk7-Df-7cR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ovx-QB-yCU" firstAttribute="centerY" secondItem="Mw0-Jm-9pX" secondAttribute="centerY" id="0aS-Kg-KeA"/>
                             <constraint firstItem="Ovx-QB-yCU" firstAttribute="height" secondItem="Mw0-Jm-9pX" secondAttribute="height" id="3zX-8y-5qf"/>
                             <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="yVF-d9-pf1" secondAttribute="bottom" constant="379" id="58X-fk-5l7"/>
+                            <constraint firstItem="NO0-cH-gDW" firstAttribute="height" secondItem="OqZ-rz-wjT" secondAttribute="height" id="5Gu-6w-Aoo"/>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="top" secondItem="1c4-PF-dxQ" secondAttribute="bottom" constant="50" id="77i-Il-Ql5"/>
+                            <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="8qs-QG-3ia" secondAttribute="bottom" constant="51" id="Dh7-Wj-FiY"/>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="leading" secondItem="Mw0-Jm-9pX" secondAttribute="leadingMargin" constant="-16" id="KyP-7J-d77"/>
                             <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="vTK-Ne-ZVJ" secondAttribute="bottom" constant="226" id="LTC-YW-DtH"/>
+                            <constraint firstItem="8qs-QG-3ia" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="Lnq-wT-uBZ"/>
                             <constraint firstItem="vTK-Ne-ZVJ" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="MKd-h3-T8u"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yVF-d9-pf1" secondAttribute="trailing" constant="-16" id="Nk3-Tz-sIl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vTK-Ne-ZVJ" secondAttribute="trailing" id="PvN-Xi-O7t"/>
                             <constraint firstItem="Ovx-QB-yCU" firstAttribute="width" secondItem="Mw0-Jm-9pX" secondAttribute="width" id="T57-EE-Zta"/>
+                            <constraint firstItem="NO0-cH-gDW" firstAttribute="centerY" secondItem="OqZ-rz-wjT" secondAttribute="centerY" id="fme-0F-OWz"/>
                             <constraint firstAttribute="leadingMargin" secondItem="vTK-Ne-ZVJ" secondAttribute="leading" id="gLi-0k-Ioh"/>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="hiS-AV-VOW"/>
                             <constraint firstItem="Ovx-QB-yCU" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="krz-qf-ivQ"/>
