@@ -20,37 +20,40 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var storylineView: UIView!
     @IBOutlet weak var storyText: UILabel!
     
-    @IBAction func enterButtonTapped(_ sender: Any) {
-        self.usernameTextField.resignFirstResponder()
-        
-        self.nameLabel.text = "\(usernameTextField.text!.lowercased().capitalized),"
-        print("username will be: \(usernameTextField.text!)")
-        
-        let realm = try! Realm()
-        try! realm.write {
-            HangmanGameLogic.retrieveCurrentGame().player!.name = usernameTextField.text!
-        }
-        
-        self.muggleGreetings.isHidden = true
-        self.usernameTextField.isHidden = true
-        self.enterButton.isHidden = true
-        self.storylineView.isHidden = false
-        
-        //song has to be here b/c its when user is done with textfield
-        BackgroundMusic.playSong("Intro")
-
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         usernameTextField.delegate = self
         self.hideKeyboardWhenTappedAround()
+        
+        self.setupWelcomeScreen()
+        self.prepareToStartGame()
+        
+    }
+    
+    @IBAction func enterButtonTapped(_ sender: Any) {
+        self.usernameTextField.resignFirstResponder()
+        
+        self.nameLabel.text = "\(usernameTextField.text!.lowercased().capitalized),"
+        
+        let realm = try! Realm()
+        try! realm.write {
+            HangmanGameLogic.retrieveCurrentGame().player!.name = usernameTextField.text!
+        }
+        self.revealStoryline()
+
+    }
+    
+
+    func setupWelcomeScreen() {
         self.storylineView.isHidden = true
         self.storyText.text = "Voldemort is back. \n\n You have been chosen to help Harry in his fight against the Dark Lord through a perilous game of Hangman. \n\nBe careful though! With each incorrect guess, Voldemort gets closer to capturing Harry and taking over the wizarding world. \n\nWe're counting on you!"
         self.enterButton.layer.borderColor = UIColor.white.cgColor
         self.enterButton.layer.borderWidth = 1.0
-        
+    }
+    
+    func prepareToStartGame() {
         let realm = try! Realm()
         
         let user = User()
@@ -69,13 +72,14 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         HangmanGameLogic.populateWordsInStore()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        //this will not be called unless container view also disappears 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func revealStoryline() {
+        self.muggleGreetings.isHidden = true
+        self.usernameTextField.isHidden = true
+        self.enterButton.isHidden = true
+        self.storylineView.isHidden = false
+        
+        //song has to be here b/c its when user is done with textfield
+        BackgroundMusic.playSong("Intro")
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -99,6 +103,11 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
             return true
         }
 
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
 }
