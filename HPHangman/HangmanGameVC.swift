@@ -46,6 +46,11 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         try! realm.write {
             game.chosenWord = chosenWord
             game.concealedWord = String(repeating: "___  ", count: game.chosenWord.characters.count)
+            
+            //when the user leaves and reopens the app -- guesses and incorrect guess count from previous game are still there, so resetting these values here 
+            game.guessesSoFar = ""
+            game.incorrectGuessCount = 0
+            game.wonGame = false
         }
         
         print("THE CHOSEN ONE --> \(game.chosenWord)")
@@ -65,7 +70,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.userInput.resignFirstResponder()
         
         let game = HangmanGameLogic.retrieveCurrentGame()
-        let validInput = HangmanGameLogic.isValidInput(userInput.text!)
+        let validInput = HangmanGameLogic.isValidInput(userInput.text!, from: self)
         let incorrectGuessCountBeforeTurn = game.incorrectGuessCount
         
         if validInput {

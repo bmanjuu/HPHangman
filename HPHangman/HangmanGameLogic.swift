@@ -12,19 +12,13 @@ import RealmSwift
 
 struct HangmanGameLogic {
     
-    static func retrieveCurrentGame() -> Game {
-        let realm = try! Realm()
-        let gameResults = realm.objects(Game.self)
-        return gameResults[0]
-    }
-    
     // before game starts 
     static func populateWordsInStore() {
-        print("calling API to populate words")
         wordListAPIClient.retrieveWords { (words, nil) in
             print("retrieved all words from API")
         }
     }
+    
     
     static func retrieveRandomWord(from words: String) -> String {
         
@@ -40,9 +34,17 @@ struct HangmanGameLogic {
         return randomWord
     }
     
+    //CHECK IF USER IS RETURNING HERE?
     
     // during game
-    static func isValidInput(_ input: String) -> Bool {
+    static func retrieveCurrentGame() -> Game {
+        let realm = try! Realm()
+        let gameResults = realm.objects(Game.self)
+        return gameResults.last!
+    }
+    
+    
+    static func isValidInput(_ input: String, from viewController: UIViewController) -> Bool {
         
         if input.characters.count == 0 {
             print("please enter a letter or word")
@@ -59,6 +61,7 @@ struct HangmanGameLogic {
         
         if (userInput.trimmingCharacters(in: validLetters) != "") {
             print("invalid characters in string")
+            viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
             return false
         }
         
@@ -67,8 +70,10 @@ struct HangmanGameLogic {
             
             if guessesSoFar.contains(userInput) {
                 print("guessed \(userInput) already")
+                viewController.present(HangmanAlerts.duplicateGuess(), animated: true, completion: nil)
                 return false
             } else {
+                viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
                 return true
             }
 

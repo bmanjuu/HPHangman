@@ -12,7 +12,7 @@ import UIKit
 struct HangmanAlerts {
     
     static func insufficientFundsAlert() -> UIAlertController {
-        let alertController = UIAlertController(title: "Oh no!", message: "Insufficient funds to buy a letter", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "Uh oh", message: "Insufficient funds to buy a letter", preferredStyle: UIAlertControllerStyle.alert)
         
         let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             (result : UIAlertAction) -> Void in
@@ -26,19 +26,49 @@ struct HangmanAlerts {
     
     static func endGameAlert(gameWon: Bool) -> UIAlertController {
         
+        var alertTitle = ""
         var alertText = ""
         let chosenWord = HangmanGameLogic.retrieveCurrentGame().chosenWord
         
         if gameWon {
-            alertText = "Brilliant! \n\(chosenWord) was correct!"
+            alertTitle = "Brilliant!"
+            alertText = "\(chosenWord) was correct!"
         } else {
-            alertText = "Fiddle sticks! \nThe correct word was \(chosenWord)"
+            alertTitle = "Fiddle sticks!"
+            alertText = "The correct word was \(chosenWord)"
         }
         
-        let alertController = UIAlertController(title: " ", message: "\(alertText)", preferredStyle: UIAlertControllerStyle.alert)
+        let alertController = UIAlertController(title: "\(alertTitle)", message: "\(alertText)", preferredStyle: UIAlertControllerStyle.alert)
         
         return alertController
 
+    }
+    
+    static func duplicateGuess() -> UIAlertController {
+        let alertController = UIAlertController(title: "Whoops!", message: "You've guessed that already! Try again", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            (result : UIAlertAction) -> Void in
+            print("OK button tapped")
+        }
+        
+        alertController.addAction(okButtonTapped)
+        
+        return alertController
+
+    }
+    
+    static func invalidGuess() -> UIAlertController {
+        let alertController = UIAlertController(title: "Whoops!", message: "Please enter a letter or a word", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            (result : UIAlertAction) -> Void in
+            print("OK button tapped")
+        }
+        
+        alertController.addAction(okButtonTapped)
+        
+        return alertController
     }
     
 }

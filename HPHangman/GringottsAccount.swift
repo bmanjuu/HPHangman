@@ -12,10 +12,6 @@ import RealmSwift
 
 class GringottsAccount: Object {
     
-//    enum money {
-//        case galleons, sickles, knuts
-//    }
-    
     dynamic var owner: User?
     dynamic var galleons: Int = 0
     dynamic var sickles: Int = 0
