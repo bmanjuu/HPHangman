@@ -153,7 +153,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         let game = HangmanGameLogic.retrieveCurrentGame()
         
-        self.scrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
         self.scrollView.alwaysBounceVertical = false
         
         self.userInput.layer.borderWidth = 1.0
