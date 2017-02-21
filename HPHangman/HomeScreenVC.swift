@@ -41,6 +41,7 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         try! realm.write {
             HangmanGameLogic.retrieveCurrentGame().player!.name = usernameTextField.text!
         }
+        
         self.revealStoryline()
 
     }
@@ -105,12 +106,24 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
 
     }
     
+    
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+//     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destinationVC = segue.destination as? HangmanGameVC
+//        destinationVC?.game =
+//     }
+ 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 }
+
+
 
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {

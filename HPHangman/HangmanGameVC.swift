@@ -22,6 +22,9 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var galleonsBalance: UILabel!
     @IBOutlet weak var stormyBackgroundImage: UIImageView!
     
+    
+    // var game: Game!
+    
     var displayAlert: UIAlertController?
     
     override func viewDidLoad() {
@@ -30,83 +33,54 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         self.hideKeyboardWhenTappedAround()
         userInput.delegate = self
-        self.view.sendSubview(toBack: self.stormyBackgroundImage)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         BackgroundMusic.playSong("DuringGameplay")
+        self.startNewGame()
+        self.setupViewForNewGame()
         
-        let realm = try! Realm()
-        let game = HangmanGameLogic.retrieveCurrentGame()
-        let words = game.words
-        let chosenWord = HangmanGameLogic.retrieveRandomWord(from: words)
-        
-        try! realm.write {
-            game.chosenWord = chosenWord
-            game.concealedWord = String(repeating: "___  ", count: game.chosenWord.characters.count)
-            
-            //when the user leaves and reopens the app -- guesses and incorrect guess count from previous game are still there, so resetting these values here 
-            game.guessesSoFar = ""
-            game.incorrectGuessCount = 0
-            game.wonGame = false
-        }
-        
-        print("THE CHOSEN ONE --> \(game.chosenWord)")
-        
-        self.userInput.layer.borderWidth = 1.0
-        self.userInput.layer.borderColor = UIColor.blue.cgColor
-        
-        self.secretWordLabel.text = game.concealedWord
-        self.guessesLabel.text = game.guessesSoFar
-        self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
-        self.galleonsBalance.text = "\(game.player!.gringottsAccount!.galleons)"
-        self.sicklesBalance.text = "\(game.player!.gringottsAccount!.sickles)"
-        self.knutsBalance.text = "\(game.player!.gringottsAccount!.knuts)"
     }
     
     @IBAction func guessButtonTapped(_ sender: Any) {
         self.userInput.resignFirstResponder()
-        
         let game = HangmanGameLogic.retrieveCurrentGame()
         let validInput = HangmanGameLogic.isValidInput(userInput.text!, from: self)
         let incorrectGuessCountBeforeTurn = game.incorrectGuessCount
         
-        if validInput {
-            HangmanGameLogic.playGame(with: userInput.text!)
-            self.guessesLabel.text = game.guessesSoFar
-            self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
-            self.secretWordLabel.text = game.concealedWord
-            
-            if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
-                self.hangmanImage.alpha -= 0.18
-            }
-            
-            if game.wonGame {
-                self.secretWordLabel.textColor = UIColor.green
-                displayAlert = HangmanAlerts.endGameAlert(gameWon: true)
-            } else if game.incorrectGuessCount == 6 {
-                self.secretWordLabel.textColor = UIColor.red
-                displayAlert = HangmanAlerts.endGameAlert(gameWon: false)
-            }
-            
-            if displayAlert != nil {
-                let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-                    (result : UIAlertAction) -> Void in
-                    print("ok tapped")
-                    self.performSegue(withIdentifier: "presentResultsVC", sender: nil)
-                }
-                
-                displayAlert!.addAction(okButtonTapped)
-                self.present(displayAlert!, animated: true, completion: nil)
-            }
-            
-        } else {
-            print("invalid input")
+        guard validInput else { userInput.text = ""; return }
+        
+        HangmanGameLogic.playGame(with: userInput.text!)
+        self.guessesLabel.text = game.guessesSoFar
+        self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
+        self.secretWordLabel.text = game.concealedWord
+        
+        if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
+            self.hangmanImage.alpha -= 0.18
         }
         
-            self.userInput.text = ""
+        if game.wonGame {
+            self.secretWordLabel.textColor = UIColor.green
+            displayAlert = HangmanAlerts.endGameAlert(gameWon: true)
+        } else if game.incorrectGuessCount == 6 {
+            self.secretWordLabel.textColor = UIColor.red
+            displayAlert = HangmanAlerts.endGameAlert(gameWon: false)
+        }
+        
+        if displayAlert != nil {
+            let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                (result : UIAlertAction) -> Void in
+                print("ok tapped")
+                self.performSegue(withIdentifier: "presentResultsVC", sender: nil)
+            }
+            
+            displayAlert!.addAction(okButtonTapped)
+            self.present(displayAlert!, animated: true, completion: nil)
+        }
+        
+        userInput.text = ""
+        
     }
     
     
@@ -124,29 +98,72 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             self.sicklesBalance.text = "\(userGringottsAccount.sickles)"
             self.knutsBalance.text = "\(userGringottsAccount.knuts)"
             
-            if game.wonGame {
-                self.secretWordLabel.textColor = UIColor.green
-                displayAlert = HangmanAlerts.endGameAlert(gameWon: true)
-                if displayAlert != nil {
-                    let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
-                        (result : UIAlertAction) -> Void in
-                        print("ok tapped")
-                        self.performSegue(withIdentifier: "presentResultsVC", sender: nil)
-                    }
-                    
-                    displayAlert!.addAction(okButtonTapped)
-                    self.present(displayAlert!, animated: true, completion: nil)
+            guard game.wonGame else { return }
+            
+            self.secretWordLabel.textColor = UIColor.green
+            displayAlert = HangmanAlerts.endGameAlert(gameWon: true)
+            if displayAlert != nil {
+                let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+                    (result : UIAlertAction) -> Void in
+                    print("ok tapped")
+                    self.performSegue(withIdentifier: "presentResultsVC", sender: nil)
                 }
+                
+                displayAlert!.addAction(okButtonTapped)
+                self.present(displayAlert!, animated: true, completion: nil)
             }
+            
         } else {
-            print("insufficient funds")
-            self.present(HangmanAlerts.insufficientFundsAlert(), animated: true, completion: nil)
+            insufficientFunds()
         }
+    }
+    
+    func insufficientFunds() {
+        
+        self.present(HangmanAlerts.insufficientFundsAlert(), animated: true, completion: nil)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         BackgroundMusic.stopPlayingSong()
     }
+    
+    func startNewGame() {
+        let realm = try! Realm()
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        let words = game.words
+        let chosenWord = HangmanGameLogic.retrieveRandomWord(from: words)
+        
+        try! realm.write {
+            game.chosenWord = chosenWord
+            game.concealedWord = String(repeating: "___  ", count: game.chosenWord.characters.count)
+            
+            //when the user leaves and reopens the app -- guesses and incorrect guess count from previous game are still there, so resetting these values here
+            game.guessesSoFar = ""
+            game.incorrectGuessCount = 0
+            game.wonGame = false
+        }
+        
+        print("THE CHOSEN ONE --> \(game.chosenWord)")
+    }
+    
+    func setupViewForNewGame() {
+        self.view.sendSubview(toBack: self.stormyBackgroundImage)
+        
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        
+        self.userInput.layer.borderWidth = 1.0
+        self.userInput.layer.borderColor = UIColor.blue.cgColor
+        
+        self.secretWordLabel.text = game.concealedWord
+        self.guessesLabel.text = game.guessesSoFar
+        self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
+        self.galleonsBalance.text = "\(game.player!.gringottsAccount!.galleons)"
+        self.sicklesBalance.text = "\(game.player!.gringottsAccount!.sickles)"
+        self.knutsBalance.text = "\(game.player!.gringottsAccount!.knuts)"
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

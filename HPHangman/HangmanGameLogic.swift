@@ -19,7 +19,6 @@ struct HangmanGameLogic {
         }
     }
     
-    
     static func retrieveRandomWord(from words: String) -> String {
         
         let wordsArray = words.components(separatedBy: "\n")
@@ -34,22 +33,15 @@ struct HangmanGameLogic {
         return randomWord
     }
     
-    //CHECK IF USER IS RETURNING HERE?
-    
     // during game
     static func retrieveCurrentGame() -> Game {
         let realm = try! Realm()
         let gameResults = realm.objects(Game.self)
-        return gameResults.last!
+        return gameResults[0]
     }
     
     
     static func isValidInput(_ input: String, from viewController: UIViewController) -> Bool {
-        
-        if input.characters.count == 0 {
-            print("please enter a letter or word")
-            return false
-        }
         
         let currentGame = retrieveCurrentGame()
         let chosenWord = currentGame.chosenWord
@@ -59,8 +51,7 @@ struct HangmanGameLogic {
         let validLetters = CharacterSet.letters
         let userInput = input.replacingOccurrences(of: " ", with: "").uppercased() //perhaps just replace one at the end
         
-        if (userInput.trimmingCharacters(in: validLetters) != "") {
-            print("invalid characters in string")
+        if input.characters.count == 0 || (userInput.trimmingCharacters(in: validLetters) != "") {
             viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
             return false
         }
@@ -73,12 +64,12 @@ struct HangmanGameLogic {
                 viewController.present(HangmanAlerts.duplicateGuess(), animated: true, completion: nil)
                 return false
             } else {
-                viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
                 return true
             }
 
         } else {
             print("guess should only be 1 letter or for the whole word. please type in your guess again")
+            viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
             return false
         }
         
@@ -125,9 +116,7 @@ struct HangmanGameLogic {
         // check if input letter matches letters in secretWord
         for (index, letter) in chosenWord.characters.enumerated() {
             if String(letter) == userGuess {
-                print("before: \(concealedWordArray)")
                 concealedWordArray[index] = "\(letter)"
-                print("after: \(concealedWordArray)")
             }
         }
         
@@ -143,16 +132,74 @@ struct HangmanGameLogic {
     
     static func updateConcealedWord(to word: String)  {
         
-        print("called update concealed word")
-        
         let realm = try! Realm()
         let currentGame = HangmanGameLogic.retrieveCurrentGame()
         
         try! realm.write {
             currentGame.concealedWord = word
-            print("updated concealed word in realm")
         }
     }
+    
+    static func hasSufficientFunds() -> Bool {
+        print("checking for sufficient funds")
+        
+        let price = ["galleons": 10,
+                     "sickles": 10,
+                     "knuts": 10]
+        
+        let realm = try! Realm()
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        let userGringottsAccount = game.player!.gringottsAccount!
+        var currentUserBalance = ["galleons" : userGringottsAccount.galleons,
+                                  "sickles" : userGringottsAccount.sickles,
+                                  "knuts" : userGringottsAccount.knuts]
+        
+        if currentUserBalance["galleons"]! >= price["galleons"]! &&
+            currentUserBalance["sickles"]! >= price["sickles"]! &&
+            currentUserBalance["knuts"]! >= price["knuts"]! {
+            
+            try! realm.write {
+                userGringottsAccount.galleons -= price["galleons"]!
+                userGringottsAccount.sickles -= price["sickles"]!
+                userGringottsAccount.knuts -= price["knuts"]!
+            }
+            return true
+        }
+        return false
+    }
+    
+    static func revealRandomLetter() {
+        print("called reveal random letter")
+        
+        let game = HangmanGameLogic.retrieveCurrentGame()
+        let chosenWordArray = Array(game.chosenWord.characters)
+        var concealedWordArray = game.concealedWord.components(separatedBy: "  ")
+        
+        let numberOfLettersLeft = concealedWordArray.filter({ $0.contains("___") }).count
+        print("\(numberOfLettersLeft) letters left to reveal")
+        
+        if numberOfLettersLeft == 1 {
+            print("revealing last letter")
+            let remainingIndexOfLetter = Int(concealedWordArray.index(of: "___")!)
+            concealedWordArray[remainingIndexOfLetter] = "\(chosenWordArray[remainingIndexOfLetter])"
+            
+            wonGame()
+            return
+            
+        } else {
+            var randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
+            
+            while concealedWordArray[randomIndex] != ("___") {
+                randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
+            }
+            // need account for when chosen letter has multiple occurrences
+            
+            concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
+            print("concealed word array will be updated to: \(concealedWordArray.joined(separator: "  "))")
+            updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
+        }
+    }
+    
     
     // after game ends
     static func wonGame() {
@@ -164,7 +211,6 @@ struct HangmanGameLogic {
         let numberOfIncorrectGuesses = game.incorrectGuessCount
         let playerAccount = game.player!.gringottsAccount!
         var winningsEarned = ["galleons": 0, "sickles": 0, "knuts": 0]
-        //enum for denominations?
         
         switch numberOfIncorrectGuesses {
         case 0:
@@ -204,12 +250,9 @@ struct HangmanGameLogic {
             playerAccount.knuts += winningsEarned["knuts"]!
         }
         
-        print("galleons: \(playerAccount.galleons), sickles: \(playerAccount.sickles), knuts: \(playerAccount.knuts)")
-        
     }
     
     static func lostGame() {
-        print("Oh no! Harry was discovered by Voldemort!")
         let realm = try! Realm()
         let game = retrieveCurrentGame()
         
@@ -218,67 +261,4 @@ struct HangmanGameLogic {
         }
         
     }
-    
-    static func hasSufficientFunds() -> Bool {
-        print("checking for sufficient funds")
-        
-        let price = ["galleons": 10,
-                     "sickles": 10,
-                     "knuts": 10]
- 
-        let realm = try! Realm()
-        let game = HangmanGameLogic.retrieveCurrentGame()
-        let userGringottsAccount = game.player!.gringottsAccount!
-        var currentUserBalance = ["galleons" : userGringottsAccount.galleons,
-                                  "sickles" : userGringottsAccount.sickles,
-                                  "knuts" : userGringottsAccount.knuts]
-        
-        if currentUserBalance["galleons"]! >= price["galleons"]! &&
-            currentUserBalance["sickles"]! >= price["sickles"]! &&
-            currentUserBalance["knuts"]! >= price["knuts"]! {
-            
-            print("taking money out of the user's account")
-            
-            try! realm.write {
-                userGringottsAccount.galleons -= price["galleons"]!
-                userGringottsAccount.sickles -= price["sickles"]!
-                userGringottsAccount.knuts -= price["knuts"]!
-            }
-            return true
-        }
-        return false
-    }
-    
-    static func revealRandomLetter() {
-        print("called reveal random letter")
-        
-        let game = HangmanGameLogic.retrieveCurrentGame()
-        let chosenWordArray = Array(game.chosenWord.characters)
-        var concealedWordArray = game.concealedWord.components(separatedBy: "  ")
-        
-        let numberOfLettersLeft = concealedWordArray.filter({ $0.contains("___") }).count
-        print("\(numberOfLettersLeft) letters left to reveal")
-        
-        if numberOfLettersLeft == 1 {
-            print("revealing last letter")
-            let remainingIndexOfLetter = Int(concealedWordArray.index(of: "___")!)
-            concealedWordArray[remainingIndexOfLetter] = "\(chosenWordArray[remainingIndexOfLetter])"
-            
-            wonGame()
-            return
-            
-        } else {
-            var randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
-            
-            while concealedWordArray[randomIndex] != ("___") {
-                randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
-            }
-            // should account for when chosen letter has multiple occurrences
-            
-            concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
-            print("concealed word array will be updated to: \(concealedWordArray.joined(separator: "  "))")
-            updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
-        }
-    }
-    
 }
