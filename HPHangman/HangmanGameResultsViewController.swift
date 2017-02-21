@@ -40,7 +40,7 @@ class HangmanGameResultsViewController: UIViewController {
         let userGringottsAccount = HangmanGameLogic.retrieveCurrentGame().player!.gringottsAccount!
 
         if gameStatus! {
-            self.resultsImage.image = UIImage(named: "hpCastleImage")
+            self.resultsImage.image = UIImage(named: "hpWonGame")
             self.resultsTextLabel.text = "HOORAY! 🎉\n\nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \n\nThe Ministry of Magic awarded you with: "
             self.displayWinningsLabel.text = "\(userGringottsAccount.galleons)\n\(userGringottsAccount.sickles)\n\(userGringottsAccount.knuts)"
         } else {
