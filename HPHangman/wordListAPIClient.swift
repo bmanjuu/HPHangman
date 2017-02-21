@@ -31,6 +31,7 @@ struct wordListAPIClient {
                 print("\(wordListAPIError.invalidAPICall): error calling word dictionary API")
                 return
             }
+            // IF THIS ERROR OCCURS, NEED TO CHECK INTERNET CONNECTION
             
             guard let responseData = data else {
                 print("\(wordListAPIError.noDataAvailable): no words/data from API call")
