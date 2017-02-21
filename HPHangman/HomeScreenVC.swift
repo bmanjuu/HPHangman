@@ -52,7 +52,7 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         
         self.muggleGreetings.adjustsFontSizeToFitWidth = true
         self.muggleGreetings.minimumScaleFactor = 0.5
-        self.muggleGreetings.text = "Greetings, Muggle. We've been expecting you..."
+        self.muggleGreetings.text = "Greetings, Muggle. \nWe've been expecting you..."
         
         self.enterButton.titleLabel?.minimumScaleFactor = 0.5
         self.enterButton.titleLabel?.numberOfLines = 0
