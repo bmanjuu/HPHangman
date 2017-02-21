@@ -16,7 +16,6 @@ class HangmanGameResultsViewController: UIViewController {
     @IBOutlet weak var resultsImage: UIImageView!
     @IBOutlet weak var resultsTextLabel: UILabel!
     @IBOutlet weak var displayWinningsLabel: UILabel!
-    @IBOutlet weak var userGringottsBalanceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,12 +41,12 @@ class HangmanGameResultsViewController: UIViewController {
 
         if gameStatus! {
             self.resultsImage.image = UIImage(named: "hpCastleImage")
-            self.resultsTextLabel.text = "HOORAY! \nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \nThe Ministry has rewarded you with: "
+            self.resultsTextLabel.text = "HOORAY! \n\nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \n\nThe Ministry of Magic awarded you with: "
             self.displayWinningsLabel.isHidden = false
             self.displayWinningsLabel.text = "galleons: \(userGringottsAccount.galleons), sickles: \(userGringottsAccount.sickles), knuts: \(userGringottsAccount.knuts)"
         } else {
             self.resultsImage.image = UIImage(named: "hpLostGame")
-            self.resultsTextLabel.text = "Oh no! \nVoldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"
+            self.resultsTextLabel.text = "AHH! Voldemort got a hold of Harry!\n\nYou still have another chance to save him! Would you like to play again?"
         }
         
     }
