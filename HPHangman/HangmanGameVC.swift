@@ -31,6 +31,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         print("view did load")
         
+        
         self.hideKeyboardWhenTappedAround()
         userInput.delegate = self
     }
@@ -151,6 +152,9 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.view.sendSubview(toBack: self.stormyBackgroundImage)
         
         let game = HangmanGameLogic.retrieveCurrentGame()
+        
+        self.scrollView.heightAnchor.constraint(equalTo: self.view.heightAnchor)
+        self.scrollView.alwaysBounceVertical = false
         
         self.userInput.layer.borderWidth = 1.0
         self.userInput.layer.borderColor = UIColor.blue.cgColor
