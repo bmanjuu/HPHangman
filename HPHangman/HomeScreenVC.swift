@@ -49,9 +49,14 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
 
     func setupWelcomeScreen() {
         self.storylineView.isHidden = true
-        self.storyText.text = "Voldemort is back. \n\n You have been chosen to help Harry in his fight against the Dark Lord through a perilous game of Hangman. \n\nBe careful though! With each incorrect guess, Voldemort gets closer to capturing Harry and taking over the wizarding world. \n\nWe're counting on you!"
-        self.enterButton.layer.borderColor = UIColor.white.cgColor
-        self.enterButton.layer.borderWidth = 1.0
+        
+        self.muggleGreetings.adjustsFontSizeToFitWidth = true
+        self.muggleGreetings.minimumScaleFactor = 0.5
+        self.muggleGreetings.text = "Greetings, Muggle. We've been expecting you..."
+        
+        self.enterButton.titleLabel?.minimumScaleFactor = 0.5
+        self.enterButton.titleLabel?.numberOfLines = 0
+        self.enterButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     func prepareToStartGame() {
@@ -77,6 +82,9 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         self.muggleGreetings.isHidden = true
         self.usernameTextField.isHidden = true
         self.enterButton.isHidden = true
+        
+        self.nameLabel.adjustsFontSizeToFitWidth = true
+        self.storyText.text = "Voldemort is back. \n\n You have been chosen to help Harry in his fight against the Dark Lord through a perilous game of Hangman. \n\nBe careful though! With each incorrect guess, Voldemort gets closer to capturing Harry and taking over the wizarding world. \n\nWe're counting on you!"
         self.storylineView.isHidden = false
         
         //song has to be here b/c its when user is done with textfield
