@@ -277,22 +277,3 @@ struct HangmanGameLogic {
     }
     
 }
-
-//  v2: if user wants to change/get a new word in the middle of a game
-//    static func getNewWord() {
-//        // add button for this functionality
-//        // animation while everything clears / reloads
-//
-//        let realm = try! Realm()
-//        let game = retrieveCurrentGame()
-//
-//        let newWord = retrieveRandomWord(from: game.words)
-//
-//        //reset appropriate game properties
-//        try! realm.write {
-//            game.chosenWord = newWord
-//            game.concealedWord = String(repeating: "___  ", count: newWord.characters.count)
-//            game.guessesSoFar = ""
-//            game.incorrectGuessCount = 0
-//        }
-//    }

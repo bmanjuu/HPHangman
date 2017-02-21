@@ -22,7 +22,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var galleonsBalance: UILabel!
     @IBOutlet weak var stormyBackgroundImage: UIImageView!
     
-    
     var displayAlert: UIAlertController?
     
     override func viewDidLoad() {
@@ -53,8 +52,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         self.userInput.layer.borderWidth = 1.0
         self.userInput.layer.borderColor = UIColor.blue.cgColor
-        
-        
         
         self.secretWordLabel.text = game.concealedWord
         self.guessesLabel.text = game.guessesSoFar

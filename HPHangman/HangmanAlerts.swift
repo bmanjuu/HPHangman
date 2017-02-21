@@ -26,8 +26,6 @@ struct HangmanAlerts {
     
     static func endGameAlert(gameWon: Bool) -> UIAlertController {
         
-        print("end game alert called")
-        
         var alertText = ""
         let chosenWord = HangmanGameLogic.retrieveCurrentGame().chosenWord
         

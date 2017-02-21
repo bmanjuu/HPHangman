@@ -42,7 +42,6 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
-        print("view did load of welcome screen")
         super.viewDidLoad()
         
         usernameTextField.delegate = self
@@ -66,10 +65,8 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
             realm.add(userGringottsAccount)
             realm.add(game)
         }
-        print("GAME IS: \(game)")
         
         HangmanGameLogic.populateWordsInStore()
-        print("end welcome view did load")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
