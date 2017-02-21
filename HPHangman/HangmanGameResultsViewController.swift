@@ -13,6 +13,7 @@ class HangmanGameResultsViewController: UIViewController {
     
     public var gameStatus: Bool?
     
+    @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var resultsImage: UIImageView!
     @IBOutlet weak var resultsTextLabel: UILabel!
     @IBOutlet weak var displayWinningsLabel: UILabel!
@@ -33,7 +34,11 @@ class HangmanGameResultsViewController: UIViewController {
             BackgroundMusic.playSong("Lose")
         }
  
-        self.resultsTextLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        // self.resultsTextLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
+        self.playAgainButton.titleLabel?.minimumScaleFactor = 0.5
+        self.playAgainButton.titleLabel?.numberOfLines = 0
+        self.playAgainButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
         let userGringottsAccount = HangmanGameLogic.retrieveCurrentGame().player!.gringottsAccount!
 

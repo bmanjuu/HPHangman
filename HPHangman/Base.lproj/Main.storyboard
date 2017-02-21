@@ -409,7 +409,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yVF-d9-pf1">
                                 <rect key="frame" x="0.0" y="70" width="375" height="218"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qs-QG-3ia">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qs-QG-3ia">
                                 <rect key="frame" x="129" y="563" width="116" height="33"/>
                                 <color key="backgroundColor" red="0.76446492519999998" green="0.77528633440000005" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
@@ -436,7 +436,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NO0-cH-gDW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NO0-cH-gDW">
                                 <rect key="frame" x="110" y="447" width="95" height="61"/>
                                 <string key="text">Galleons
 Sickles
@@ -475,6 +475,7 @@ Knuts</string>
                     </view>
                     <connections>
                         <outlet property="displayWinningsLabel" destination="OqZ-rz-wjT" id="Znl-Um-afy"/>
+                        <outlet property="playAgainButton" destination="8qs-QG-3ia" id="2on-Rf-Vju"/>
                         <outlet property="resultsImage" destination="yVF-d9-pf1" id="a9s-fs-mx5"/>
                         <outlet property="resultsTextLabel" destination="uY0-ky-GWP" id="EmZ-gE-gZC"/>
                         <outlet property="wizardingDenominationsLabel" destination="NO0-cH-gDW" id="APl-gU-8fu"/>
