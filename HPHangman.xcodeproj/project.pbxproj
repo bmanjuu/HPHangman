@@ -16,7 +16,7 @@
 		A490D0EB1E55E1C0004CE638 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0EA1E55E1C0004CE638 /* User.swift */; };
 		A490D0ED1E55E20A004CE638 /* GringottsAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */; };
 		A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0F91E55E842004CE638 /* HangmanGameVC.swift */; };
-		A490D0FE1E55F03F004CE638 /* wordListAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */; };
+		A490D0FE1E55F03F004CE638 /* WordListAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FD1E55F03F004CE638 /* WordListAPIClient.swift */; };
 		A490D1021E560F06004CE638 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D1011E560F06004CE638 /* HomeScreenVC.swift */; };
 		A4B04B521E5A24CA000447D6 /* HangmanAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B04B511E5A24CA000447D6 /* HangmanAlerts.swift */; };
 		A4E8C3671E57D67A0081E6AA /* HangmanGameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C3661E57D67A0081E6AA /* HangmanGameResultsViewController.swift */; };
@@ -41,7 +41,7 @@
 		A490D0EA1E55E1C0004CE638 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GringottsAccount.swift; sourceTree = "<group>"; };
 		A490D0F91E55E842004CE638 /* HangmanGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameVC.swift; sourceTree = "<group>"; };
-		A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wordListAPIClient.swift; sourceTree = "<group>"; };
+		A490D0FD1E55F03F004CE638 /* WordListAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListAPIClient.swift; sourceTree = "<group>"; };
 		A490D1011E560F06004CE638 /* HomeScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
 		A4B04B511E5A24CA000447D6 /* HangmanAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanAlerts.swift; sourceTree = "<group>"; };
 		A4E8C3661E57D67A0081E6AA /* HangmanGameResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameResultsViewController.swift; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 				A471EEA51E57672B00E3EE71 /* Game.swift */,
 				A490D0EA1E55E1C0004CE638 /* User.swift */,
 				A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */,
-				A490D0FD1E55F03F004CE638 /* wordListAPIClient.swift */,
+				A490D0FD1E55F03F004CE638 /* WordListAPIClient.swift */,
 				A4B04B511E5A24CA000447D6 /* HangmanAlerts.swift */,
 				A4FB04771E592393006EBE79 /* BackgroundMusic.swift */,
 				A490D0D51E55E135004CE638 /* AppDelegate.swift */,
@@ -302,7 +302,7 @@
 				A471EEA61E57672B00E3EE71 /* Game.swift in Sources */,
 				A490D0ED1E55E20A004CE638 /* GringottsAccount.swift in Sources */,
 				A490D1021E560F06004CE638 /* HomeScreenVC.swift in Sources */,
-				A490D0FE1E55F03F004CE638 /* wordListAPIClient.swift in Sources */,
+				A490D0FE1E55F03F004CE638 /* WordListAPIClient.swift in Sources */,
 				A490D0D61E55E135004CE638 /* AppDelegate.swift in Sources */,
 				A4B04B521E5A24CA000447D6 /* HangmanAlerts.swift in Sources */,
 				A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */,

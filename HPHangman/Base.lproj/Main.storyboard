@@ -76,6 +76,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
+                                            <action selector="readyButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a3I-Wu-kk9"/>
                                             <segue destination="BWK-0G-Tde" kind="show" id="dwi-kd-5Vw"/>
                                         </connections>
                                     </button>
@@ -503,6 +504,6 @@ text :)</string>
         <image name="hpBattleImage" width="640" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pk7-Df-7cR"/>
+        <segue reference="dwi-kd-5Vw"/>
     </inferredMetricsTieBreakers>
 </document>

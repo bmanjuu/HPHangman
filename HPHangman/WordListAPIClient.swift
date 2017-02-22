@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-struct wordListAPIClient {
+struct WordListAPIClient {
     
     private enum wordListAPIError: Error {
         case invalidAPICall

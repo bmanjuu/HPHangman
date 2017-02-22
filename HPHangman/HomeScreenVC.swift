@@ -47,6 +47,12 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
 
     }
     
+    @IBAction func readyButtonTapped(_ sender: Any) {
+        //hide storyline and button
+        //show activity indicator for 2 seconds
+        //check if game words length is > 0, continue to display activity indicator
+        
+    }
 
     func setupWelcomeScreen() {
         self.storylineView.isHidden = true
