@@ -32,7 +32,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         print("view did load")
         
-        
+        self.scrollView.autoresizesSubviews = false 
         self.hideKeyboardWhenTappedAround()
         userInput.delegate = self
     }
