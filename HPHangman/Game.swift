@@ -83,6 +83,8 @@ extension Game {
             concealedWord = String(repeating: "___  ", count: chosenWord.characters.count)
         }
         
+        print("THE CHOSEN ONE --> \(chosenWord)")
+        
     }
 }
 

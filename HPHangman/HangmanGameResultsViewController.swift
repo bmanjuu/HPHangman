@@ -21,6 +21,8 @@ class HangmanGameResultsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        adjustButtonFontSize()
         // Do any additional setup after loading the view.
     }
     
@@ -34,13 +36,21 @@ class HangmanGameResultsViewController: UIViewController {
             BackgroundMusic.playSong("Lose")
         }
  
-        self.playAgainButton.titleLabel?.minimumScaleFactor = 0.5
-        self.playAgainButton.titleLabel?.numberOfLines = 0
-        self.playAgainButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        setupViewsFor(gameWonStatus: gameStatus)
+        
+    }
+    
+    
+    @IBAction func playAgainButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "playAgain", sender:nil)
+    }
+    
+    
+    func setupViewsFor(gameWonStatus: Bool) {
         
         let userGringottsAccount = finishedGame.player!.gringottsAccount!
-
-        if gameStatus {
+        
+        if gameWonStatus {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             self.resultsTextLabel.text = "HOORAY! 🎉\nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \nThe Ministry of Magic has awarded you with:"
             self.displayWinningsLabel.text = "\(finishedGame.galleonsEarned)\n\(finishedGame.sicklesEarned)\n\(finishedGame.knutsEarned)"
@@ -49,11 +59,12 @@ class HangmanGameResultsViewController: UIViewController {
             self.resultsTextLabel.text = "AHHHHH! 😱\nVoldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"
             self.displayWinningsLabel.text = "\(userGringottsAccount.galleons)\n\(userGringottsAccount.sickles)\n\(userGringottsAccount.knuts)"
         }
-        
     }
     
-    @IBAction func playAgainButtonTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "playAgain", sender:nil)
+    func adjustButtonFontSize() {
+        self.playAgainButton.titleLabel?.minimumScaleFactor = 0.5
+        self.playAgainButton.titleLabel?.numberOfLines = 0
+        self.playAgainButton.titleLabel?.adjustsFontSizeToFitWidth = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
