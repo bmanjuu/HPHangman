@@ -12,26 +12,7 @@ import RealmSwift
 
 struct HangmanGameLogic {
     
-    // before game starts 
-    static func populateWordsInStore() {
-        wordListAPIClient.retrieveWords { (words, nil) in
-            print("retrieved all words from API")
-        }
-    }
-    
-    static func retrieveRandomWord(from words: String) -> String {
-        
-        let wordsArray = words.components(separatedBy: "\n")
-        var randomWord = ""
-        
-        repeat {
-            print("random word: \(randomWord), count: \(randomWord.characters.count)")
-            let randomIndex = Int(arc4random_uniform(UInt32(wordsArray.count-1)))
-            randomWord = wordsArray[randomIndex].uppercased()
-        } while randomWord.characters.count < 3 || randomWord.characters.count > 8 || randomWord.contains(" ")
-        
-        return randomWord
-    }
+    // before game starts
     
     // during game
     static func retrieveCurrentGame() -> Game {
