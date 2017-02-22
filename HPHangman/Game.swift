@@ -115,7 +115,7 @@ extension Game {
         
         //check that input is only 1 letter or a guess for the whole word
         if userInput.characters.count == 1 || userInput.characters.count == chosenWord.characters.count {
-            if guessesSoFar.contains(userInput) {
+            if guessesSoFar.contains(userInput) || concealedWord.contains(userInput) {
                 print("guessed \(userInput) already")
                 viewController.present(HangmanAlerts.duplicateGuess(), animated: true, completion: nil)
                 return false
@@ -230,7 +230,6 @@ extension Game {
         
         //check to see if there are any underscores left
         if !concealedWordArray.contains("___") {
-            print("won game!")
             wonGame()
         }
         
@@ -265,7 +264,6 @@ extension Game {
     
     func lostGame() {
         
-        // should only reveal alert and then segue to last view controller
         try! Realm().write {
             concealedWord = chosenWord
         }
