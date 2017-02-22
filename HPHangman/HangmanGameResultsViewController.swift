@@ -13,6 +13,7 @@ class HangmanGameResultsViewController: UIViewController {
     
     public var gameStatus: Bool?
     
+    @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var resultsImage: UIImageView!
     @IBOutlet weak var resultsTextLabel: UILabel!
     @IBOutlet weak var displayWinningsLabel: UILabel!
@@ -33,17 +34,21 @@ class HangmanGameResultsViewController: UIViewController {
             BackgroundMusic.playSong("Lose")
         }
  
-        self.resultsTextLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        // self.resultsTextLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
+        self.playAgainButton.titleLabel?.minimumScaleFactor = 0.5
+        self.playAgainButton.titleLabel?.numberOfLines = 0
+        self.playAgainButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
         let userGringottsAccount = HangmanGameLogic.retrieveCurrentGame().player!.gringottsAccount!
 
         if gameStatus! {
             self.resultsImage.image = UIImage(named: "hpWonGame")
-            self.resultsTextLabel.text = "HOORAY! 🎉\n\nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \n\nThe Ministry of Magic awarded you with: "
+            self.resultsTextLabel.text = "HOORAY! 🎉\nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \nThe Ministry of Magic has awarded you with:"
             self.displayWinningsLabel.text = "\(userGringottsAccount.galleons)\n\(userGringottsAccount.sickles)\n\(userGringottsAccount.knuts)"
         } else {
             self.resultsImage.image = UIImage(named: "hpLostGame")
-            self.resultsTextLabel.text = "AHHHHH! 😱\n\nVoldemort got a hold of Harry! \n\nYou still have another chance to save him! Would you like to play again?"
+            self.resultsTextLabel.text = "AHHHHH! 😱\nVoldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"
             self.displayWinningsLabel.text = "\(userGringottsAccount.galleons)\n\(userGringottsAccount.sickles)\n\(userGringottsAccount.knuts)"
         }
         
