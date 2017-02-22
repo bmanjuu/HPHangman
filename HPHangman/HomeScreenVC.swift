@@ -20,6 +20,7 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var storylineView: UIView!
     @IBOutlet weak var storyText: UILabel!
     
+    var newGame : Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         
         let realm = try! Realm()
         try! realm.write {
-            HangmanGameLogic.retrieveCurrentGame().player!.name = usernameTextField.text!
+            self.newGame!.player!.name = usernameTextField.text!
         }
         
         self.revealStoryline()
@@ -75,7 +76,8 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
             realm.add(game)
         }
         
-        HangmanGameLogic.populateWordsInStore()
+        self.newGame = game
+        self.newGame!.populateWordsInStore()
     }
     
     func revealStoryline() {
@@ -111,17 +113,16 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         } else {
             return true
         }
-
     }
     
     
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-//     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationVC = segue.destination as? HangmanGameVC
-//        destinationVC?.game =
-//     }
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as? HangmanGameVC
+        destinationVC?.game = self.newGame!
+     }
  
     
     override func didReceiveMemoryWarning() {

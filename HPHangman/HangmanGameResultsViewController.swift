@@ -12,6 +12,7 @@ import RealmSwift
 class HangmanGameResultsViewController: UIViewController {
     
     public var gameStatus: Bool?
+    var finishedGame: Game!
     
     @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var resultsImage: UIImageView!
@@ -26,7 +27,7 @@ class HangmanGameResultsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        gameStatus = HangmanGameLogic.retrieveCurrentGame().wonGame
+        gameStatus = finishedGame.wonGameStatus
         
         if gameStatus! {
             BackgroundMusic.playSong("Win")
@@ -34,13 +35,11 @@ class HangmanGameResultsViewController: UIViewController {
             BackgroundMusic.playSong("Lose")
         }
  
-        // self.resultsTextLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
-        
         self.playAgainButton.titleLabel?.minimumScaleFactor = 0.5
         self.playAgainButton.titleLabel?.numberOfLines = 0
         self.playAgainButton.titleLabel?.adjustsFontSizeToFitWidth = true
         
-        let userGringottsAccount = HangmanGameLogic.retrieveCurrentGame().player!.gringottsAccount!
+        let userGringottsAccount = finishedGame.player!.gringottsAccount!
 
         if gameStatus! {
             self.resultsImage.image = UIImage(named: "hpWonGame")
@@ -59,18 +58,6 @@ class HangmanGameResultsViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        let realm = try! Realm()
-        let game = HangmanGameLogic.retrieveCurrentGame()
-        
-        try! realm.write {
-            //resetting values
-            game.chosenWord = ""
-            game.concealedWord = ""
-            game.incorrectGuessCount = 0
-            game.guessesSoFar = ""
-            game.wonGame = false
-        }
-        
         BackgroundMusic.stopPlayingSong()
     }
     
@@ -80,14 +67,23 @@ class HangmanGameResultsViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let destinationVC = segue.destination as? HangmanGameVC
+        
+        //reset current game values and pass that back to the game property of HangmanGameVC
+        let realm = try! Realm()
+        try! realm.write {
+            finishedGame.guessesSoFar = ""
+            finishedGame.incorrectGuessCount = 0
+            finishedGame.wonGameStatus = false
+        }
+        
+        destinationVC?.game = finishedGame
     }
-    */
+ 
 
 }

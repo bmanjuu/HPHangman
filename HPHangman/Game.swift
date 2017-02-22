@@ -13,7 +13,7 @@ import RealmSwift
 class Game: Object {
     
     dynamic var player: User?
-    dynamic var wonGame: Bool = false
+    dynamic var wonGameStatus: Bool = false
     
     dynamic var words: String = ""
     dynamic var chosenWord: String = ""
@@ -34,10 +34,10 @@ class Game: Object {
         super.init(value: value, schema: schema)
     }
     
-    init(player: User, wonGame: Bool, words: String, chosenWord: String, concealedWord: String, guessesSoFar: String, maxIncorrectGuesses: Int, incorrectGuessCount: Int) {
+    init(player: User, wonGameStatus: Bool, words: String, chosenWord: String, concealedWord: String, guessesSoFar: String, maxIncorrectGuesses: Int, incorrectGuessCount: Int) {
         super.init()
         self.player = player
-        self.wonGame = wonGame
+        self.wonGameStatus = wonGameStatus
         self.words = words
         self.chosenWord = chosenWord
         self.concealedWord = concealedWord
@@ -48,26 +48,7 @@ class Game: Object {
     
 }
 
-// MARK: - Preparing
-
-
-// MARK: - Helper Computed Properties
-extension Game {
-    // do not need to persist this in realm b/c only calculating
-    var galleonsEarned: Int {
-        return (6-incorrectGuessCount) * 5
-    }
-    
-    var sicklesEarned: Int {
-        return (6-incorrectGuessCount) * 3
-    }
-    
-    var knutsEarned: Int {
-        return (6-incorrectGuessCount) * 5
-    }
-}
-
-// MARK: - Preparing to Start Game 
+// MARK: - Preparing to Start Game
 extension Game {
     func populateWordsInStore() {
         wordListAPIClient.retrieveWords { (words, nil) in
@@ -75,7 +56,7 @@ extension Game {
         }
     }
     
-    func retrieveRandomWord(from words: String) -> String {
+    func retrieveRandomWord() {
         
         let wordsArray = words.components(separatedBy: "\n")
         var randomWord = ""
@@ -86,8 +67,128 @@ extension Game {
             randomWord = wordsArray[randomIndex].uppercased()
         } while randomWord.characters.count < 3 || randomWord.characters.count > 8 || randomWord.contains(" ")
         
-        return randomWord
+        try! Realm().write {
+            chosenWord = randomWord
+            concealedWord = String(repeating: "___  ", count: chosenWord.characters.count)
+        }
+        
     }
+}
+
+
+
+// MARK: - Helper Computed Properties
+extension Game {
+    
+    var galleonsEarned: Int {
+        return (6-incorrectGuessCount) * 3
+    }
+    
+    var sicklesEarned: Int {
+        return (6-incorrectGuessCount) * 5
+    }
+    
+    var knutsEarned: Int {
+        return (6-incorrectGuessCount) * 7
+    }
+
+}
+
+// MARK: - Game Logic Helper Functions 
+extension Game {
+    
+    func isValidInput(_ input: String, from viewController: UIViewController) -> Bool {
+        
+        let validLetters = CharacterSet.letters
+        let userInput = input.replacingOccurrences(of: " ", with: "").uppercased()
+        
+        if input.characters.count == 0 || (userInput.trimmingCharacters(in: validLetters) != "") {
+            viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
+            return false
+        }
+        
+        //check that input is only 1 letter or a guess for the whole word
+        if userInput.characters.count == 1 || userInput.characters.count == chosenWord.characters.count {
+            if guessesSoFar.contains(userInput) {
+                print("guessed \(userInput) already")
+                viewController.present(HangmanAlerts.duplicateGuess(), animated: true, completion: nil)
+                return false
+            } else {
+                return true
+            }
+        } else {
+            print("guess should only be 1 letter or for the whole word. please type in your guess again")
+            viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
+            return false
+        }
+        return false
+    }
+    
+    func hasSufficientFunds() -> Bool {
+        print("checking for sufficient funds")
+        
+        let price = ["galleons": 10,
+                     "sickles": 20,
+                     "knuts": 30]
+        
+        let userGringottsAccount = player!.gringottsAccount!
+        var currentUserBalance = ["galleons" : userGringottsAccount.galleons,
+                                  "sickles" : userGringottsAccount.sickles,
+                                  "knuts" : userGringottsAccount.knuts]
+        
+        if currentUserBalance["galleons"]! >= price["galleons"]! &&
+            currentUserBalance["sickles"]! >= price["sickles"]! &&
+            currentUserBalance["knuts"]! >= price["knuts"]! {
+            
+            try! Realm().write {
+                userGringottsAccount.galleons -= price["galleons"]!
+                userGringottsAccount.sickles -= price["sickles"]!
+                userGringottsAccount.knuts -= price["knuts"]!
+            }
+            return true
+        }
+        return false
+    }
+
+    
+    func revealRandomLetter() {
+        print("called reveal random letter")
+        
+        let chosenWordArray = Array(chosenWord.characters)
+        var concealedWordArray = concealedWord.components(separatedBy: "  ")
+        
+        let numberOfLettersLeft = concealedWordArray.filter({ $0.contains("___") }).count
+        print("\(numberOfLettersLeft) letters left to reveal")
+        
+        if numberOfLettersLeft == 1 {
+            print("revealing last letter")
+            let remainingIndexOfLetter = Int(concealedWordArray.index(of: "___")!)
+            concealedWordArray[remainingIndexOfLetter] = "\(chosenWordArray[remainingIndexOfLetter])"
+            
+            wonGame()
+            return
+            
+        } else {
+            var randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
+            
+            while concealedWordArray[randomIndex] != ("___") {
+                randomIndex = Int(arc4random_uniform(UInt32(chosenWordArray.count-1)))
+            }
+            // need account for when chosen letter has multiple occurrences
+            
+            concealedWordArray[randomIndex] = "\(chosenWordArray[randomIndex])"
+            print("concealed word array will be updated to: \(concealedWordArray.joined(separator: "  "))")
+            updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
+        }
+    }
+
+    
+    func updateConcealedWord(to word: String)  {
+        try! Realm().write {
+            concealedWord = word
+        }
+    }
+    
 }
 
 
@@ -101,25 +202,68 @@ extension Game {
         print("user guess modified: \(userGuess)")
         
         if userGuess == chosenWord {
-            gameWon()
+            wonGame()
         } else if chosenWord.contains(userGuess) {
-          //  correctGuess(userGuess: userGuess)
+          correctGuess(userGuess: userGuess)
         } else {
-           // incorrectGuess(userGuess: userGuess)
+           incorrectGuess(userGuess: userGuess)
         }
     }
     
-    func gameWon() {
+    func correctGuess(userGuess: String) {
+        var concealedWordArray = concealedWord.components(separatedBy: "  ") //there are 2 spaces between each underscore
+        
+        // check if input letter matches letters in secretWord
+        for (index, letter) in chosenWord.characters.enumerated() {
+            if String(letter) == userGuess {
+                concealedWordArray[index] = "\(letter)"
+            }
+        }
+        
+        updateConcealedWord(to: concealedWordArray.joined(separator: "  "))
+        
+        //check to see if there are any underscores left
+        if !concealedWordArray.contains("___") {
+            print("won game!")
+            wonGame()
+        }
+        
+    }
+
+    
+    func incorrectGuess(userGuess: String) {
+        
+        try! Realm().write {
+            incorrectGuessCount += 1
+            guessesSoFar.append("\(userGuess) ")
+        }
+        
+        if incorrectGuessCount == 6 {
+            lostGame()
+        }
+        
+    }
+    
+    func wonGame() {
         
         let playerAccount = player!.gringottsAccount!
         
         try! Realm().write {
-            wonGame = true
+            wonGameStatus = true
             concealedWord = chosenWord
             playerAccount.galleons += galleonsEarned
             playerAccount.sickles += sicklesEarned
             playerAccount.knuts += knutsEarned
         }
+    }
+    
+    func lostGame() {
+        
+        // should only reveal alert and then segue to last view controller
+        try! Realm().write {
+            concealedWord = chosenWord
+        }
+        
     }
 
 }

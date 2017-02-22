@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 struct HangmanAlerts {
     
@@ -53,13 +54,12 @@ struct HangmanAlerts {
         return alertController
     }
     
-    static func endGameAlert(gameWon: Bool) -> UIAlertController {
+    static func endGameAlert(wonGameStatus: Bool, chosenWord: String) -> UIAlertController {
         
         var alertTitle = ""
         var alertText = ""
-        let chosenWord = HangmanGameLogic.retrieveCurrentGame().chosenWord
         
-        if gameWon {
+        if wonGameStatus {
             alertTitle = "Brilliant!"
             alertText = "\(chosenWord) was correct!"
         } else {
