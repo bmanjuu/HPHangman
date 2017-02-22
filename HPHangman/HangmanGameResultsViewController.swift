@@ -11,7 +11,6 @@ import RealmSwift
 
 class HangmanGameResultsViewController: UIViewController {
     
-    public var gameStatus: Bool?
     var finishedGame: Game!
     
     @IBOutlet weak var playAgainButton: UIButton!
@@ -27,9 +26,9 @@ class HangmanGameResultsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        gameStatus = finishedGame.wonGameStatus
+        let gameStatus = finishedGame.wonGameStatus
         
-        if gameStatus! {
+        if gameStatus {
             BackgroundMusic.playSong("Win")
         } else {
             BackgroundMusic.playSong("Lose")
@@ -41,7 +40,7 @@ class HangmanGameResultsViewController: UIViewController {
         
         let userGringottsAccount = finishedGame.player!.gringottsAccount!
 
-        if gameStatus! {
+        if gameStatus {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             self.resultsTextLabel.text = "HOORAY! 🎉\nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \nThe Ministry of Magic has awarded you with:"
             self.displayWinningsLabel.text = "\(finishedGame.galleonsEarned)\n\(finishedGame.sicklesEarned)\n\(finishedGame.knutsEarned)"
@@ -68,7 +67,7 @@ class HangmanGameResultsViewController: UIViewController {
     
 
     
-    // MARK: - Navigation
+// MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

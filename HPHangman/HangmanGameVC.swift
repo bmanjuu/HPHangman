@@ -42,6 +42,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
     }
     
+    
     @IBAction func guessButtonTapped(_ sender: Any) {
         self.userInput.resignFirstResponder()
         let incorrectGuessCountBeforeTurn = game.incorrectGuessCount
@@ -95,6 +96,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             self.sicklesBalance.text = "\(userGringottsAccount.sickles)"
             self.knutsBalance.text = "\(userGringottsAccount.knuts)"
             
+            //if buying/revealing the last letter, user wins game
             guard game.wonGameStatus else { return }
             
             self.secretWordLabel.textColor = UIColor.green
@@ -111,24 +113,13 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             }
             
         } else {
-            insufficientFunds()
+            self.present(HangmanAlerts.insufficientFundsAlert(), animated: true, completion: nil)
         }
     }
-    
-    func insufficientFunds() {
-        
-        self.present(HangmanAlerts.insufficientFundsAlert(), animated: true, completion: nil)
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        BackgroundMusic.stopPlayingSong()
-    }
+
     
     func startNewGame() {
         game.retrieveRandomWord()
-        
-        print("THE CHOSEN ONE --> \(game.chosenWord)")
     }
     
     func setupViewForNewGame() {
@@ -149,7 +140,9 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.knutsBalance.text = "\(game.player!.gringottsAccount!.knuts)"
     }
     
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        BackgroundMusic.stopPlayingSong()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -157,7 +150,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     }
     
     
-    //TEXTFIELD DELEGATE METHODS
+//MARK: - Textfield Delegate Methods
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
@@ -197,7 +190,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     
     
-     // MARK: - Navigation
+// MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
