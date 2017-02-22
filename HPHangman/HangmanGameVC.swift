@@ -11,6 +11,7 @@ import RealmSwift
 
 class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var duelLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var userInput: UITextField!
     @IBOutlet weak var hangmanImage: UIImageView!
@@ -149,11 +150,13 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     }
     
     func setupViewForNewGame() {
-        self.view.sendSubview(toBack: self.stormyBackgroundImage)
         
         let game = HangmanGameLogic.retrieveCurrentGame()
         
         self.scrollView.alwaysBounceVertical = false
+        
+        self.duelLabel.text = "Oh no... it's Deatheaters! Time to duel!"
+        self.duelLabel.adjustsFontSizeToFitWidth = true
         
         self.userInput.layer.borderWidth = 1.0
         self.userInput.layer.borderColor = UIColor.blue.cgColor
