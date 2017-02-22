@@ -44,16 +44,6 @@ struct wordListAPIClient {
                     return
                 }
                 
-                if let realm = try? Realm() {
-                    let gameResults = realm.objects(Game.self)
-                    let game = gameResults[0]
-                    
-                    try! realm.write {
-                        game.words = String(responseWords)
-                        print("\(game.words.components(separatedBy: "\n").count)")
-                        print("added words from API response")
-                    }
-                }
                 completion(String(responseWords), nil)
                 
             } catch {

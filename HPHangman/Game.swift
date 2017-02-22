@@ -51,8 +51,14 @@ class Game: Object {
 // MARK: - Preparing to Start Game
 extension Game {
     func populateWordsInStore() {
-        wordListAPIClient.retrieveWords { (words, nil) in
+        wordListAPIClient.retrieveWords { (responseWords, nil) in
             print("retrieved all words from API")
+            DispatchQueue.main.async {
+                try! Realm().write {
+                    self.words = responseWords
+                }
+            }
+            
         }
     }
     

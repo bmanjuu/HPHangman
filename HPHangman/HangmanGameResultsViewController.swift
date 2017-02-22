@@ -44,7 +44,7 @@ class HangmanGameResultsViewController: UIViewController {
         if gameStatus! {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             self.resultsTextLabel.text = "HOORAY! 🎉\nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort! \nThe Ministry of Magic has awarded you with:"
-            self.displayWinningsLabel.text = "\(userGringottsAccount.galleons)\n\(userGringottsAccount.sickles)\n\(userGringottsAccount.knuts)"
+            self.displayWinningsLabel.text = "\(finishedGame.galleonsEarned)\n\(finishedGame.sicklesEarned)\n\(finishedGame.knutsEarned)"
         } else {
             self.resultsImage.image = UIImage(named: "hpLostGame")
             self.resultsTextLabel.text = "AHHHHH! 😱\nVoldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"

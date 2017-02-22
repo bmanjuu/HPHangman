@@ -47,7 +47,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.userInput.resignFirstResponder()
         let incorrectGuessCountBeforeTurn = game.incorrectGuessCount
         
-        //WHY IS THIS AN ERROR TYPEEEE WHYYYY
         let validInput = game.isValidInput(userInput.text!, from: self)
         
         guard validInput else { userInput.text = ""; return }
