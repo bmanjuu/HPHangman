@@ -22,6 +22,8 @@ class Game: Object {
     dynamic var maxIncorrectGuesses: Int = 6
     dynamic var incorrectGuessCount: Int = 0
     
+    var finishedPopulatingWordsForGame: Bool = false //does not need to be persisted in realm
+    
     required init() {
         super.init()
     }
@@ -50,15 +52,18 @@ class Game: Object {
 
 // MARK: - Preparing to Start Game
 extension Game {
+    
     func populateWordsInStore() {
+        
         WordListAPIClient.retrieveWords { (responseWords, nil) in
             print("retrieved all words from API")
             DispatchQueue.main.async {
+                //need to be on the main thread to write
                 try! Realm().write {
                     self.words = responseWords
+                    self.finishedPopulatingWordsForGame = true
                 }
             }
-            
         }
     }
     
@@ -130,6 +135,7 @@ extension Game {
         return false
     }
     
+    
     func hasSufficientFunds() -> Bool {
         print("checking for sufficient funds")
         
@@ -196,7 +202,6 @@ extension Game {
     }
     
 }
-
 
 
 // MARK: - Game Logic

@@ -28,7 +28,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view did load")
         
         self.scrollView.autoresizesSubviews = false 
         self.hideKeyboardWhenTappedAround()

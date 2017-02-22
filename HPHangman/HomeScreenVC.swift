@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import NVActivityIndicatorView
 
 class HomeScreenVC: UIViewController, UITextFieldDelegate {
     
@@ -34,6 +35,7 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func enterButtonTapped(_ sender: Any) {
+        
         self.usernameTextField.resignFirstResponder()
         
         self.nameLabel.text = "\(usernameTextField.text!.lowercased().capitalized),"
@@ -46,20 +48,13 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         self.revealStoryline()
 
     }
-    
-    @IBAction func readyButtonTapped(_ sender: Any) {
-        //hide storyline and button
-        //show activity indicator for 2 seconds
-        //check if game words length is > 0, continue to display activity indicator
-        
-    }
 
     func setupWelcomeScreen() {
         self.storylineView.isHidden = true
         
         self.muggleGreetings.adjustsFontSizeToFitWidth = true
         self.muggleGreetings.minimumScaleFactor = 0.5
-        self.muggleGreetings.text = "Greetings, Muggle. \nWe've been expecting you..."
+        self.muggleGreetings.text = "Greetings, dear Muggle. \nWe've been expecting you..."
         
         self.enterButton.titleLabel?.minimumScaleFactor = 0.5
         self.enterButton.titleLabel?.numberOfLines = 0
@@ -95,7 +90,7 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         self.storyText.text = "Voldemort is back. \n\n You have been chosen to help Harry in his fight against the Dark Lord through a perilous game of Hangman. \n\nBe careful though! With each incorrect guess, Voldemort gets closer to capturing Harry and taking over the wizarding world. \n\nWe're counting on you!"
         self.storylineView.isHidden = false
         
-        //song has to be here b/c its when user is done with textfield
+        // song has to be here b/c its when user is done with textfield. loading the keyboard for the first time tends to interrupt the music
         BackgroundMusic.playSong("Intro")
     }
     
@@ -106,15 +101,16 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
-        self.enterButtonTapped(textField)
         
+        self.enterButtonTapped(textField)
+
         return true
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let inputTextLength = textField.text!.characters.count + string.characters.count
         
-        if inputTextLength == 0 {
+        if inputTextLength == 0  {
             return false
         } else {
             return true
@@ -122,11 +118,24 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     }
     
     
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
+// MARK: - Navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        self.storylineView.isHidden = true
+        
+        //setting up an activity indicator in case words aren't fully populated in the newGame yet. In most cases, this won't show up
+        let loadingActivityIndicatorView = NVActivityIndicatorView(frame: self.view.frame, type: .ballClipRotate, color: UIColor.white, padding: 0.0)
         let destinationVC = segue.destination as? HangmanGameVC
+        
+        self.view.addSubview(loadingActivityIndicatorView)
+        loadingActivityIndicatorView.startAnimating()
+        
+        while !(newGame!.finishedPopulatingWordsForGame) {
+            print("waiting to retrieve words")
+        }
+        
+        loadingActivityIndicatorView.stopAnimating()
+        
         destinationVC?.game = self.newGame!
      }
  

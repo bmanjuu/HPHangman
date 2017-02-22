@@ -7,6 +7,7 @@ target 'HPHangman' do
 
   # Pods for HPHangman
   pod 'RealmSwift'
+  pod 'NVActivityIndicatorView'
 
 end
 

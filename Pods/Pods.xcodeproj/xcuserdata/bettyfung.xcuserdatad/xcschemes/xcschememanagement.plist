@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>NVActivityIndicatorView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-HPHangman.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5B0ED352FA0011BEC33B67026F0DC82C</key>
+		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6C3CADCC9A09A625E9F21340B4AEEA0F</key>
+		<key>79D8ADD910A86690AB94360F90BC18CB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F04CDFE219267DA2C89E2241E0425C84</key>
+		<key>A8447A10CC46A9A0B288E803FED4EA55</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B5F6A19FB1575BBB46F39F869FE3D5D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

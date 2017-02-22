@@ -48,7 +48,7 @@
                                     <action selector="enterButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ebf-BH-mi6"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iaT-xP-oaB">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="iaT-xP-oaB">
                                 <rect key="frame" x="80" y="318" width="212" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -76,8 +76,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="readyButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a3I-Wu-kk9"/>
-                                            <segue destination="BWK-0G-Tde" kind="show" id="dwi-kd-5Vw"/>
+                                            <segue destination="BWK-0G-Tde" kind="show" id="DWO-Tj-ags"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qpr-gE-nj5">
@@ -347,6 +346,7 @@
                                     <constraint firstItem="DhG-Zx-IUf" firstAttribute="top" secondItem="t2M-sc-rEt" secondAttribute="bottom" constant="7" id="YP0-go-9BG"/>
                                     <constraint firstItem="QUE-Sz-kSz" firstAttribute="leading" secondItem="qUo-Bn-Vs6" secondAttribute="leading" constant="37" id="abG-I0-utP"/>
                                     <constraint firstAttribute="bottom" secondItem="xoZ-NZ-0ch" secondAttribute="bottom" id="af9-oA-lKa"/>
+                                    <constraint firstAttribute="trailing" secondItem="uTW-75-fVJ" secondAttribute="trailing" constant="19" id="azL-Gq-K0H"/>
                                     <constraint firstItem="xoZ-NZ-0ch" firstAttribute="top" secondItem="qUo-Bn-Vs6" secondAttribute="top" id="bF9-6E-2L5"/>
                                     <constraint firstItem="9UK-Fm-wkT" firstAttribute="leading" secondItem="qUo-Bn-Vs6" secondAttribute="leading" constant="16" id="bJe-iI-XTx"/>
                                     <constraint firstItem="xoZ-NZ-0ch" firstAttribute="centerX" secondItem="qUo-Bn-Vs6" secondAttribute="centerX" id="eEe-2m-zJy"/>
@@ -504,6 +504,6 @@ text :)</string>
         <image name="hpBattleImage" width="640" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dwi-kd-5Vw"/>
+        <segue reference="Pk7-Df-7cR"/>
     </inferredMetricsTieBreakers>
 </document>
