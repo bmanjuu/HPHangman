@@ -1,10 +1,18 @@
 # HPHangman
 A game of Hangman for muggles, witches, and wizards alike!
 
+![Welcome Screen](https://github.com/bmanjuu/HPHangman/blob/master/HPHangmanWelcomeScreen.png)   ![Gameplay](https://github.com/bmanjuu/HPHangman/blob/master/HPHangmangGameScreen.png)
+
 ## Requirements
 This game is an iOS app that requires iOS 10.2+ to run. 
 
-## Overview
+## Technical Highlights
+* Realm 
+* AVFoundation
+* Xcode 8.2.1 
+* Written in Swift 3.0 
+
+## Description
 The user is tasked with saving Harry Potter from Lord Voldemort in playing this magically-themed version of Hangman. 
 
 In this game, the user is presented with a concealed word (indicated by a series of underscores), an image of Harry in a duel with a few Deatheaters, and information regarding the number of incorrect guesses they've made, the letters they've guessed incorrectly so far, and the balance that they currently have in their Gringott's bank account. 
@@ -16,11 +24,6 @@ Upon winning the game, the user is awarded money from the Ministry of Magic base
 At the end of each game, the user has an option to restart the game and engage in an another epic duel. 
 
 Music is present throughout the game to provide a more immersive experience.
-
-## Technical Highlights
-* Realm 
-* Xcode 8.2.1 
-* Written in Swift 3.0 
 
 ## Author
 Betty Fung
