@@ -36,7 +36,7 @@ class HangmanGameResultsViewController: UIViewController {
             BackgroundMusic.playSong("Lose")
         }
  
-        setupViewsFor(gameWonStatus: gameStatus)
+        setupViewsFor(gameStatus)
         
     }
     
@@ -46,7 +46,7 @@ class HangmanGameResultsViewController: UIViewController {
     }
     
     
-    func setupViewsFor(gameWonStatus: Bool) {
+    func setupViewsFor(_ gameWonStatus: Bool) {
         
         let userGringottsAccount = finishedGame.player!.gringottsAccount!
         
