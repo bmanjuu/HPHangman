@@ -6,11 +6,14 @@ A game of Hangman for muggles, witches, and wizards alike!
 ## Requirements
 This game is an iOS app that requires iOS 10.2+ to run. 
 
+## Installation
+Download this project and run using the latest version of Xcode.
+
 ## Technical Highlights
 * Realm 
 * AVFoundation
 * Xcode 8.2.1 
-* Written in Swift 3.0 
+* Written in Swift 3.0  
 
 ## Description
 The user is tasked with saving Harry Potter from Lord Voldemort in playing this magically-themed version of Hangman. 
