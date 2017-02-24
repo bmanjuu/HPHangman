@@ -79,7 +79,7 @@ extension Game {
         } while randomWord.characters.count < 3 || randomWord.characters.count > 8 || randomWord.contains(" ")
         
         try! Realm().write {
-            chosenWord = randomWord
+            chosenWord = randomWord.uppercased()
             concealedWord = String(repeating: "___  ", count: chosenWord.characters.count)
         }
         
@@ -228,7 +228,7 @@ extension Game {
         
         // check if input letter matches letters in secretWord
         for (index, letter) in chosenWord.characters.enumerated() {
-            if String(letter) == userGuess {
+            if String(letter) == userGuess.uppercased() {
                 concealedWordArray[index] = "\(letter)"
             }
         }
