@@ -14,8 +14,23 @@ class Game: Object {
     
     dynamic var player: User?
     dynamic var wonGameStatus: Bool = false
+    dynamic var currentLevel: Int = 1
     
     dynamic var words: String = ""
+    dynamic var wordsLvl1: String = ""
+    dynamic var wordsLvl2: String = ""
+    dynamic var wordsLvl3: String = ""
+    dynamic var wordsLvl4: String = ""
+    dynamic var wordsLvl5: String = ""
+    dynamic var wordsLvl6: String = ""
+    dynamic var wordsLvl7: String = ""
+    dynamic var wordsLvl8: String = ""
+    dynamic var wordsLvl9: String = ""
+    dynamic var wordsLvl10: String = ""
+    
+    var wordsByLevel = [String]()
+    //plan: each element of this array will hold a collection of strings that represent words of each difficulty level. as words are being populated in this array, they will also be persisted into realm by appending it to the words property. 
+    
     dynamic var chosenWord: String = ""
     dynamic var concealedWord: String = ""
     dynamic var guessesSoFar: String = ""
@@ -36,7 +51,7 @@ class Game: Object {
         super.init(value: value, schema: schema)
     }
     
-    init(player: User, wonGameStatus: Bool, words: String, chosenWord: String, concealedWord: String, guessesSoFar: String, maxIncorrectGuesses: Int, incorrectGuessCount: Int) {
+    init(player: User, wonGameStatus: Bool, words: String, chosenWord: String, concealedWord: String, guessesSoFar: String, maxIncorrectGuesses: Int, incorrectGuessCount: Int, currentLevel: Int) {
         super.init()
         self.player = player
         self.wonGameStatus = wonGameStatus
@@ -46,6 +61,7 @@ class Game: Object {
         self.guessesSoFar = guessesSoFar
         self.maxIncorrectGuesses = maxIncorrectGuesses
         self.incorrectGuessCount = incorrectGuessCount
+        self.currentLevel = currentLevel
     }
     
 }
@@ -55,21 +71,89 @@ extension Game {
     
     func populateWordsInStore() {
         
-        WordListAPIClient.retrieveWords { (responseWords, nil) in
-            print("retrieved all words from API")
-            DispatchQueue.main.async {
-                //need to be on the main thread to write
-                try! Realm().write {
-                    self.words = responseWords
-                    self.finishedPopulatingWordsForGame = true
+        for i in 1...10 {
+            WordListAPIClient.retrieveWords(currentLevel: i) { (words, nil) in
+                DispatchQueue.main.async {
+                    try! Realm().write {
+                        //switch statement here
+                        switch i {
+                        case 1:
+                            self.wordsLvl1 = words
+                        case 2:
+                            self.wordsLvl2 = words
+                        case 3:
+                            self.wordsLvl3 = words
+                        case 4:
+                            self.wordsLvl4 = words
+                        case 5:
+                            self.wordsLvl5 = words
+                        case 6:
+                            self.wordsLvl6 = words
+                        case 7:
+                            self.wordsLvl7 = words
+                        case 8:
+                            self.wordsLvl8 = words
+                        case 9:
+                            self.wordsLvl9 = words
+                        case 10:
+                            self.wordsLvl10 = words
+                        default:
+                            self.words = words
+                            
+                        }
+                        print("words for difficulty \(i)")
+                        self.finishedPopulatingWordsForGame = true
+        
+                    }
                 }
             }
+            
         }
+        
+//        WordListAPIClient.retrieveWords { (responseWords, nil) in
+//            print("retrieved all words from API")
+//            DispatchQueue.main.async {
+//                //need to be on the main thread to write
+//                try! Realm().write {
+//                    self.words = responseWords
+//                    self.finishedPopulatingWordsForGame = true
+//                }
+//            }
+//        }
     }
     
-    func retrieveRandomWord() {
+    func retrieveRandomWord(currentLevel: Int) {
         
-        let wordsArray = words.components(separatedBy: "\n")
+        var tempWords = ""
+        
+        switch self.currentLevel {
+        case 1:
+            tempWords = self.wordsLvl1
+        case 2:
+            tempWords = self.wordsLvl2
+        case 3:
+            tempWords = self.wordsLvl3
+        case 4:
+            tempWords = self.wordsLvl4
+        case 5:
+            tempWords = self.wordsLvl5
+        case 6:
+            tempWords = self.wordsLvl6
+        case 7:
+            tempWords = self.wordsLvl7
+        case 8:
+            tempWords = self.wordsLvl8
+        case 9:
+            tempWords = self.wordsLvl9
+        case 10:
+            tempWords = self.wordsLvl10
+        default:
+            print(" blah ")
+            
+        }
+
+        
+        let wordsArray = tempWords.components(separatedBy: "\n")
         var randomWord = ""
         
         repeat {
@@ -83,7 +167,7 @@ extension Game {
             concealedWord = String(repeating: "___  ", count: chosenWord.characters.count)
         }
         
-        print("THE CHOSEN ONE --> \(chosenWord)")
+        print("THE CHOSEN ONE --> \(chosenWord) for level: \(currentLevel)")
         
     }
 }
@@ -266,6 +350,9 @@ extension Game {
             playerAccount.galleons += galleonsEarned
             playerAccount.sickles += sicklesEarned
             playerAccount.knuts += knutsEarned
+            if currentLevel < 10 {
+                currentLevel += 1
+            }
         }
     }
     
@@ -273,6 +360,9 @@ extension Game {
         
         try! Realm().write {
             concealedWord = chosenWord
+            if currentLevel >= 2 {
+                currentLevel -= 1
+            }
         }
         
     }

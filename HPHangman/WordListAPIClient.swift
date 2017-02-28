@@ -19,11 +19,11 @@ struct WordListAPIClient {
     
     typealias wordCompletion = (String, Error?) -> ()
     
-    static func retrieveWords(_ completion: @escaping wordCompletion) {
+    static func retrieveWords(currentLevel: Int, _ completion: @escaping wordCompletion) {
         print("in function to retrieve words! WHEEE")
         
         let session = URLSession(configuration: .default)
-        let baseURL = URL(string: "http://linkedin-reach.hagbpyjegb.us-west-2.elasticbeanstalk.com/words")
+        let baseURL = URL(string: "http://linkedin-reach.hagbpyjegb.us-west-2.elasticbeanstalk.com/words?&difficulty=\(currentLevel)")
         
         let dataTask = session.dataTask(with: baseURL!, completionHandler: { (data, response, error) in
             
@@ -31,7 +31,7 @@ struct WordListAPIClient {
                 print("\(wordListAPIError.invalidAPICall): error calling word dictionary API")
                 return
             }
-            // IF THIS ERROR OCCURS, NEED TO CHECK INTERNET CONNECTION
+            // IF THIS ERROR OCCURS, NEED TO CHECK INTERNET CONNECTION 
             
             guard let responseData = data else {
                 print("\(wordListAPIError.noDataAvailable): no words/data from API call")
@@ -53,6 +53,8 @@ struct WordListAPIClient {
         })
         dataTask.resume()
     }
+    
+    // static func retriveWordsBasedOnDifficulty
     
     
 }

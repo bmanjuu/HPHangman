@@ -119,7 +119,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
 
     
     func startNewGame() {
-        game.retrieveRandomWord()
+        game.retrieveRandomWord(currentLevel: game.currentLevel)
     }
     
     func setupViewForNewGame() {
