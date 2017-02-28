@@ -28,10 +28,6 @@ class Game: Object {
     dynamic var wordsLvl9: String = ""
     dynamic var wordsLvl10: String = ""
     
-    var wordsByLevel = [String]()
-    //plan: each element of this array will hold a collection of strings that represent words of each difficulty level. as words are being populated in this array, they will also be persisted into realm by appending it to the words property. the array itself will not be persisted b/c realm does not save arrays
-    //ALTERNATIVE (maybe?): figure out length of each string that is returned for each difficulty level and keep a note of that somewhere... so it can still be persisted in realm and there's a way of figuring out which words belong to which difficulty level... maybe append a "NEXT LEVEL \(DIFFICULTY LEVEL HERE)" to the string in between different calls to the API
-    
     dynamic var chosenWord: String = ""
     dynamic var concealedWord: String = ""
     dynamic var guessesSoFar: String = ""
@@ -74,12 +70,9 @@ extension Game {
         
         for i in 1...10 {
             WordListAPIClient.retrieveWords(currentLevel: i) { (words, nil) in
-                self.wordsByLevel.append(words)
-                //each group of words will correspond with each difficulty level 
-                
                 DispatchQueue.main.async {
                     try! Realm().write {
-                        self.words.append(words) //persist all words onto realm as one large string, as before
+                        self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
                         
                         //switch statement here
 //                        switch i {
@@ -107,7 +100,7 @@ extension Game {
 //                            self.words = words
 //                            
 //                        }
-                        print("words for difficulty \(i), word array length: \(self.wordsByLevel.count)")
+                        print("words for difficulty \(i)")
                         self.finishedPopulatingWordsForGame = true
         
                     }
@@ -130,7 +123,13 @@ extension Game {
     
     func retrieveRandomWord(currentLevel: Int) {
         
-        let wordsAtCurrentLevel = wordsByLevel[currentLevel+1]
+        var wordsAtCurrentLevel = self.wordsByLevel[currentLevel+1]
+        
+        //still need to remove the level number. determine offset by length of currentLevel string (1 or 2 characters) + length of colon and space after (2 characters)
+        let offsetLength = String(currentLevel).characters.count + 2
+        let stringRange = wordsAtCurrentLevel.index(wordsAtCurrentLevel.startIndex, offsetBy: offsetLength)..<wordsAtCurrentLevel.index(before: wordsAtCurrentLevel.endIndex)
+        wordsAtCurrentLevel = wordsAtCurrentLevel.substring(with: stringRange)
+        
         
 //        switch self.currentLevel {
 //        case 1:
@@ -194,6 +193,11 @@ extension Game {
     var knutsEarned: Int {
         return (6-incorrectGuessCount) * 7
     }
+    
+    var wordsByLevel: [String] {
+        return words.components(separatedBy: "LEVEL ")
+    }
+    //made a computed property that returns an array of strings separated based on difficulty level
 
 }
 
