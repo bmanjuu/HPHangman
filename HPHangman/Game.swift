@@ -69,56 +69,17 @@ extension Game {
     func populateWordsInStore() {
         
         for i in 1...10 {
-            WordListAPIClient.retrieveWords(currentLevel: i) { (words, nil) in
+            WordListAPIClient.retrieveWords(forLevel: i) { (words, nil) in
                 DispatchQueue.main.async {
                     try! Realm().write {
                         self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
-                        
-                        //switch statement here
-//                        switch i {
-//                        case 1:
-//                            self.wordsLvl1 = words
-//                        case 2:
-//                            self.wordsLvl2 = words
-//                        case 3:
-//                            self.wordsLvl3 = words
-//                        case 4:
-//                            self.wordsLvl4 = words
-//                        case 5:
-//                            self.wordsLvl5 = words
-//                        case 6:
-//                            self.wordsLvl6 = words
-//                        case 7:
-//                            self.wordsLvl7 = words
-//                        case 8:
-//                            self.wordsLvl8 = words
-//                        case 9:
-//                            self.wordsLvl9 = words
-//                        case 10:
-//                            self.wordsLvl10 = words
-//                        default:
-//                            self.words = words
-//                            
-//                        }
                         print("words for difficulty \(i)")
                         self.finishedPopulatingWordsForGame = true
-        
                     }
                 }
             }
             
         }
-        
-//        WordListAPIClient.retrieveWords { (responseWords, nil) in
-//            print("retrieved all words from API")
-//            DispatchQueue.main.async {
-//                //need to be on the main thread to write
-//                try! Realm().write {
-//                    self.words = responseWords
-//                    self.finishedPopulatingWordsForGame = true
-//                }
-//            }
-//        }
     }
     
     func retrieveRandomWord(currentLevel: Int) {
@@ -129,33 +90,6 @@ extension Game {
         let offsetLength = String(currentLevel).characters.count + 2
         let stringRange = wordsAtCurrentLevel.index(wordsAtCurrentLevel.startIndex, offsetBy: offsetLength)..<wordsAtCurrentLevel.index(before: wordsAtCurrentLevel.endIndex)
         wordsAtCurrentLevel = wordsAtCurrentLevel.substring(with: stringRange)
-        
-        
-//        switch self.currentLevel {
-//        case 1:
-//            tempWords = self.wordsLvl1
-//        case 2:
-//            tempWords = self.wordsLvl2
-//        case 3:
-//            tempWords = self.wordsLvl3
-//        case 4:
-//            tempWords = self.wordsLvl4
-//        case 5:
-//            tempWords = self.wordsLvl5
-//        case 6:
-//            tempWords = self.wordsLvl6
-//        case 7:
-//            tempWords = self.wordsLvl7
-//        case 8:
-//            tempWords = self.wordsLvl8
-//        case 9:
-//            tempWords = self.wordsLvl9
-//        case 10:
-//            tempWords = self.wordsLvl10
-//        default:
-//            print(" blah ")
-//            
-//        }
 
         
         let wordsArray = wordsAtCurrentLevel.components(separatedBy: "\n")
@@ -196,11 +130,18 @@ extension Game {
     
     var wordsByLevel: [String] {
         let levels = words.components(separatedBy: "LEVEL ")
-        return levels.sorted() //since the numerical indications of each level are still present, the elements of the array will be sorted in this way
-    }
-    //made a computed property that returns an array of strings separated based on difficulty level
-    //words are being retrieved and populated in this array asynchronously so need to sort it first!!
+        return levels.sorted()
 
+        //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously so need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way
+    }
+    
+    var priceOfLetter: [String:Int] {
+        let price = ["galleons": (currentLevel*10),
+                     "sickles": (currentLevel*20),
+                     "knuts": (currentLevel*30)]
+        
+        return price
+    }
 }
 
 // MARK: - Game Logic Helper Functions 
@@ -237,23 +178,19 @@ extension Game {
     func hasSufficientFunds() -> Bool {
         print("checking for sufficient funds")
         
-        let price = ["galleons": 10,
-                     "sickles": 20,
-                     "knuts": 30]
-        
         let userGringottsAccount = player!.gringottsAccount!
         var currentUserBalance = ["galleons" : userGringottsAccount.galleons,
                                   "sickles" : userGringottsAccount.sickles,
                                   "knuts" : userGringottsAccount.knuts]
         
-        if currentUserBalance["galleons"]! >= price["galleons"]! &&
-            currentUserBalance["sickles"]! >= price["sickles"]! &&
-            currentUserBalance["knuts"]! >= price["knuts"]! {
+        if currentUserBalance["galleons"]! >= priceOfLetter["galleons"]! &&
+            currentUserBalance["sickles"]! >= priceOfLetter["sickles"]! &&
+            currentUserBalance["knuts"]! >= priceOfLetter["knuts"]! {
             
             try! Realm().write {
-                userGringottsAccount.galleons -= price["galleons"]!
-                userGringottsAccount.sickles -= price["sickles"]!
-                userGringottsAccount.knuts -= price["knuts"]!
+                userGringottsAccount.galleons -= priceOfLetter["galleons"]!
+                userGringottsAccount.sickles -= priceOfLetter["sickles"]!
+                userGringottsAccount.knuts -= priceOfLetter["knuts"]!
             }
             return true
         }

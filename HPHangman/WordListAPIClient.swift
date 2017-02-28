@@ -19,7 +19,7 @@ struct WordListAPIClient {
     
     typealias wordCompletion = (String, Error?) -> ()
     
-    static func retrieveWords(currentLevel: Int, _ completion: @escaping wordCompletion) {
+    static func retrieveWords(forLevel: Int, _ completion: @escaping wordCompletion) {
         print("in function to retrieve words! WHEEE")
         
         let session = URLSession(configuration: .default)
