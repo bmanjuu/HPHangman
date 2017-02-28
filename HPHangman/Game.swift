@@ -74,12 +74,12 @@ extension Game {
                     try! Realm().write {
                         self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
                         print("words for difficulty \(i)")
-                        self.finishedPopulatingWordsForGame = true
                     }
                 }
             }
-            
         }
+        
+        self.finishedPopulatingWordsForGame = true //this is not persisted in realm so it does not need to be in the write statement. it can also only be true after calling the API 10 times, so it needs to be outside the for loop
     }
     
     func retrieveRandomWord(currentLevel: Int) {
@@ -309,7 +309,7 @@ extension Game {
         
         try! Realm().write {
             concealedWord = chosenWord
-            if currentLevel >= 2 {
+            if currentLevel > 1 {
                 currentLevel -= 1
             }
         }

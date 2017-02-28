@@ -41,8 +41,9 @@ struct HangmanAlerts {
     }
     
     
-    static func insufficientFundsAlert() -> UIAlertController {
-        let alertController = UIAlertController(title: "Uh oh", message: "Insufficient funds to buy a letter. \nYou need at least 10 galleons, 20 sickles, and 30 knuts to make a purchase", preferredStyle: UIAlertControllerStyle.alert)
+    static func insufficientFundsAlert(price: [String: Int]) -> UIAlertController {
+        
+        let alertController = UIAlertController(title: "Uh oh", message: "Insufficient funds to buy a letter. \nYou need at least \(price["galleons"]!) galleons, \(price["sickles"]!) sickles, and \(price["knuts"]) knuts to make a purchase", preferredStyle: UIAlertControllerStyle.alert)
         
         let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             (result : UIAlertAction) -> Void in

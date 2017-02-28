@@ -113,7 +113,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             }
             
         } else {
-            self.present(HangmanAlerts.insufficientFundsAlert(), animated: true, completion: nil)
+            self.present(HangmanAlerts.insufficientFundsAlert(price: game.priceOfLetter), animated: true, completion: nil)
         }
     }
 

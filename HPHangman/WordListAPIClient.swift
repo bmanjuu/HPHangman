@@ -23,7 +23,7 @@ struct WordListAPIClient {
         print("in function to retrieve words! WHEEE")
         
         let session = URLSession(configuration: .default)
-        let baseURL = URL(string: "http://linkedin-reach.hagbpyjegb.us-west-2.elasticbeanstalk.com/words?&difficulty=\(currentLevel)")
+        let baseURL = URL(string: "http://linkedin-reach.hagbpyjegb.us-west-2.elasticbeanstalk.com/words?&difficulty=\(forLevel)")
         
         let dataTask = session.dataTask(with: baseURL!, completionHandler: { (data, response, error) in
             
