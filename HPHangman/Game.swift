@@ -29,7 +29,7 @@ class Game: Object {
     dynamic var wordsLvl10: String = ""
     
     var wordsByLevel = [String]()
-    //plan: each element of this array will hold a collection of strings that represent words of each difficulty level. as words are being populated in this array, they will also be persisted into realm by appending it to the words property. 
+    //plan: each element of this array will hold a collection of strings that represent words of each difficulty level. as words are being populated in this array, they will also be persisted into realm by appending it to the words property. the array itself will not be persisted b/c realm does not save arrays
     
     dynamic var chosenWord: String = ""
     dynamic var concealedWord: String = ""
@@ -73,34 +73,39 @@ extension Game {
         
         for i in 1...10 {
             WordListAPIClient.retrieveWords(currentLevel: i) { (words, nil) in
+                self.wordsByLevel.append(words)
+                //each group of words will correspond with each difficulty level 
+                
                 DispatchQueue.main.async {
                     try! Realm().write {
+                        self.words.append(words) //persist all words onto realm as one large string, as before
+                        
                         //switch statement here
-                        switch i {
-                        case 1:
-                            self.wordsLvl1 = words
-                        case 2:
-                            self.wordsLvl2 = words
-                        case 3:
-                            self.wordsLvl3 = words
-                        case 4:
-                            self.wordsLvl4 = words
-                        case 5:
-                            self.wordsLvl5 = words
-                        case 6:
-                            self.wordsLvl6 = words
-                        case 7:
-                            self.wordsLvl7 = words
-                        case 8:
-                            self.wordsLvl8 = words
-                        case 9:
-                            self.wordsLvl9 = words
-                        case 10:
-                            self.wordsLvl10 = words
-                        default:
-                            self.words = words
-                            
-                        }
+//                        switch i {
+//                        case 1:
+//                            self.wordsLvl1 = words
+//                        case 2:
+//                            self.wordsLvl2 = words
+//                        case 3:
+//                            self.wordsLvl3 = words
+//                        case 4:
+//                            self.wordsLvl4 = words
+//                        case 5:
+//                            self.wordsLvl5 = words
+//                        case 6:
+//                            self.wordsLvl6 = words
+//                        case 7:
+//                            self.wordsLvl7 = words
+//                        case 8:
+//                            self.wordsLvl8 = words
+//                        case 9:
+//                            self.wordsLvl9 = words
+//                        case 10:
+//                            self.wordsLvl10 = words
+//                        default:
+//                            self.words = words
+//                            
+//                        }
                         print("words for difficulty \(i)")
                         self.finishedPopulatingWordsForGame = true
         
@@ -124,36 +129,36 @@ extension Game {
     
     func retrieveRandomWord(currentLevel: Int) {
         
-        var tempWords = ""
+        let wordsAtCurrentLevel = wordsByLevel[currentLevel+1]
         
-        switch self.currentLevel {
-        case 1:
-            tempWords = self.wordsLvl1
-        case 2:
-            tempWords = self.wordsLvl2
-        case 3:
-            tempWords = self.wordsLvl3
-        case 4:
-            tempWords = self.wordsLvl4
-        case 5:
-            tempWords = self.wordsLvl5
-        case 6:
-            tempWords = self.wordsLvl6
-        case 7:
-            tempWords = self.wordsLvl7
-        case 8:
-            tempWords = self.wordsLvl8
-        case 9:
-            tempWords = self.wordsLvl9
-        case 10:
-            tempWords = self.wordsLvl10
-        default:
-            print(" blah ")
-            
-        }
+//        switch self.currentLevel {
+//        case 1:
+//            tempWords = self.wordsLvl1
+//        case 2:
+//            tempWords = self.wordsLvl2
+//        case 3:
+//            tempWords = self.wordsLvl3
+//        case 4:
+//            tempWords = self.wordsLvl4
+//        case 5:
+//            tempWords = self.wordsLvl5
+//        case 6:
+//            tempWords = self.wordsLvl6
+//        case 7:
+//            tempWords = self.wordsLvl7
+//        case 8:
+//            tempWords = self.wordsLvl8
+//        case 9:
+//            tempWords = self.wordsLvl9
+//        case 10:
+//            tempWords = self.wordsLvl10
+//        default:
+//            print(" blah ")
+//            
+//        }
 
         
-        let wordsArray = tempWords.components(separatedBy: "\n")
+        let wordsArray = wordsAtCurrentLevel.components(separatedBy: "\n")
         var randomWord = ""
         
         repeat {
