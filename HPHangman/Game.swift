@@ -30,6 +30,7 @@ class Game: Object {
     
     var wordsByLevel = [String]()
     //plan: each element of this array will hold a collection of strings that represent words of each difficulty level. as words are being populated in this array, they will also be persisted into realm by appending it to the words property. the array itself will not be persisted b/c realm does not save arrays
+    //ALTERNATIVE (maybe?): figure out length of each string that is returned for each difficulty level and keep a note of that somewhere... so it can still be persisted in realm and there's a way of figuring out which words belong to which difficulty level... maybe append a "NEXT LEVEL \(DIFFICULTY LEVEL HERE)" to the string in between different calls to the API
     
     dynamic var chosenWord: String = ""
     dynamic var concealedWord: String = ""
@@ -106,7 +107,7 @@ extension Game {
 //                            self.words = words
 //                            
 //                        }
-                        print("words for difficulty \(i)")
+                        print("words for difficulty \(i), word array length: \(self.wordsByLevel.count)")
                         self.finishedPopulatingWordsForGame = true
         
                     }
