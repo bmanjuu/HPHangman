@@ -45,4 +45,4 @@ Betty Fung
     * Artist: http://incompetech.com/
   * Pooka by Kevin MacLeod (no credit description available) 
 * App Icon was made by Madebyoliver from www.flaticon.com 
-* LinkedIn, for the opportunity and inspiration to create this game! :)
+* LinkedIn, for the opportunity and inspiration to create this game for the REACH program! :)
