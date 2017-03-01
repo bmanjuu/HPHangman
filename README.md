@@ -35,6 +35,7 @@ Betty Fung
 * LinkedIn, for the opportunity and inspiration to create this game as part of my REACH application! 
 * Andrew Huang, for helping me implement an extension that increased/decreased the difficulty of words presented for each level of the game, and reminding me about the shared struggles of coming up with the right variable name :) 
 
+## Resources
 * Images were obtained from the [Harry Potter Wiki](http://harrypotter.wikia.com/wiki/Main_Page)
 * Music was obtained from YouTube's Audio Library 
   * Arcadia - Wonders by Kevin MacLeod is licensed under a Creative Commons Attribution license (https://creativecommons.org/licenses/by/4.0/)
