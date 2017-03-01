@@ -16,17 +16,7 @@ class Game: Object {
     dynamic var wonGameStatus: Bool = false
     dynamic var currentLevel: Int = 1
     
-    dynamic var words: String = ""
-    dynamic var wordsLvl1: String = ""
-    dynamic var wordsLvl2: String = ""
-    dynamic var wordsLvl3: String = ""
-    dynamic var wordsLvl4: String = ""
-    dynamic var wordsLvl5: String = ""
-    dynamic var wordsLvl6: String = ""
-    dynamic var wordsLvl7: String = ""
-    dynamic var wordsLvl8: String = ""
-    dynamic var wordsLvl9: String = ""
-    dynamic var wordsLvl10: String = ""
+    dynamic var words: String = "" //words of varying difficulty levels are being stored in the computed property, wordsByLevel, listed in extension below
     
     dynamic var chosenWord: String = ""
     dynamic var concealedWord: String = ""
@@ -132,7 +122,7 @@ extension Game {
         let levels = words.components(separatedBy: "LEVEL ")
         return levels.sorted()
 
-        //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously so need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way
+        //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously, need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way
     }
     
     var priceOfLetter: [String:Int] {
