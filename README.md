@@ -24,7 +24,7 @@ During the game, the user can either guess a letter or a word for each turn. The
 
 Upon winning the game, the user is awarded money from the Ministry of Magic based on the number of incorrect guesses they've made. The amount is shown in the final view of the game and directly reflected in their Gringott's account balance at the start of the next game. The user does not lose money from their Gringott's account upon losing a game, but the final screen will still show their current balance for reference. 
 
-At the end of each game, the user has an option to restart the game and engage in an another epic duel. 
+At the end of each game, the user has an option to restart the game and engage in an another epic duel. Based on the game result, the difficulty of words in their next game will increase or decrease a level. There are 10 levels total, and the user starts their first game at level 1. 
 
 Music is present throughout the game to provide a more immersive experience.
 
@@ -32,6 +32,10 @@ Music is present throughout the game to provide a more immersive experience.
 Betty Fung
 
 ## Acknowledgements
+* LinkedIn, for the opportunity and inspiration to create this game as part of my REACH application! 
+* Andrew Huang, for helping me implement an extension that increased/decreased the difficulty of words presented for each level of the game, and reminding me about the shared struggles of coming up with the right variable name :) 
+
+## Resources
 * Images were obtained from the [Harry Potter Wiki](http://harrypotter.wikia.com/wiki/Main_Page)
 * Music was obtained from YouTube's Audio Library 
   * Arcadia - Wonders by Kevin MacLeod is licensed under a Creative Commons Attribution license (https://creativecommons.org/licenses/by/4.0/)
