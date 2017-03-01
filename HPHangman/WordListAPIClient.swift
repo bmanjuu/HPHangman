@@ -53,8 +53,5 @@ struct WordListAPIClient {
         })
         dataTask.resume()
     }
-    
-    // static func retriveWordsBasedOnDifficulty
-    
-    
+
 }
