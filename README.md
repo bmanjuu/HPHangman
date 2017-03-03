@@ -24,9 +24,14 @@ During the game, the user can either guess a letter or a word for each turn. The
 
 Upon winning the game, the user is awarded money from the Ministry of Magic based on the number of incorrect guesses they've made. The amount is shown in the final view of the game and directly reflected in their Gringott's account balance at the start of the next game. The user does not lose money from their Gringott's account upon losing a game, but the final screen will still show their current balance for reference. 
 
-At the end of each game, the user has an option to restart the game and engage in an another epic duel. Based on the game result, the difficulty of words in their next game will increase or decrease a level. There are 10 levels total, and the user starts their first game at level 1. 
+At the end of each game, the user has an option to restart the game and engage in an another epic duel. Based on the game result, the difficulty of words in their next game will also increase or decrease a level. There are 10 levels total, and the user starts their first game at level 1. 
 
 Music is present throughout the game to provide a more immersive experience.
+
+## To Do List
+- [ ] add a label on the game screen to indicate the user's current level 
+- [ ] add an asset text file containing a list backup words in case the user is not connected to the internet
+- [ ] find an alternate API to retrieve words (there is no longer access to the current API)  
 
 ## Author
 Betty Fung
