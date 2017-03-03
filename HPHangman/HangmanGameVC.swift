@@ -11,6 +11,7 @@ import RealmSwift
 
 class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var userCurrentLevelLabel: UILabel!
     @IBOutlet weak var duelLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var userInput: UITextField!
@@ -138,6 +139,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.galleonsBalance.text = "\(game.player!.gringottsAccount!.galleons)"
         self.sicklesBalance.text = "\(game.player!.gringottsAccount!.sickles)"
         self.knutsBalance.text = "\(game.player!.gringottsAccount!.knuts)"
+        self.userCurrentLevelLabel.text = "\(game.currentLevel)"
     }
     
     override func viewWillDisappear(_ animated: Bool) {
