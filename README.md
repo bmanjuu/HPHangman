@@ -27,14 +27,6 @@ Upon winning the game, the user is awarded money from the Ministry of Magic base
 At the end of each game, the user has an option to restart the game and engage in an another epic duel. Based on the game result, the difficulty of words in their next game will also increase or decrease a level. There are 10 levels total, and the user starts their first game at level 1. 
 
 Music is present throughout the game to provide a more immersive experience.
-
-## To Do List
-- [x] find an alternate API to retrieve words (there is no longer access to the current API)
-- [x] add a label on the game screen to indicate the user's current level 
-- [ ] don't call API if words property has already been populated (check at the beginning of the game, may need to alter organization of properties and how they are persisted in realm)
-- [ ] add an asset text file containing a list backup words in case the user is not connected to the internet
-- [ ] have an option to toggle music on and off
-- [ ] welcome back screen if user is not nil
   
 ## Author
 Betty Fung
