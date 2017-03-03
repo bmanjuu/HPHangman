@@ -14,7 +14,7 @@ struct WordListAPIClient {
     private enum wordListAPIError: Error {
         case invalidAPICall
         case noDataAvailable
-        case invalidDataConversion
+        case invalidAPIResponse
     }
     
     typealias wordCompletion = (String, Error?) -> ()
@@ -24,8 +24,10 @@ struct WordListAPIClient {
         
         let session = URLSession(configuration: .default)
         let baseURL = URL(string: "https://twinword-word-association-quiz.p.mashape.com/type1/?area=sat&level=\(forLevel)")
+        var request = URLRequest(url: baseURL!)
+        request.setValue(Secrets.key, forHTTPHeaderField: "X-Mashape-Key")
         
-        let dataTask = session.dataTask(with: baseURL!, completionHandler: { (data, response, error) in
+        let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
             
             guard error == nil else {
                 print("\(wordListAPIError.invalidAPICall): error calling word dictionary API")
@@ -37,19 +39,28 @@ struct WordListAPIClient {
                 print("\(wordListAPIError.noDataAvailable): no words/data from API call")
                 return
             }
+            print("DATA: \(responseData)")
             
-            do {
-                guard let responseWords = try NSString(data: responseData, encoding: String.Encoding.utf8.rawValue) else {
-                    print("\(wordListAPIError.invalidDataConversion): could not convert reponse into a string")
-                    return
-                }
-                
-                completion(String(responseWords), nil)
-                
-            } catch {
-                print("\(wordListAPIError.invalidAPICall): could not get words from word dictionary API")
-                completion(String(), wordListAPIError.invalidAPICall)
+            guard let response = response else {
+                print("\(wordListAPIError.invalidAPIResponse): no words/response from API call")
+                return
             }
+            
+            print("REPONSE: \(response)")
+            
+            
+//            do {
+//                guard let responseWords = try NSString(data: responseData, encoding: String.Encoding.utf8.rawValue) else {
+//                    print("\(wordListAPIError.invalidDataConversion): could not convert reponse into a string")
+//                    return
+//                }
+//                
+//                completion(String(responseWords), nil)
+//                
+//            } catch {
+//                print("\(wordListAPIError.invalidAPICall): could not get words from word dictionary API")
+//                completion(String(), wordListAPIError.invalidAPICall)
+//            }
         })
         dataTask.resume()
     }

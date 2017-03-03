@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		17CEB25CE3E3B9239828A974 /* Pods_HPHangman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 345812F2871EC4AA4C10D2BD /* Pods_HPHangman.framework */; };
 		A42646D21E6901AE000AA861 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42646D11E6901AE000AA861 /* Secrets.swift */; };
+		A42646D41E690421000AA861 /* WordListAPIDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42646D31E690421000AA861 /* WordListAPIDataParser.swift */; };
 		A471EEA61E57672B00E3EE71 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = A471EEA51E57672B00E3EE71 /* Game.swift */; };
 		A490D0D61E55E135004CE638 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0D51E55E135004CE638 /* AppDelegate.swift */; };
 		A490D0DB1E55E135004CE638 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A490D0D91E55E135004CE638 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		339CDE8F172F6858BF2BFE58 /* Pods-HPHangman.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPHangman.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HPHangman/Pods-HPHangman.debug.xcconfig"; sourceTree = "<group>"; };
 		345812F2871EC4AA4C10D2BD /* Pods_HPHangman.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPHangman.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42646D11E6901AE000AA861 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		A42646D31E690421000AA861 /* WordListAPIDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListAPIDataParser.swift; sourceTree = "<group>"; };
 		A471EEA51E57672B00E3EE71 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		A490D0D21E55E135004CE638 /* HPHangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HPHangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A490D0D51E55E135004CE638 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				A490D0EA1E55E1C0004CE638 /* User.swift */,
 				A490D0EC1E55E20A004CE638 /* GringottsAccount.swift */,
 				A490D0FD1E55F03F004CE638 /* WordListAPIClient.swift */,
+				A42646D31E690421000AA861 /* WordListAPIDataParser.swift */,
 				A4B04B511E5A24CA000447D6 /* HangmanAlerts.swift */,
 				A4FB04771E592393006EBE79 /* BackgroundMusic.swift */,
 				A490D0D51E55E135004CE638 /* AppDelegate.swift */,
@@ -311,6 +314,7 @@
 				A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */,
 				A4FB04781E592394006EBE79 /* BackgroundMusic.swift in Sources */,
 				A42646D21E6901AE000AA861 /* Secrets.swift in Sources */,
+				A42646D41E690421000AA861 /* WordListAPIDataParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
