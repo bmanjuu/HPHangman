@@ -59,7 +59,7 @@ extension Game {
     func populateWordsInStore() {
         
         for i in 1...10 {
-            WordListAPIClient.retrieveWords(forLevel: i) { (words, nil) in
+            WordListAPIClient.retrieveWords(level: i) { (words, nil) in
                 DispatchQueue.main.async {
                     try! Realm().write {
                         self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
@@ -68,7 +68,6 @@ extension Game {
                 }
             }
         }
-        
         self.finishedPopulatingWordsForGame = true //this is not persisted in realm so it does not need to be in the write statement. it can also only be true after calling the API 10 times, so it needs to be outside the for loop
     }
     
