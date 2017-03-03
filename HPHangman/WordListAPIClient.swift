@@ -14,10 +14,10 @@ struct WordListAPIClient {
     private enum wordListAPIError: Error {
         case invalidAPICall
         case noDataAvailable
-        case invalidAPIResponse
+        case invalidJSON
     }
     
-    typealias wordCompletion = (String, Error?) -> ()
+    typealias wordCompletion = ([String: Any], Error?) -> ()
     
     static func retrieveWords(forLevel: Int, _ completion: @escaping wordCompletion) {
         print("in function to retrieve words! WHEEE")
@@ -35,32 +35,19 @@ struct WordListAPIClient {
             }
             // IF THIS ERROR OCCURS, NEED TO CHECK INTERNET CONNECTION 
             
-            guard let responseData = data else {
+            guard let data = data else {
                 print("\(wordListAPIError.noDataAvailable): no words/data from API call")
                 return
             }
-            print("DATA: \(responseData)")
             
-            guard let response = response else {
-                print("\(wordListAPIError.invalidAPIResponse): no words/response from API call")
-                return
+            do {
+                let responseData = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                print("JSON LEVEL \(forLevel): \n\(responseData)")
+                completion(responseData, nil)
+            } catch {
+                print("\(wordListAPIError.invalidJSON): could not get JSON from data")
             }
             
-            print("REPONSE: \(response)")
-            
-            
-//            do {
-//                guard let responseWords = try NSString(data: responseData, encoding: String.Encoding.utf8.rawValue) else {
-//                    print("\(wordListAPIError.invalidDataConversion): could not convert reponse into a string")
-//                    return
-//                }
-//                
-//                completion(String(responseWords), nil)
-//                
-//            } catch {
-//                print("\(wordListAPIError.invalidAPICall): could not get words from word dictionary API")
-//                completion(String(), wordListAPIError.invalidAPICall)
-//            }
         })
         dataTask.resume()
     }
