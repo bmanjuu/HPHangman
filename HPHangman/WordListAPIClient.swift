@@ -23,7 +23,7 @@ struct WordListAPIClient {
         print("in function to retrieve words! WHEEE")
         
         let session = URLSession(configuration: .default)
-        let baseURL = URL(string: "http://linkedin-reach.hagbpyjegb.us-west-2.elasticbeanstalk.com/words?&difficulty=\(forLevel)")
+        let baseURL = URL(string: "https://twinword-word-association-quiz.p.mashape.com/type1/?area=sat&level=\(forLevel)")
         
         let dataTask = session.dataTask(with: baseURL!, completionHandler: { (data, response, error) in
             
@@ -55,3 +55,35 @@ struct WordListAPIClient {
     }
 
 }
+
+//MARK: - from previous API
+//let baseURL = URL(string: "http://linkedin-reach.hagbpyjegb.us-west-2.elasticbeanstalk.com/words?&difficulty=\(forLevel)")
+//
+//let dataTask = session.dataTask(with: baseURL!, completionHandler: { (data, response, error) in
+//    
+//    guard error == nil else {
+//        print("\(wordListAPIError.invalidAPICall): error calling word dictionary API")
+//        return
+//    }
+//    // IF THIS ERROR OCCURS, NEED TO CHECK INTERNET CONNECTION
+//    
+//    guard let responseData = data else {
+//        print("\(wordListAPIError.noDataAvailable): no words/data from API call")
+//        return
+//    }
+//    
+//    do {
+//        guard let responseWords = try NSString(data: responseData, encoding: String.Encoding.utf8.rawValue) else {
+//            print("\(wordListAPIError.invalidDataConversion): could not convert reponse into a string")
+//            return
+//        }
+//        
+//        completion(String(responseWords), nil)
+//        
+//    } catch {
+//        print("\(wordListAPIError.invalidAPICall): could not get words from word dictionary API")
+//        completion(String(), wordListAPIError.invalidAPICall)
+//    }
+//})
+//dataTask.resume()
+
