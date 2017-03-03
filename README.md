@@ -29,10 +29,13 @@ At the end of each game, the user has an option to restart the game and engage i
 Music is present throughout the game to provide a more immersive experience.
 
 ## To Do List
-- [ ] add a label on the game screen to indicate the user's current level 
+- [x] find an alternate API to retrieve words (there is no longer access to the current API)
+- [x] add a label on the game screen to indicate the user's current level 
+- [ ] don't call API if words property has already been populated (check at the beginning of the game, may need to alter organization of properties and how they are persisted in realm)
 - [ ] add an asset text file containing a list backup words in case the user is not connected to the internet
-- [ ] find an alternate API to retrieve words (there is no longer access to the current API)  
-
+- [ ] have an option to toggle music on and off
+- [ ] welcome back screen if user is not nil
+  
 ## Author
 Betty Fung
 
