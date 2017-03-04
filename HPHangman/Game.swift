@@ -120,7 +120,9 @@ extension Game {
     
     var wordsByLevel: [String] {
         let levels = words.components(separatedBy: "LEVEL ")
-        return levels.sorted()
+        return levels.sorted {
+            $0.compare($1, options: .numeric) == .orderedAscending
+        }
 
         //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously, need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way
     }
