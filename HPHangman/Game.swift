@@ -89,7 +89,7 @@ extension Game {
             print("random word: \(randomWord), count: \(randomWord.characters.count)")
             let randomIndex = Int(arc4random_uniform(UInt32(wordsArray.count-1)))
             randomWord = wordsArray[randomIndex].uppercased()
-        } while randomWord.characters.count < 3 || randomWord.characters.count > 8 || randomWord.contains(" ")
+        } while randomWord.characters.count < 3 || randomWord.characters.count > (self.currentLevel + 5) || randomWord.contains(" ")
         
         try! Realm().write {
             chosenWord = randomWord.uppercased()
