@@ -75,6 +75,7 @@ extension Game {
         print("wordsByLevel: \(self.wordsByLevel)")
         
         var wordsAtCurrentLevel = self.wordsByLevel[currentLevel]
+        //since the first object of this array is an empty string, can just index the array by currentLevel and not currentLevel-1
         
         //still need to remove the level number. determine offset by length of currentLevel string (1 or 2 characters) + length of colon and space after (2 characters)
         let offsetLength = String(currentLevel).characters.count + 2
@@ -124,7 +125,8 @@ extension Game {
             $0.compare($1, options: .numeric) == .orderedAscending
         }
 
-        //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously, need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way
+        //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously, need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way. 
+        //the first object of this array will always be an empty string b/c words starts with 'LEVEL '
     }
     
     var priceOfLetter: [String:Int] {
