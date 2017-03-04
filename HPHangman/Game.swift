@@ -72,8 +72,9 @@ extension Game {
     }
     
     func retrieveRandomWord(currentLevel: Int) {
+        print("wordsByLevel: \(self.wordsByLevel)")
         
-        var wordsAtCurrentLevel = self.wordsByLevel[currentLevel+1]
+        var wordsAtCurrentLevel = self.wordsByLevel[currentLevel]
         
         //still need to remove the level number. determine offset by length of currentLevel string (1 or 2 characters) + length of colon and space after (2 characters)
         let offsetLength = String(currentLevel).characters.count + 2
