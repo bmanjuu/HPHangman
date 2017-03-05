@@ -25,6 +25,7 @@ class Game: Object {
     dynamic var incorrectGuessCount: Int = 0
     
     var finishedPopulatingWordsForGame: Bool = false //does not need to be persisted in realm
+    var usingBackupWords: Bool = false
     
     required init() {
         super.init()
@@ -60,24 +61,22 @@ extension Game {
         
         wordsFromAPI: for i in 1...10 {
             
-            if wordsByLevel.count == 11 {
-                //if words by level already contains 11 elements (an empty string for the first element, and the remaining 10 for each level of words), then we are using backup words and do not need to go through the remaining loops
+            if self.usingBackupWords {
+                //if this is true, then we are using backup words and do not need to go through the remaining loops
                 print("breaking out of loop b/c using backup words")
                 break wordsFromAPI
             }
             
             WordListAPIClient.retrieveWords(level: i) { (words, nil) in
+                
+                if words.contains("LEVEL ") {
+                    self.usingBackupWords = true
+                }
+                
                 DispatchQueue.main.async {
-                    if words.contains("LEVEL ") {
-                        //if words already contains 'LEVEL ', then we are using the backup words
-                        try! Realm().write {
-                            self.words.append(words)
-                        }
-                    } else {
-                        try! Realm().write {
-                            self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
-                            print("words for difficulty \(i)")
-                        }
+                    try! Realm().write {
+                        self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
+                        print("words for difficulty \(i)")
                     }
                 }
             }
@@ -95,7 +94,6 @@ extension Game {
         let offsetLength = String(currentLevel).characters.count + 2
         let stringRange = wordsAtCurrentLevel.index(wordsAtCurrentLevel.startIndex, offsetBy: offsetLength)..<wordsAtCurrentLevel.index(before: wordsAtCurrentLevel.endIndex)
         wordsAtCurrentLevel = wordsAtCurrentLevel.substring(with: stringRange)
-
         
         let wordsArray = wordsAtCurrentLevel.components(separatedBy: "\n")
         var randomWord = ""
@@ -134,6 +132,12 @@ extension Game {
     }
     
     var wordsByLevel: [String] {
+        var wordsToUse = ""
+        
+        if self.words.characters.count < 1 {
+            
+        }
+        
         let levels = words.components(separatedBy: "LEVEL ")
         return levels.sorted {
             $0.compare($1, options: .numeric) == .orderedAscending
@@ -141,6 +145,10 @@ extension Game {
 
         //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously, need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way. 
         //the first object of this array will always be an empty string b/c words starts with 'LEVEL '
+    }
+    
+    var backupWords: String {
+        return WordListAPIDataParser.useBackupWords()
     }
     
     var priceOfLetter: [String:Int] {

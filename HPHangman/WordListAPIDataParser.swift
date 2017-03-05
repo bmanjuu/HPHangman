@@ -37,6 +37,7 @@ struct WordListAPIDataParser {
         }
         
         print("backup words: \(backupWords)")
+        
         return backupWords
     }
 }
