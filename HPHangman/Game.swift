@@ -122,15 +122,15 @@ extension Game {
 extension Game {
     
     var galleonsEarned: Int {
-        return (6-incorrectGuessCount) * 3
-    }
-    
-    var sicklesEarned: Int {
         return (6-incorrectGuessCount) * 5
     }
     
+    var sicklesEarned: Int {
+        return (6-incorrectGuessCount) * 10
+    }
+    
     var knutsEarned: Int {
-        return (6-incorrectGuessCount) * 7
+        return (6-incorrectGuessCount) * 15
     }
     
     var wordsByLevel: [String] {
