@@ -27,6 +27,8 @@ Upon winning the game, the user is awarded money from the Ministry of Magic base
 At the end of each game, the user has an option to restart the game and engage in an another epic duel. Based on the game result, the difficulty of words in their next game will also increase or decrease a level. There are 10 levels total, and the user starts their first game at level 1. 
 
 Music is present throughout the game to provide a more immersive experience.
+
+###### :sparkles: Curious about v1.1? See what updates I'm working on in the Projects section! :sparkles: 
   
 ## Author
 Betty Fung
