@@ -58,15 +58,7 @@ extension Game {
     
     func populateWordsInStore() {
         
-        wordsFromAPI: for i in 1...10 {
-            
-            //the following statement does not get executed b/c api calls are too fast
-            /*
-            if self.finishedPopulatingWordsForGame {
-                //if this is true, then we have all the words necessary to play the game, mainly here to help break out of the loop if we are using backup words
-                print("breaking out of loop b/c using backup words")
-                break wordsFromAPI
-            } */
+        for i in 1...10 {
             
             WordListAPIClient.retrieveWords(level: i) { (words, nil) in
                 
@@ -76,10 +68,11 @@ extension Game {
                             self.words = self.backupWords
                         }
                     }
-                    
                     self.finishedPopulatingWordsForGame = true
                     
                 } else if !words.isEmpty {
+                    //instead of just an else statement, we need a condition to confirm that words are not empty because when we are using backup words and i>1, words will still be empty but it will not satisfy the conditions of the if statement
+                    
                     DispatchQueue.main.async {
                         try! Realm().write {
                             self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
@@ -96,7 +89,7 @@ extension Game {
         print("wordsByLevel: \(self.wordsByLevel)")
         
         var wordsAtCurrentLevel = self.wordsByLevel[currentLevel]
-        //since the first object of this array is an empty string, can just index the array by currentLevel and not currentLevel-1
+        //since the first object of this array is an empty string, we can just index the array by currentLevel and not currentLevel-1
         
         //still need to remove the level number. determine offset by length of currentLevel string (1 or 2 characters) + length of colon and space after (2 characters)
         let offsetLength = String(currentLevel).characters.count + 2
@@ -147,7 +140,7 @@ extension Game {
         }
 
         //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously, need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way. 
-        //the first object of this array will always be an empty string b/c words starts with 'LEVEL '
+        //the first object of this array will always be an empty string b/c words starts with 'LEVEL'
     }
     
     var backupWords: String {
@@ -190,7 +183,6 @@ extension Game {
             viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
             return false
         }
-        return false
     }
     
     
