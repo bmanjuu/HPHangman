@@ -60,28 +60,26 @@ extension Game {
         
         wordsFromAPI: for i in 1...10 {
             
+            //the following statement does not get executed b/c api calls are too fast
+            /*
             if self.finishedPopulatingWordsForGame {
                 //if this is true, then we have all the words necessary to play the game, mainly here to help break out of the loop if we are using backup words
                 print("breaking out of loop b/c using backup words")
                 break wordsFromAPI
-            }
+            } */
             
             WordListAPIClient.retrieveWords(level: i) { (words, nil) in
                 
-                if words.contains("LEVEL ") && (i == 1 || self.wordsByLevel.count == 11) {
-                    print("THIS SHOULD BREAK OUT OF LOOP")
-                    
+                if words.isEmpty && i == 1 {
                     DispatchQueue.main.async {
                         try! Realm().write {
-                            self.words.append(words)
+                            self.words = self.backupWords
                         }
                     }
                     
                     self.finishedPopulatingWordsForGame = true
                     
-                    print("EXITING API CALL")
-                    
-                } else {
+                } else if !words.isEmpty {
                     DispatchQueue.main.async {
                         try! Realm().write {
                             self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
@@ -153,7 +151,7 @@ extension Game {
     }
     
     var backupWords: String {
-        return WordListAPIDataParser.useBackupWords()
+        return WordListAPIClient.useBackupWords()
     }
     
     var priceOfLetter: [String:Int] {

@@ -31,13 +31,13 @@ struct WordListAPIClient {
             
             guard error == nil else {
                 print("will use backup words")
-                completion(WordListAPIDataParser.useBackupWords(), wordListAPIError.invalidAPICall)
+                completion("", wordListAPIError.invalidAPICall)
                 return
             }
             
             guard let data = data else {
                 print("will use backup words")
-                completion(WordListAPIDataParser.useBackupWords(), wordListAPIError.noDataAvailable)
+                completion("", wordListAPIError.noDataAvailable)
                 return
             }
             
@@ -58,6 +58,21 @@ struct WordListAPIClient {
             
         })
         dataTask.resume()
+    }
+    
+    static func useBackupWords() -> String {
+        var backupWords = ""
+        
+        let path = Bundle.main.path(forResource: "HPHangman_Words", ofType: "txt")
+        do {
+            backupWords = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
+        } catch {
+            print("ERROR: could not use backup words file")
+        }
+        
+        print("backup words: \(backupWords)")
+        
+        return backupWords
     }
 
 }

@@ -28,19 +28,19 @@ struct WordListAPIDataParser {
         return wordsAtThisLevel
     }
     
-    static func useBackupWords() -> String {
-        var backupWords = ""
-        
-        let path = Bundle.main.path(forResource: "HPHangman_Words", ofType: "txt")
-        do {
-            backupWords = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
-        } catch {
-            print("ERROR: could not use backup words file")
-        }
-        
-        print("backup words: \(backupWords)")
-        self.usingBackupWords = true
-        
-        return backupWords
-    }
+//    static func useBackupWords() -> String {
+//        var backupWords = ""
+//        
+//        let path = Bundle.main.path(forResource: "HPHangman_Words", ofType: "txt")
+//        do {
+//            backupWords = try String(contentsOfFile: path!, encoding: String.Encoding.utf8)
+//        } catch {
+//            print("ERROR: could not use backup words file")
+//        }
+//        
+//        print("backup words: \(backupWords)")
+//        self.usingBackupWords = true
+//        
+//        return backupWords
+//    }
 }
