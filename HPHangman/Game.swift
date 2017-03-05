@@ -63,7 +63,7 @@ extension Game {
             WordListAPIClient.retrieveWords(level: i) { (responseWords, nil) in
                 
                 if responseWords.isEmpty && i == 1 {
-                    //if words is empty, then the user is not connected to the internet and we will be using backup words instead
+                    //if responseWords is empty, then the user is not connected to the internet and we will be using backup words instead
                     DispatchQueue.main.async {
                         try! Realm().write {
                             self.words = self.backupWords
@@ -72,7 +72,7 @@ extension Game {
                     self.finishedPopulatingWordsForGame = true
                     
                 } else if !responseWords.isEmpty {
-                    //instead of just an else statement, we need a condition to confirm that 'words' is not empty because when we are using backup words and i>1, words will still be empty but it will not satisfy the conditions of the if statement
+                    //instead of just an else statement, we need a condition to confirm that responseWords is not empty because when we are using backup words and i>1, responseWords will still be empty but it will not satisfy the conditions of the if statement above 
                     
                     DispatchQueue.main.async {
                         try! Realm().write {
