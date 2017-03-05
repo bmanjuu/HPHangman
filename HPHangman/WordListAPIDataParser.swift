@@ -11,6 +11,8 @@ import RealmSwift
 
 struct WordListAPIDataParser {
     
+    static var usingBackupWords: Bool = false
+    
     static func parseWordResponseFrom(_ wordResponseArray: [[String:Any]], _ level: Int) -> String {
         var wordsAtThisLevel = ""
         var wordsAtThisLevelArray = [String]()
@@ -37,6 +39,7 @@ struct WordListAPIDataParser {
         }
         
         print("backup words: \(backupWords)")
+        self.usingBackupWords = true
         
         return backupWords
     }

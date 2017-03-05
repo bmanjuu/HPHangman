@@ -25,7 +25,6 @@ class Game: Object {
     dynamic var incorrectGuessCount: Int = 0
     
     var finishedPopulatingWordsForGame: Bool = false //does not need to be persisted in realm
-    var usingBackupWords: Bool = false
     
     required init() {
         super.init()
@@ -61,22 +60,33 @@ extension Game {
         
         wordsFromAPI: for i in 1...10 {
             
-            if self.usingBackupWords {
-                //if this is true, then we are using backup words and do not need to go through the remaining loops
+            if self.finishedPopulatingWordsForGame {
+                //if this is true, then we have all the words necessary to play the game, mainly here to help break out of the loop if we are using backup words
                 print("breaking out of loop b/c using backup words")
                 break wordsFromAPI
             }
             
             WordListAPIClient.retrieveWords(level: i) { (words, nil) in
                 
-                if words.contains("LEVEL ") {
-                    self.usingBackupWords = true
-                }
-                
-                DispatchQueue.main.async {
-                    try! Realm().write {
-                        self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
-                        print("words for difficulty \(i)")
+                if words.contains("LEVEL ") && (i == 1 || self.wordsByLevel.count == 11) {
+                    print("THIS SHOULD BREAK OUT OF LOOP")
+                    
+                    DispatchQueue.main.async {
+                        try! Realm().write {
+                            self.words.append(words)
+                        }
+                    }
+                    
+                    self.finishedPopulatingWordsForGame = true
+                    
+                    print("EXITING API CALL")
+                    
+                } else {
+                    DispatchQueue.main.async {
+                        try! Realm().write {
+                            self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
+                            print("words for difficulty \(i)")
+                        }
                     }
                 }
             }
@@ -132,11 +142,6 @@ extension Game {
     }
     
     var wordsByLevel: [String] {
-        var wordsToUse = ""
-        
-        if self.words.characters.count < 1 {
-            
-        }
         
         let levels = words.components(separatedBy: "LEVEL ")
         return levels.sorted {
