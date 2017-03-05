@@ -60,9 +60,9 @@ extension Game {
         
         for i in 1...10 {
             
-            WordListAPIClient.retrieveWords(level: i) { (words, nil) in
+            WordListAPIClient.retrieveWords(level: i) { (responseWords, nil) in
                 
-                if words.isEmpty && i == 1 {
+                if responseWords.isEmpty && i == 1 {
                     //if words is empty, then the user is not connected to the internet and we will be using backup words instead
                     DispatchQueue.main.async {
                         try! Realm().write {
@@ -71,12 +71,12 @@ extension Game {
                     }
                     self.finishedPopulatingWordsForGame = true
                     
-                } else if !words.isEmpty {
+                } else if !responseWords.isEmpty {
                     //instead of just an else statement, we need a condition to confirm that 'words' is not empty because when we are using backup words and i>1, words will still be empty but it will not satisfy the conditions of the if statement
                     
                     DispatchQueue.main.async {
                         try! Realm().write {
-                            self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
+                            self.words.append("LEVEL \(i): \(responseWords)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
                             print("words for difficulty \(i)")
                         }
                     }
