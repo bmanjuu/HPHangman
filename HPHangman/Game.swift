@@ -58,12 +58,26 @@ extension Game {
     
     func populateWordsInStore() {
         
-        for i in 1...10 {
+        wordsFromAPI: for i in 1...10 {
+            
+            if wordsByLevel.count == 11 {
+                //if words by level already contains 11 elements (an empty string for the first element, and the remaining 10 for each level of words), then we are using backup words and do not need to go through the remaining loops
+                print("breaking out of loop b/c using backup words")
+                break wordsFromAPI
+            }
+            
             WordListAPIClient.retrieveWords(level: i) { (words, nil) in
                 DispatchQueue.main.async {
-                    try! Realm().write {
-                        self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
-                        print("words for difficulty \(i)")
+                    if words.contains("LEVEL ") {
+                        //if words already contains 'LEVEL ', then we are using the backup words
+                        try! Realm().write {
+                            self.words.append(words)
+                        }
+                    } else {
+                        try! Realm().write {
+                            self.words.append("LEVEL \(i): \(words)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
+                            print("words for difficulty \(i)")
+                        }
                     }
                 }
             }

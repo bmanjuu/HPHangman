@@ -30,13 +30,14 @@ struct WordListAPIClient {
         let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
             
             guard error == nil else {
-                print("\(wordListAPIError.invalidAPICall): error calling API")
+                print("will use backup words")
+                completion(WordListAPIDataParser.useBackupWords(), wordListAPIError.invalidAPICall)
                 return
             }
-            // IF THIS ERROR OCCURS, NEED TO CHECK INTERNET CONNECTION 
             
             guard let data = data else {
-                print("\(wordListAPIError.noDataAvailable): no words/data from API call")
+                print("will use backup words")
+                completion(WordListAPIDataParser.useBackupWords(), wordListAPIError.noDataAvailable)
                 return
             }
             
@@ -60,6 +61,8 @@ struct WordListAPIClient {
     }
 
 }
+
+
 
 //MARK: - from previous API
 
