@@ -178,13 +178,10 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hpBattleImage" translatesAutoresizingMaskIntoConstraints="NO" id="1ie-2Z-Zho">
                                         <rect key="frame" x="0.0" y="69" width="375" height="219"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlp-QL-ie2">
+                                    <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qBZ-kt-e8f">
                                         <rect key="frame" x="0.0" y="69" width="375" height="219"/>
                                         <color key="backgroundColor" red="0.88924870469999995" green="0.2623006443" blue="0.1172467054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spells Left:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QNk-Vl-tXO">
                                         <rect key="frame" x="234" y="391" width="92" height="23"/>
                                         <constraints>
@@ -346,9 +343,8 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="11L-aa-0bn" firstAttribute="top" secondItem="xjc-K7-fOa" secondAttribute="top" id="11i-cc-293"/>
-                                    <constraint firstItem="qlp-QL-ie2" firstAttribute="centerX" secondItem="1ie-2Z-Zho" secondAttribute="centerX" id="1ZD-yp-8Y4"/>
                                     <constraint firstItem="t2M-sc-rEt" firstAttribute="leading" secondItem="gRP-IP-zU6" secondAttribute="leading" id="1sB-Sk-Y7j"/>
-                                    <constraint firstItem="qlp-QL-ie2" firstAttribute="height" secondItem="1ie-2Z-Zho" secondAttribute="height" id="2ML-ra-iF3"/>
+                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="height" secondItem="1ie-2Z-Zho" secondAttribute="height" id="2VK-nh-mb6"/>
                                     <constraint firstItem="1ie-2Z-Zho" firstAttribute="trailing" secondItem="xoZ-NZ-0ch" secondAttribute="trailing" id="2ro-Us-dKJ"/>
                                     <constraint firstItem="QUE-Sz-kSz" firstAttribute="centerX" secondItem="9UK-Fm-wkT" secondAttribute="centerX" id="38c-hf-TJH"/>
                                     <constraint firstItem="xoZ-NZ-0ch" firstAttribute="width" secondItem="qUo-Bn-Vs6" secondAttribute="width" id="3OL-Rt-4HE"/>
@@ -357,9 +353,10 @@
                                     <constraint firstItem="QUE-Sz-kSz" firstAttribute="centerY" secondItem="xoZ-NZ-0ch" secondAttribute="centerY" id="53h-A9-vUn"/>
                                     <constraint firstItem="QNk-Vl-tXO" firstAttribute="firstBaseline" secondItem="z6T-2k-iHs" secondAttribute="firstBaseline" id="5t4-JB-sOW"/>
                                     <constraint firstItem="eRT-94-azs" firstAttribute="top" secondItem="qUo-Bn-Vs6" secondAttribute="top" constant="27" id="7D2-7e-hcY"/>
-                                    <constraint firstItem="qlp-QL-ie2" firstAttribute="width" secondItem="1ie-2Z-Zho" secondAttribute="width" id="8w3-5T-3Ra"/>
                                     <constraint firstItem="gRP-IP-zU6" firstAttribute="top" secondItem="DhG-Zx-IUf" secondAttribute="top" id="9GU-ev-Hop"/>
+                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="centerY" secondItem="1ie-2Z-Zho" secondAttribute="centerY" id="CL1-6F-jYb"/>
                                     <constraint firstItem="1ie-2Z-Zho" firstAttribute="top" secondItem="eRT-94-azs" secondAttribute="bottom" constant="20" id="E1d-r6-Y0k"/>
+                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="width" secondItem="1ie-2Z-Zho" secondAttribute="width" id="IRs-wA-QMf"/>
                                     <constraint firstItem="5vX-sb-f6Z" firstAttribute="height" secondItem="8EL-dd-mvu" secondAttribute="height" id="Iiq-cs-f6C"/>
                                     <constraint firstItem="t2M-sc-rEt" firstAttribute="top" secondItem="11L-aa-0bn" secondAttribute="bottom" constant="46" id="Itg-LU-mlj"/>
                                     <constraint firstItem="9UK-Fm-wkT" firstAttribute="top" secondItem="QNk-Vl-tXO" secondAttribute="bottom" constant="8" symbolic="YES" id="Jei-Ux-b8g"/>
@@ -385,11 +382,11 @@
                                     <constraint firstItem="1ie-2Z-Zho" firstAttribute="leading" secondItem="xoZ-NZ-0ch" secondAttribute="leading" id="jwM-VS-RAq"/>
                                     <constraint firstItem="z6T-2k-iHs" firstAttribute="leading" secondItem="QNk-Vl-tXO" secondAttribute="trailing" constant="5" id="k6u-Ew-kBp"/>
                                     <constraint firstItem="11L-aa-0bn" firstAttribute="top" secondItem="9UK-Fm-wkT" secondAttribute="bottom" constant="8" symbolic="YES" id="k7z-de-pIU"/>
+                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="centerX" secondItem="1ie-2Z-Zho" secondAttribute="centerX" id="kae-GA-W2q"/>
                                     <constraint firstAttribute="trailing" secondItem="1ie-2Z-Zho" secondAttribute="trailing" id="kl5-Qz-Q7b"/>
                                     <constraint firstAttribute="trailing" secondItem="QUE-Sz-kSz" secondAttribute="trailing" constant="37" id="m6G-I6-bir"/>
                                     <constraint firstItem="11L-aa-0bn" firstAttribute="leading" secondItem="t2M-sc-rEt" secondAttribute="leading" id="mdf-lZ-I5V"/>
                                     <constraint firstItem="xoZ-NZ-0ch" firstAttribute="centerY" secondItem="qUo-Bn-Vs6" secondAttribute="centerY" id="qz6-jr-syT"/>
-                                    <constraint firstItem="qlp-QL-ie2" firstAttribute="centerY" secondItem="1ie-2Z-Zho" secondAttribute="centerY" id="ruk-5p-53H"/>
                                     <constraint firstItem="8EL-dd-mvu" firstAttribute="baseline" secondItem="QNk-Vl-tXO" secondAttribute="baseline" id="vvA-U6-LOj"/>
                                     <constraint firstItem="QNk-Vl-tXO" firstAttribute="baseline" secondItem="z6T-2k-iHs" secondAttribute="baseline" id="w1i-6V-Xj9"/>
                                     <constraint firstItem="5vX-sb-f6Z" firstAttribute="leading" secondItem="8EL-dd-mvu" secondAttribute="trailing" constant="2" id="wXZ-6d-qqn"/>
@@ -410,7 +407,7 @@
                     <connections>
                         <outlet property="chancesLabel" destination="z6T-2k-iHs" id="jwN-ch-bSg"/>
                         <outlet property="duelLabel" destination="eRT-94-azs" id="DVY-1O-Qx2"/>
-                        <outlet property="flashRedLabel" destination="qlp-QL-ie2" id="G1B-74-7CA"/>
+                        <outlet property="flashRedView" destination="qBZ-kt-e8f" id="r5c-1Y-be8"/>
                         <outlet property="galleonsBalance" destination="ecg-Tu-LcV" id="V9B-ce-5Pf"/>
                         <outlet property="guessesLabel" destination="uTW-75-fVJ" id="ytX-Yv-PMC"/>
                         <outlet property="hangmanImage" destination="1ie-2Z-Zho" id="Hg7-yp-nA0"/>
