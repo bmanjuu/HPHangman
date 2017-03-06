@@ -60,12 +60,20 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.secretWordLabel.text = game.concealedWord
         
         if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
+            
+            //flash red and shake animation
             UIView.animate(withDuration: 1.5, delay: 0.0, options: .curveEaseInOut, animations: {
-                //changing the tintColor of the image does not affect appearance of the image, so I added a slightly transparent red label over the image that will fade in and out
-                
+                // added a slightly transparent red imageview over the harry potter duel image that will fade in and out
                 self.flashRedView.alpha = 0.3
                 self.incorrectGuessShakeAnimation() //image shakes as flashRedView appears and fade
                 self.flashRedView.alpha = 0.0
+                
+                //changing the tintColor of the image does not work in this situation because it permanently alters the state of the image so that the entire image view is an opaque red box. trying to restore the original tintColor by setting it equal to nil or clear makes the imageView blue or completey transparent (so the picture of Harry also disappears) respectively
+                /*
+                self.hangmanImage.image = self.hangmanImage.image!.withRenderingMode(.alwaysTemplate)
+                self.hangmanImage.tintColor = UIColor.red
+                self.hangmanImage.tintColor = UIColor.clear
+                */
                 
                 self.hangmanImage.alpha -= 0.19
             }, completion: nil)
