@@ -180,7 +180,6 @@
                                     </imageView>
                                     <imageView autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qBZ-kt-e8f">
                                         <rect key="frame" x="0.0" y="69" width="375" height="219"/>
-                                        <color key="backgroundColor" red="0.88924870469999995" green="0.2623006443" blue="0.1172467054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spells Left:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QNk-Vl-tXO">
                                         <rect key="frame" x="234" y="391" width="92" height="23"/>

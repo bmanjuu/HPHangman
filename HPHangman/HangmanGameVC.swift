@@ -142,14 +142,13 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         self.flashRedView.alpha = 0.0
         //add gradient to the view so that it visually blends into everything better
-        let blur = CAGradientLayer()
-        blur.frame = self.flashRedView.bounds
-        blur.shadowRadius = 10
-        blur.shadowPath = CGPath(rect: self.flashRedView.frame, transform: nil)
-        blur.shadowOpacity = 1
-        blur.shadowOffset = CGSize.zero
-        blur.shadowColor = UIColor.red.cgColor
-        self.flashRedView.layer.mask = blur
+        let blurGradient = CAGradientLayer()
+        blurGradient.frame = self.flashRedView.bounds
+        blurGradient.colors = [UIColor.clear.cgColor, UIColor.red.cgColor, UIColor.clear.cgColor]
+        blurGradient.startPoint = CGPoint(x: 0, y: 0)
+        blurGradient.endPoint = CGPoint(x: 0, y: 1)
+        blurGradient.locations = [0.0, 0.33, 0.70]
+        self.flashRedView.layer.addSublayer(blurGradient)
         
         self.userInput.layer.borderWidth = 1.0
         self.userInput.layer.borderColor = UIColor.blue.cgColor
