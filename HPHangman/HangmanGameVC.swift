@@ -60,10 +60,11 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
             UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
+                //changing the tintColor of the image does not affect appearance of the image, so I added a slightly transparent red label over the image that will fade in and out 
                 self.flashRedLabel.alpha = 0.5
                 self.flashRedLabel.alpha = 0.0
                 
-                self.hangmanImage.alpha -= 0.18
+                self.hangmanImage.alpha -= 0.19
             }, completion: { (completedAnimation) in
                 print("done with animation")
             })
