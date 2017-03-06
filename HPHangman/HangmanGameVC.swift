@@ -23,6 +23,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var sicklesBalance: UILabel!
     @IBOutlet weak var galleonsBalance: UILabel!
     @IBOutlet weak var stormyBackgroundImage: UIImageView!
+    @IBOutlet weak var flashRedLabel: UILabel!
     
     var game: Game!
     var displayAlert: UIAlertController?
@@ -58,7 +59,14 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.secretWordLabel.text = game.concealedWord
         
         if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
-            self.hangmanImage.alpha -= 0.18
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
+                self.flashRedLabel.alpha = 0.5
+                self.flashRedLabel.alpha = 0.0
+                
+                self.hangmanImage.alpha -= 0.18
+            }, completion: { (completedAnimation) in
+                print("done with animation")
+            })
         }
         
         if game.wonGameStatus {
@@ -129,6 +137,8 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         self.duelLabel.text = "Oh no... it's Deatheaters! Time to duel!"
         self.duelLabel.adjustsFontSizeToFitWidth = true
+        
+        self.flashRedLabel.alpha = 0.0
         
         self.userInput.layer.borderWidth = 1.0
         self.userInput.layer.borderColor = UIColor.blue.cgColor
