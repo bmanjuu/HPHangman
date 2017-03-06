@@ -11,7 +11,7 @@ import UIKit
 import RealmSwift
 
 struct HangmanAlerts {
-    
+
     static func invalidGuess() -> UIAlertController {
         let alertController = UIAlertController(title: "Whoops!", message: "Please enter a letter or a word", preferredStyle: UIAlertControllerStyle.alert)
         

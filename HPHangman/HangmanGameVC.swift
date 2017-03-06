@@ -58,6 +58,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.guessesLabel.text = game.guessesSoFar
         self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
         self.secretWordLabel.text = game.concealedWord
+        self.updateDuelLabel(incorrectGuessCount: game.incorrectGuessCount)
         
         if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
             
@@ -179,6 +180,30 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         shake.toValue = NSValue(cgPoint: CGPoint(x: self.hangmanImage.center.x, y: self.hangmanImage.center.y + 4))
         self.hangmanImage.layer.add(shake, forKey: "position")
         self.flashRedView.layer.add(shake, forKey: "position")
+    }
+    
+    func updateDuelLabel(incorrectGuessCount: Int) {
+        
+        switch incorrectGuessCount {
+        case 1:
+            self.duelLabel.text = "Ouch! First hit!"
+        case 2:
+            self.duelLabel.text = "Be careful!"
+        case 3:
+            self.duelLabel.text = "Hang in there!"
+            self.duelLabel.textColor = UIColor.yellow
+        case 4:
+            self.duelLabel.text = "We need to recover, quick!"
+            self.duelLabel.textColor = UIColor.orange
+        case 5:
+            self.duelLabel.text = "It's do or die now -- YOU CAN DO THIS!"
+            self.duelLabel.textColor = UIColor.red
+        case 6:
+            self.duelLabel.text = "Game Over"
+        //text color here stays red based on previous case/update of label
+        default:
+            print("none")
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
