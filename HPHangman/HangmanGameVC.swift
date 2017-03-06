@@ -60,7 +60,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
             UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
-                //changing the tintColor of the image does not affect appearance of the image, so I added a slightly transparent red label over the image that will fade in and out 
+                //changing the tintColor of the image does not affect appearance of the image, so I added a slightly transparent red label over the image that will fade in and out
                 self.flashRedLabel.alpha = 0.5
                 self.flashRedLabel.alpha = 0.0
                 
@@ -140,6 +140,17 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.duelLabel.adjustsFontSizeToFitWidth = true
         
         self.flashRedLabel.alpha = 0.0
+        //blur the edges of the label so that it visually blends into everything better 
+        let blur = CAGradientLayer()
+        blur.frame = self.flashRedLabel.bounds
+        blur.shadowRadius = 5
+        CGRect(x: self.hangmanImage.lay, y: <#T##CGFloat#>, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+        blur.shadowPath = CGPath(rect: , transform: nil)
+            //CGPath(roundedRect: self.flashRedLabel.bounds, cornerWidth: 10, cornerHeight: 10, transform: nil)
+        blur.shadowOpacity = 1
+        blur.shadowOffset = CGSize.zero
+        blur.shadowColor = UIColor.red.cgColor
+        self.flashRedLabel.layer.mask = blur;
         
         self.userInput.layer.borderWidth = 1.0
         self.userInput.layer.borderColor = UIColor.blue.cgColor
