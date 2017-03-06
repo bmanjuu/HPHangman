@@ -38,14 +38,18 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         
         self.usernameTextField.resignFirstResponder()
         
-        self.nameLabel.text = "\(usernameTextField.text!.lowercased().capitalized),"
-        
-        let realm = try! Realm()
-        try! realm.write {
-            self.newGame!.player!.name = usernameTextField.text!
+        if usernameTextField.text!.isEmpty {
+            self.present(HangmanAlerts.enterName(), animated: true, completion: nil)
+        } else {
+            self.nameLabel.text = "\(usernameTextField.text!.lowercased().capitalized),"
+            
+            let realm = try! Realm()
+            try! realm.write {
+                self.newGame!.player!.name = usernameTextField.text!
+            }
+            
+            self.revealStoryline()
         }
-        
-        self.revealStoryline()
 
     }
 
@@ -105,16 +109,6 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         self.enterButtonTapped(textField)
 
         return true
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let inputTextLength = textField.text!.characters.count + string.characters.count
-        
-        if inputTextLength == 0  {
-            return false
-        } else {
-            return true
-        }
     }
     
     

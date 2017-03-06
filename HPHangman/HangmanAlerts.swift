@@ -11,6 +11,19 @@ import UIKit
 import RealmSwift
 
 struct HangmanAlerts {
+    
+    static func enterName() -> UIAlertController {
+        let alertController = UIAlertController(title: "Whoops!", message: "Please enter your name", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            (result : UIAlertAction) -> Void in
+            print("OK button tapped")
+        }
+        
+        alertController.addAction(okButtonTapped)
+        
+        return alertController
+    }
 
     static func invalidGuess() -> UIAlertController {
         let alertController = UIAlertController(title: "Whoops!", message: "Please enter a letter or a word", preferredStyle: UIAlertControllerStyle.alert)

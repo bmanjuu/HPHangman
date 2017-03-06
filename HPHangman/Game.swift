@@ -165,7 +165,7 @@ extension Game {
         let validLetters = CharacterSet.letters
         let userInput = input.replacingOccurrences(of: " ", with: "").uppercased()
         
-        if input.characters.count == 0 || (userInput.trimmingCharacters(in: validLetters) != "") {
+        if input.isEmpty || (userInput.trimmingCharacters(in: validLetters) != "") {
             viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
             return false
         }
