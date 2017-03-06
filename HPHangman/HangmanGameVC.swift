@@ -63,11 +63,12 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
                 //changing the tintColor of the image does not affect appearance of the image, so I added a slightly transparent red label over the image that will fade in and out
                 self.flashRedView.alpha = 0.3
+                self.shakeImageAnimation()
                 self.flashRedView.alpha = 0.0
                 
                 self.hangmanImage.alpha -= 0.19
             }, completion: { (completedAnimation) in
-                print("done with animation")
+                //self.shakeImageAnimation()
             })
         }
         
@@ -160,6 +161,17 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.sicklesBalance.text = "\(game.player!.gringottsAccount!.sickles)"
         self.knutsBalance.text = "\(game.player!.gringottsAccount!.knuts)"
         self.userCurrentLevelLabel.text = "\(game.currentLevel)"
+    }
+    
+    func shakeImageAnimation() {
+        let shake = CABasicAnimation(keyPath: "position")
+        shake.duration = 0.1
+        shake.repeatCount = 5
+        shake.autoreverses = true
+        shake.fromValue = NSValue(cgPoint: CGPoint(x: self.hangmanImage.center.x, y: self.hangmanImage.center.y - 4))
+        shake.toValue = NSValue(cgPoint: CGPoint(x: self.hangmanImage.center.x, y: self.hangmanImage.center.y + 4))
+        self.hangmanImage.layer.add(shake, forKey: "position")
+        self.flashRedView.layer.add(shake, forKey: "position")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
