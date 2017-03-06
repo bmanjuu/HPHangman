@@ -30,6 +30,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.layoutIfNeeded()
         
         self.scrollView.autoresizesSubviews = false 
         self.hideKeyboardWhenTappedAround()
@@ -141,10 +142,14 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         self.flashRedView.alpha = 0.0
         //add gradient to the view so that it visually blends into everything better
-        let blurEffect = UIBlurEffect(style: .dark)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = self.flashRedView.bounds
-        self.flashRedView.addSubview(blurEffectView)
+        let blur = CAGradientLayer()
+        blur.frame = self.flashRedView.bounds
+        blur.shadowRadius = 10
+        blur.shadowPath = CGPath(rect: self.flashRedView.frame, transform: nil)
+        blur.shadowOpacity = 1
+        blur.shadowOffset = CGSize.zero
+        blur.shadowColor = UIColor.red.cgColor
+        self.flashRedView.layer.mask = blur
         
         self.userInput.layer.borderWidth = 1.0
         self.userInput.layer.borderColor = UIColor.blue.cgColor

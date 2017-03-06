@@ -354,8 +354,8 @@
                                     <constraint firstItem="QNk-Vl-tXO" firstAttribute="firstBaseline" secondItem="z6T-2k-iHs" secondAttribute="firstBaseline" id="5t4-JB-sOW"/>
                                     <constraint firstItem="eRT-94-azs" firstAttribute="top" secondItem="qUo-Bn-Vs6" secondAttribute="top" constant="27" id="7D2-7e-hcY"/>
                                     <constraint firstItem="gRP-IP-zU6" firstAttribute="top" secondItem="DhG-Zx-IUf" secondAttribute="top" id="9GU-ev-Hop"/>
-                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="centerY" secondItem="1ie-2Z-Zho" secondAttribute="centerY" id="CL1-6F-jYb"/>
                                     <constraint firstItem="1ie-2Z-Zho" firstAttribute="top" secondItem="eRT-94-azs" secondAttribute="bottom" constant="20" id="E1d-r6-Y0k"/>
+                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="top" secondItem="1ie-2Z-Zho" secondAttribute="top" id="G1H-rE-7Ua"/>
                                     <constraint firstItem="qBZ-kt-e8f" firstAttribute="width" secondItem="1ie-2Z-Zho" secondAttribute="width" id="IRs-wA-QMf"/>
                                     <constraint firstItem="5vX-sb-f6Z" firstAttribute="height" secondItem="8EL-dd-mvu" secondAttribute="height" id="Iiq-cs-f6C"/>
                                     <constraint firstItem="t2M-sc-rEt" firstAttribute="top" secondItem="11L-aa-0bn" secondAttribute="bottom" constant="46" id="Itg-LU-mlj"/>
@@ -382,16 +382,18 @@
                                     <constraint firstItem="1ie-2Z-Zho" firstAttribute="leading" secondItem="xoZ-NZ-0ch" secondAttribute="leading" id="jwM-VS-RAq"/>
                                     <constraint firstItem="z6T-2k-iHs" firstAttribute="leading" secondItem="QNk-Vl-tXO" secondAttribute="trailing" constant="5" id="k6u-Ew-kBp"/>
                                     <constraint firstItem="11L-aa-0bn" firstAttribute="top" secondItem="9UK-Fm-wkT" secondAttribute="bottom" constant="8" symbolic="YES" id="k7z-de-pIU"/>
-                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="centerX" secondItem="1ie-2Z-Zho" secondAttribute="centerX" id="kae-GA-W2q"/>
                                     <constraint firstAttribute="trailing" secondItem="1ie-2Z-Zho" secondAttribute="trailing" id="kl5-Qz-Q7b"/>
+                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="bottom" secondItem="1ie-2Z-Zho" secondAttribute="bottom" id="lUw-sY-taT"/>
                                     <constraint firstAttribute="trailing" secondItem="QUE-Sz-kSz" secondAttribute="trailing" constant="37" id="m6G-I6-bir"/>
                                     <constraint firstItem="11L-aa-0bn" firstAttribute="leading" secondItem="t2M-sc-rEt" secondAttribute="leading" id="mdf-lZ-I5V"/>
                                     <constraint firstItem="xoZ-NZ-0ch" firstAttribute="centerY" secondItem="qUo-Bn-Vs6" secondAttribute="centerY" id="qz6-jr-syT"/>
+                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="leading" secondItem="1ie-2Z-Zho" secondAttribute="leading" id="uRH-aG-L8b"/>
                                     <constraint firstItem="8EL-dd-mvu" firstAttribute="baseline" secondItem="QNk-Vl-tXO" secondAttribute="baseline" id="vvA-U6-LOj"/>
                                     <constraint firstItem="QNk-Vl-tXO" firstAttribute="baseline" secondItem="z6T-2k-iHs" secondAttribute="baseline" id="w1i-6V-Xj9"/>
                                     <constraint firstItem="5vX-sb-f6Z" firstAttribute="leading" secondItem="8EL-dd-mvu" secondAttribute="trailing" constant="2" id="wXZ-6d-qqn"/>
                                     <constraint firstItem="zft-QZ-tX7" firstAttribute="trailing" secondItem="xjc-K7-fOa" secondAttribute="trailing" id="ygR-wt-KhC"/>
                                     <constraint firstItem="zft-QZ-tX7" firstAttribute="baseline" secondItem="t2M-sc-rEt" secondAttribute="firstBaseline" id="zCP-sr-35C"/>
+                                    <constraint firstItem="qBZ-kt-e8f" firstAttribute="trailing" secondItem="1ie-2Z-Zho" secondAttribute="trailing" id="zGk-uu-fQG"/>
                                     <constraint firstItem="11L-aa-0bn" firstAttribute="baseline" secondItem="xjc-K7-fOa" secondAttribute="firstBaseline" id="zyo-BF-RxQ"/>
                                 </constraints>
                             </scrollView>
