@@ -60,16 +60,15 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.secretWordLabel.text = game.concealedWord
         
         if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
-            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 1.5, delay: 0.0, options: .curveEaseInOut, animations: {
                 //changing the tintColor of the image does not affect appearance of the image, so I added a slightly transparent red label over the image that will fade in and out
+                
                 self.flashRedView.alpha = 0.3
-                self.shakeImageAnimation()
+                self.incorrectGuessShakeAnimation() //image shakes as flashRedView appears and fade
                 self.flashRedView.alpha = 0.0
                 
                 self.hangmanImage.alpha -= 0.19
-            }, completion: { (completedAnimation) in
-                //self.shakeImageAnimation()
-            })
+            }, completion: nil)
         }
         
         if game.wonGameStatus {
@@ -163,7 +162,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.userCurrentLevelLabel.text = "\(game.currentLevel)"
     }
     
-    func shakeImageAnimation() {
+    func incorrectGuessShakeAnimation() {
         let shake = CABasicAnimation(keyPath: "position")
         shake.duration = 0.1
         shake.repeatCount = 5
@@ -191,13 +190,13 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField){
         DispatchQueue.main.async {
-            //self.scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 100), animated: true)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField){
         DispatchQueue.main.async {
-            // self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
     }
     
