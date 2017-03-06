@@ -37,9 +37,9 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </label>
-                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXu-Ib-7SE">
-                                <rect key="frame" x="164" y="356" width="40" height="30"/>
-                                <color key="backgroundColor" red="0.75152374079999995" green="0.7640463958" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UXu-Ib-7SE">
+                                <rect key="frame" x="153.5" y="356" width="68" height="30"/>
+                                <color key="backgroundColor" red="0.45020240589999999" green="0.56783728450000004" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Enter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -120,10 +120,11 @@
                             <constraint firstItem="UXu-Ib-7SE" firstAttribute="top" secondItem="iaT-xP-oaB" secondAttribute="bottom" constant="8" symbolic="YES" id="FPJ-DF-j6S"/>
                             <constraint firstItem="ZQD-KE-k2g" firstAttribute="centerX" secondItem="GiS-h6-nLx" secondAttribute="centerX" id="K0X-oQ-ahU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iaT-xP-oaB" secondAttribute="trailing" constant="67" id="ODb-HL-vJ7"/>
-                            <constraint firstItem="UXu-Ib-7SE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-3.5" id="QTa-Uk-VSn"/>
+                            <constraint firstItem="UXu-Ib-7SE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QTa-Uk-VSn"/>
                             <constraint firstItem="GiS-h6-nLx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="48" id="YXa-nZ-hqz"/>
                             <constraint firstItem="ZQD-KE-k2g" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="crL-36-U20"/>
                             <constraint firstItem="ZQD-KE-k2g" firstAttribute="centerY" secondItem="iaT-xP-oaB" secondAttribute="centerY" id="o9s-5K-EU3"/>
+                            <constraint firstItem="UXu-Ib-7SE" firstAttribute="width" secondItem="QeQ-1k-BTR" secondAttribute="width" id="qUe-hn-VTk"/>
                             <constraint firstItem="lcW-Bo-Cfd" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="sRg-XQ-Ktw"/>
                             <constraint firstItem="lcW-Bo-Cfd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vVu-Cu-GF8"/>
                             <constraint firstItem="iaT-xP-oaB" firstAttribute="top" secondItem="GiS-h6-nLx" secondAttribute="bottom" constant="8" symbolic="YES" id="wVE-mn-oCP"/>
@@ -536,6 +537,6 @@ text :)</string>
         <image name="hpBattleImage" width="640" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pk7-Df-7cR"/>
+        <segue reference="DWO-Tj-ags"/>
     </inferredMetricsTieBreakers>
 </document>
