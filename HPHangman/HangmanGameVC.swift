@@ -142,12 +142,12 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         self.flashRedView.alpha = 0.0
         //add gradient to the view so that it visually blends into everything better
-        //I added red to the gradient colors array twice because when it was just three (clear, red, clear), the red would show up as a very pronounced stripe in the middle. Adjusting locations for 3 gradient colors was also a challenge because I could not seem to "stretch" the middle gradient without having the same pronounced stripe effect or having the red gradient only cover the top half of the image (the bottom half would be clear). So I decided that I needed to add a third color for the second color to fade into before it fades back into clear again
         let blurGradient = CAGradientLayer()
         blurGradient.frame = self.flashRedView.bounds
         blurGradient.colors = [UIColor.clear.cgColor, UIColor.red.cgColor, UIColor.red.cgColor,UIColor.clear.cgColor]
         blurGradient.locations = [0.0, 0.06, 0.94, 1.0]
-        //clear fades into red at 0.6, red transitions into more red at 0.94 (thereby extending the gradient of red), and after that, fades back into clear at the end of the gradient frame
+        //I added red to the gradient colors array twice because when it was just three (clear, red, clear), the red would show up as a very pronounced stripe in the middle. Adjusting locations for 3 gradient colors was also a challenge because I could not seem to "stretch" the middle gradient without having the same pronounced stripe effect or having the red gradient only cover the top half of the image (the bottom half would be clear). So I decided that I needed to add a third color for the second color to fade into before it fades back into clear again
+        //So for the gradient locations, clear fades into red at 0.6, red transitions into more red at 0.94 (thereby extending the gradient of red), and after that, fades back into clear at the end of the gradient frame
         self.flashRedView.layer.addSublayer(blurGradient)
         
         self.userInput.layer.borderWidth = 1.0
