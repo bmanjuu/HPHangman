@@ -122,14 +122,23 @@ extension Game {
 extension Game {
     
     var galleonsEarned: Int {
+        if currentLevel == 10 {
+            return 50 // 20 + max potential earnings
+        }
         return (6-incorrectGuessCount) * 5
     }
     
     var sicklesEarned: Int {
+        if currentLevel == 10 {
+            return 80
+        }
         return (6-incorrectGuessCount) * 10
     }
     
     var knutsEarned: Int {
+        if currentLevel == 10 {
+            return 110
+        }
         return (6-incorrectGuessCount) * 15
     }
     
