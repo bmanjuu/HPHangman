@@ -16,6 +16,7 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var welcomeToHogwarts: UIImageView!
     @IBOutlet weak var enterButton: UIButton!
+    @IBOutlet weak var readyButton: UIButton!
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var storylineView: UIView!
@@ -55,6 +56,7 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
 
     func setupWelcomeScreen() {
         self.storylineView.isHidden = true
+        self.readyButton.layer.cornerRadius = 6
         
         self.muggleGreetings.adjustsFontSizeToFitWidth = true
         self.muggleGreetings.minimumScaleFactor = 0.5
@@ -63,6 +65,8 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         self.enterButton.titleLabel?.minimumScaleFactor = 0.5
         self.enterButton.titleLabel?.numberOfLines = 0
         self.enterButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        self.enterButton.layer.cornerRadius = 6
+        
     }
     
     func prepareToStartGame() {

@@ -137,6 +137,7 @@
                         <outlet property="enterButton" destination="UXu-Ib-7SE" id="blC-2P-28d"/>
                         <outlet property="muggleGreetings" destination="GiS-h6-nLx" id="YP0-9E-6lp"/>
                         <outlet property="nameLabel" destination="qpr-gE-nj5" id="FkR-L9-bLy"/>
+                        <outlet property="readyButton" destination="QeQ-1k-BTR" id="LJo-8E-ARo"/>
                         <outlet property="storyText" destination="N5u-tj-WtO" id="9fc-na-jKh"/>
                         <outlet property="storylineView" destination="lcW-Bo-Cfd" id="frD-jB-Ove"/>
                         <outlet property="usernameTextField" destination="iaT-xP-oaB" id="Lbu-YP-jP2"/>
@@ -407,10 +408,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buyALetterButton" destination="11L-aa-0bn" id="fE1-J1-BUA"/>
                         <outlet property="chancesLabel" destination="z6T-2k-iHs" id="jwN-ch-bSg"/>
                         <outlet property="duelLabel" destination="eRT-94-azs" id="DVY-1O-Qx2"/>
                         <outlet property="flashRedView" destination="qBZ-kt-e8f" id="r5c-1Y-be8"/>
                         <outlet property="galleonsBalance" destination="ecg-Tu-LcV" id="V9B-ce-5Pf"/>
+                        <outlet property="guessButton" destination="xjc-K7-fOa" id="7Wo-xA-zpH"/>
                         <outlet property="guessesLabel" destination="uTW-75-fVJ" id="ytX-Yv-PMC"/>
                         <outlet property="hangmanImage" destination="1ie-2Z-Zho" id="Hg7-yp-nA0"/>
                         <outlet property="knutsBalance" destination="KIQ-PO-0Ap" id="8hC-ww-gbM"/>
@@ -537,6 +540,6 @@ text :)</string>
         <image name="hpBattleImage" width="640" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DWO-Tj-ags"/>
+        <segue reference="Pk7-Df-7cR"/>
     </inferredMetricsTieBreakers>
 </document>

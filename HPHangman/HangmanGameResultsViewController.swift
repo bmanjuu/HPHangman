@@ -22,6 +22,7 @@ class HangmanGameResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.playAgainButton.layer.cornerRadius = 6 
         adjustButtonFontSize()
         // Do any additional setup after loading the view.
     }

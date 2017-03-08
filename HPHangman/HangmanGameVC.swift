@@ -25,6 +25,9 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var stormyBackgroundImage: UIImageView!
     @IBOutlet weak var flashRedView: UIImageView!
     
+    @IBOutlet weak var guessButton: UIButton!
+    @IBOutlet weak var buyALetterButton: UIButton!
+    
     var game: Game!
     var displayAlert: UIAlertController?
     
@@ -169,6 +172,10 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.sicklesBalance.text = "\(game.player!.gringottsAccount!.sickles)"
         self.knutsBalance.text = "\(game.player!.gringottsAccount!.knuts)"
         self.userCurrentLevelLabel.text = "\(game.currentLevel)"
+        
+        self.guessButton.layer.cornerRadius = 6
+        self.buyALetterButton.layer.cornerRadius = 6
+        
     }
     
     func incorrectGuessShakeAnimation() {
