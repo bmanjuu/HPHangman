@@ -15,6 +15,7 @@ class HangmanGameResultsViewController: UIViewController {
     
     @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var resultsImage: UIImageView!
+    @IBOutlet weak var resultsExclamationLabel: UILabel!
     @IBOutlet weak var resultsTextLabel: UILabel!
     @IBOutlet weak var displayWinningsLabel: UILabel!
     @IBOutlet weak var moneyResultsLabel: UILabel!
@@ -57,16 +58,19 @@ class HangmanGameResultsViewController: UIViewController {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             
             if finishedGame.currentLevel == 10 {
-                self.resultsTextLabel.text = "HEAR YE, HEAR YE! 🎉\nWe have a champion amongst us! You've emerged from this epic battle victoriously and Harry and the Wizarding World are indebted to you."
+                self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
+                self.resultsTextLabel.text = "We have a champion amongst us! You've emerged from this epic battle victoriously and Harry and the Wizarding World are indebted to you."
             } else {
-                self.resultsTextLabel.text = "HOORAY! 🎉\nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort!"
+                self.resultsExclamationLabel.text = "HOORAY! 🎉"
+                self.resultsTextLabel.text = "You saved Harry and the Wizarding World from the wrath of Lord Voldemort!"
             }
             
             self.moneyResultsLabel.text! = "The Ministry of Magic has awarded you with:"
             self.displayWinningsLabel.text = "\(finishedGame.galleonsEarned)\n\(finishedGame.sicklesEarned)\n\(finishedGame.knutsEarned)"
         } else {
             self.resultsImage.image = UIImage(named: "hpLostGame")
-            self.resultsTextLabel.text = "AHHHHH! 😱\nVoldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"
+            self.resultsExclamationLabel.text = "AHHHHH! 😱"
+            self.resultsTextLabel.text = "Voldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"
             self.moneyResultsLabel.text! = "Your Gringott's balance is currently:"
             self.displayWinningsLabel.text = "\(userGringottsAccount.galleons)\n\(userGringottsAccount.sickles)\n\(userGringottsAccount.knuts)"
         }

@@ -474,6 +474,12 @@ Knuts</string>
                                     <constraint firstItem="NO0-cH-gDW" firstAttribute="height" secondItem="OqZ-rz-wjT" secondAttribute="height" id="wAt-Mz-wdZ"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lme-0e-LIo">
+                                <rect key="frame" x="16" y="28" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vTK-Ne-ZVJ">
                                 <rect key="frame" x="16" y="311" width="343" height="122"/>
                                 <string key="text">hello
@@ -520,23 +526,27 @@ text :)</string>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="leading" secondItem="Mw0-Jm-9pX" secondAttribute="leadingMargin" constant="-16" id="KyP-7J-d77"/>
                             <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="vTK-Ne-ZVJ" secondAttribute="bottom" constant="234" id="LTC-YW-DtH"/>
                             <constraint firstItem="8qs-QG-3ia" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="Lnq-wT-uBZ"/>
+                            <constraint firstItem="yVF-d9-pf1" firstAttribute="top" secondItem="lme-0e-LIo" secondAttribute="bottom" constant="21" id="M7q-93-pk0"/>
                             <constraint firstItem="vTK-Ne-ZVJ" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="MKd-h3-T8u"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yVF-d9-pf1" secondAttribute="trailing" constant="-16" id="Nk3-Tz-sIl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vTK-Ne-ZVJ" secondAttribute="trailing" id="PvN-Xi-O7t"/>
                             <constraint firstItem="Ovx-QB-yCU" firstAttribute="width" secondItem="Mw0-Jm-9pX" secondAttribute="width" id="T57-EE-Zta"/>
                             <constraint firstItem="sb6-yd-eiz" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="ZBq-sL-AAe"/>
+                            <constraint firstItem="lme-0e-LIo" firstAttribute="centerX" secondItem="vTK-Ne-ZVJ" secondAttribute="centerX" id="ee9-fX-IYd"/>
                             <constraint firstAttribute="leadingMargin" secondItem="vTK-Ne-ZVJ" secondAttribute="leading" id="gLi-0k-Ioh"/>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="hiS-AV-VOW"/>
                             <constraint firstItem="Ctb-dS-7v0" firstAttribute="width" secondItem="vTK-Ne-ZVJ" secondAttribute="width" id="i5t-Tg-DtB"/>
                             <constraint firstItem="Ovx-QB-yCU" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="krz-qf-ivQ"/>
                             <constraint firstItem="vTK-Ne-ZVJ" firstAttribute="top" secondItem="yVF-d9-pf1" secondAttribute="bottom" constant="23" id="m3g-rX-ukc"/>
                             <constraint firstItem="Ctb-dS-7v0" firstAttribute="centerX" secondItem="vTK-Ne-ZVJ" secondAttribute="centerX" id="mF0-eh-Q06"/>
+                            <constraint firstItem="lme-0e-LIo" firstAttribute="width" secondItem="vTK-Ne-ZVJ" secondAttribute="width" id="t4D-zH-hp6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="displayWinningsLabel" destination="OqZ-rz-wjT" id="Znl-Um-afy"/>
                         <outlet property="moneyResultsLabel" destination="Ctb-dS-7v0" id="QBJ-TM-Ywu"/>
                         <outlet property="playAgainButton" destination="8qs-QG-3ia" id="2on-Rf-Vju"/>
+                        <outlet property="resultsExclamationLabel" destination="lme-0e-LIo" id="loD-kE-uE7"/>
                         <outlet property="resultsImage" destination="yVF-d9-pf1" id="a9s-fs-mx5"/>
                         <outlet property="resultsTextLabel" destination="vTK-Ne-ZVJ" id="27h-5y-P93"/>
                         <outlet property="wizardingDenominationsLabel" destination="NO0-cH-gDW" id="APl-gU-8fu"/>
