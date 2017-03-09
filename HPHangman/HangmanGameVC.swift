@@ -153,7 +153,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.duelLabel.adjustsFontSizeToFitWidth = true
         
         self.flashRedView.alpha = 0.0
-        //add gradient to the view so that it the edges visually blend into everything better
+        //add gradient to the view so that the edges visually blend into everything better
         let blurGradient = CAGradientLayer()
         blurGradient.frame = self.flashRedView.bounds
         blurGradient.colors = [UIColor.clear.cgColor, UIColor.red.cgColor, UIColor.red.cgColor,UIColor.clear.cgColor]

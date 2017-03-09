@@ -17,12 +17,14 @@ class HangmanGameResultsViewController: UIViewController {
     @IBOutlet weak var resultsImage: UIImageView!
     @IBOutlet weak var resultsTextLabel: UILabel!
     @IBOutlet weak var displayWinningsLabel: UILabel!
+    @IBOutlet weak var moneyResultsLabel: UILabel!
     @IBOutlet weak var wizardingDenominationsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.playAgainButton.layer.cornerRadius = 6 
+        self.playAgainButton.layer.cornerRadius = 6
+        
         adjustButtonFontSize()
         // Do any additional setup after loading the view.
     }
@@ -60,12 +62,19 @@ class HangmanGameResultsViewController: UIViewController {
                 self.resultsTextLabel.text = "HOORAY! 🎉\nYou saved Harry and the Wizarding World from the wrath of Lord Voldemort!"
             }
             
-            self.resultsTextLabel.text!.append("\n The Ministry of Magic has awarded you with:")
+            self.moneyResultsLabel.text! = "The Ministry of Magic has awarded you with:"
             self.displayWinningsLabel.text = "\(finishedGame.galleonsEarned)\n\(finishedGame.sicklesEarned)\n\(finishedGame.knutsEarned)"
         } else {
             self.resultsImage.image = UIImage(named: "hpLostGame")
             self.resultsTextLabel.text = "AHHHHH! 😱\nVoldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"
+            self.moneyResultsLabel.text! = "Your Gringott's balance is currently:"
             self.displayWinningsLabel.text = "\(userGringottsAccount.galleons)\n\(userGringottsAccount.sickles)\n\(userGringottsAccount.knuts)"
+        }
+        
+        let upcomingLevel = finishedGame.currentLevel //we already increased/decreased a level in the wonGame and lostGame functions of Game 
+        if upcomingLevel < 10 {
+            self.playAgainButton.titleLabel?.text = "Next"
+            //next also doesn't seem right to put here... need to think of a better way to transition into the next game         
         }
     }
     

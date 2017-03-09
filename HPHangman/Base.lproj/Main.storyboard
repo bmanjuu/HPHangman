@@ -475,7 +475,7 @@ Knuts</string>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vTK-Ne-ZVJ">
-                                <rect key="frame" x="16" y="337" width="343" height="122"/>
+                                <rect key="frame" x="16" y="311" width="343" height="122"/>
                                 <string key="text">hello
 this is a 
 placeholder
@@ -483,6 +483,12 @@ for
 results 
 text :)</string>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ctb-dS-7v0">
+                                <rect key="frame" x="16" y="456" width="343" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -510,8 +516,9 @@ text :)</string>
                             <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="sb6-yd-eiz" secondAttribute="bottom" constant="113" id="710-gI-TdD"/>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="top" secondItem="1c4-PF-dxQ" secondAttribute="bottom" constant="50" id="77i-Il-Ql5"/>
                             <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="8qs-QG-3ia" secondAttribute="bottom" constant="51" id="Dh7-Wj-FiY"/>
+                            <constraint firstItem="Ctb-dS-7v0" firstAttribute="top" secondItem="vTK-Ne-ZVJ" secondAttribute="bottom" constant="23" id="FJn-Z8-5eB"/>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="leading" secondItem="Mw0-Jm-9pX" secondAttribute="leadingMargin" constant="-16" id="KyP-7J-d77"/>
-                            <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="vTK-Ne-ZVJ" secondAttribute="bottom" constant="208" id="LTC-YW-DtH"/>
+                            <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="vTK-Ne-ZVJ" secondAttribute="bottom" constant="234" id="LTC-YW-DtH"/>
                             <constraint firstItem="8qs-QG-3ia" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="Lnq-wT-uBZ"/>
                             <constraint firstItem="vTK-Ne-ZVJ" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="MKd-h3-T8u"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yVF-d9-pf1" secondAttribute="trailing" constant="-16" id="Nk3-Tz-sIl"/>
@@ -520,12 +527,15 @@ text :)</string>
                             <constraint firstItem="sb6-yd-eiz" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="ZBq-sL-AAe"/>
                             <constraint firstAttribute="leadingMargin" secondItem="vTK-Ne-ZVJ" secondAttribute="leading" id="gLi-0k-Ioh"/>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="hiS-AV-VOW"/>
+                            <constraint firstItem="Ctb-dS-7v0" firstAttribute="width" secondItem="vTK-Ne-ZVJ" secondAttribute="width" id="i5t-Tg-DtB"/>
                             <constraint firstItem="Ovx-QB-yCU" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="krz-qf-ivQ"/>
-                            <constraint firstItem="vTK-Ne-ZVJ" firstAttribute="top" secondItem="yVF-d9-pf1" secondAttribute="bottom" constant="49" id="m3g-rX-ukc"/>
+                            <constraint firstItem="vTK-Ne-ZVJ" firstAttribute="top" secondItem="yVF-d9-pf1" secondAttribute="bottom" constant="23" id="m3g-rX-ukc"/>
+                            <constraint firstItem="Ctb-dS-7v0" firstAttribute="centerX" secondItem="vTK-Ne-ZVJ" secondAttribute="centerX" id="mF0-eh-Q06"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="displayWinningsLabel" destination="OqZ-rz-wjT" id="Znl-Um-afy"/>
+                        <outlet property="moneyResultsLabel" destination="Ctb-dS-7v0" id="QBJ-TM-Ywu"/>
                         <outlet property="playAgainButton" destination="8qs-QG-3ia" id="2on-Rf-Vju"/>
                         <outlet property="resultsImage" destination="yVF-d9-pf1" id="a9s-fs-mx5"/>
                         <outlet property="resultsTextLabel" destination="vTK-Ne-ZVJ" id="27h-5y-P93"/>
