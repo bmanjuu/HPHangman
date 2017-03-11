@@ -509,7 +509,6 @@ for results text
                                 </state>
                                 <connections>
                                     <action selector="playAgainButtonTapped:" destination="BqB-mw-Oy4" eventType="touchUpInside" id="Dmg-4h-InU"/>
-                                    <segue destination="BWK-0G-Tde" kind="show" identifier="playAgain" id="Pk7-Df-7cR"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -549,17 +548,18 @@ for results text
                         <outlet property="resultsImage" destination="yVF-d9-pf1" id="a9s-fs-mx5"/>
                         <outlet property="resultsTextLabel" destination="vTK-Ne-ZVJ" id="27h-5y-P93"/>
                         <outlet property="wizardingDenominationsLabel" destination="NO0-cH-gDW" id="APl-gU-8fu"/>
-                        <segue destination="6Jz-oe-mFV" kind="show" id="Xjk-Mh-lOi"/>
+                        <segue destination="6Jz-oe-mFV" kind="show" identifier="finalSegue" id="Xjk-Mh-lOi"/>
+                        <segue destination="BWK-0G-Tde" kind="show" identifier="playAgain" id="EWY-bu-mEh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MS0-Km-dAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1668" y="108.39580209895054"/>
         </scene>
-        <!--View Controller-->
+        <!--Hangman FinalVC-->
         <scene sceneID="UY0-nZ-T2i">
             <objects>
-                <viewController id="6Jz-oe-mFV" sceneMemberID="viewController">
+                <viewController id="6Jz-oe-mFV" customClass="HangmanFinalVC" customModule="HPHangman" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="A8G-35-XYy"/>
                         <viewControllerLayoutGuide type="bottom" id="Aiq-Vh-uk4"/>
@@ -592,6 +592,6 @@ for results text
         <image name="hpBattleImage" width="640" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pk7-Df-7cR"/>
+        <segue reference="EWY-bu-mEh"/>
     </inferredMetricsTieBreakers>
 </document>

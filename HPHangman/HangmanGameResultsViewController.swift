@@ -46,7 +46,12 @@ class HangmanGameResultsViewController: UIViewController {
     
     
     @IBAction func playAgainButtonTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "playAgain", sender:nil)
+        if finishedGame.finalLevelStreak < 3 {
+            self.performSegue(withIdentifier: "playAgain", sender:nil)
+        } else {
+            self.performSegue(withIdentifier: "finalSegue", sender: nil)
+        }
+        
     }
     
     
@@ -63,7 +68,7 @@ class HangmanGameResultsViewController: UIViewController {
                     //this should feel darker than the rest of the game so far
                 case 0: //streak 1
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                    self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \nBut wait... what is that?"
+                    self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \n\nBut wait... what is that?"
                     self.playAgainButton.setTitle("What?", for: .normal)
                     //bellatrix, screams when they press the button? or would that be too scary... maybe evil laughter
                 case 1: //streak 2, after defeating bellatrix
@@ -122,21 +127,26 @@ class HangmanGameResultsViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as? HangmanGameVC
-        if finishedGame.currentLevel == 11 {
-            destinationVC?.aurorMode = true
+        
+        if segue.identifier == "playAgain" {
+            let destinationVC = segue.destination as? HangmanGameVC
+            if finishedGame.currentLevel == 11 {
+                destinationVC?.aurorMode = true
+            }
+            
+            //reset current game values and pass that back to the game property of HangmanGameVC
+            let realm = try! Realm()
+            try! realm.write {
+                finishedGame.guessesSoFar = ""
+                finishedGame.incorrectGuessCount = 0
+                finishedGame.wonGameStatus = false
+            }
+            
+            destinationVC?.game = finishedGame
+        } else {
+            let destinationVC = segue.destination as? HangmanFinalVC
         }
         
-        //reset current game values and pass that back to the game property of HangmanGameVC
-        let realm = try! Realm()
-        try! realm.write {
-            finishedGame.guessesSoFar = ""
-            finishedGame.incorrectGuessCount = 0
-            finishedGame.wonGameStatus = false
-        }
-        
-        destinationVC?.game = finishedGame
-        //SET UP DIFFERENT THINGS HERE?
     }
  
 
