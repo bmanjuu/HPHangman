@@ -60,30 +60,34 @@ class HangmanGameResultsViewController: UIViewController {
             if finishedGame.currentLevel == 10 {
                 
                 switch finishedGame.finalLevelStreak {
-                case 0:
+                    //this should feel darker than the rest of the game so far
+                case 0: //streak 1
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you! \nBut wait... what is that?"
+                    self.resultsTextLabel.text = "Have you considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \nBut wait... what is that?"
                     self.playAgainButton.titleLabel!.text = "What?"
-                case 1:
-                    self.resultsExclamationLabel.text = "YES!! 🎉"
-                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nBut wait... what is that?"
+                    //bellatrix, screams when they press the button? or would that be too scary... maybe evil laughter
+                case 1: //streak 2, after defeating bellatrix
+                    self.resultsExclamationLabel.text = "Phew, that was close..."
+                    self.resultsTextLabel.text = "I think I saw Nagini slithering in the shadows over there... \nWe have to find her, she'll lead us to Voldemort"
                     self.playAgainButton.titleLabel!.text = "Let's go"
-                case 2:
-                    self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nBut wait... what is that?"
-                    self.playAgainButton.titleLabel!.text = "It ends here"
-                case 3:
-                    self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nBut wait... what is that?"
-                    self.playAgainButton.titleLabel!.text = "What?"
+                    //nagini
+                case 2: //streak 3, after defeating nagini
+                    self.resultsExclamationLabel.text = "Goodbye Nagini"
+                    self.resultsTextLabel.text = "You know what we need to do next, don't you \(self.finishedGame.player!.name)? \nWhenever you're ready...\nI'll be right there with you"
+                    self.playAgainButton.titleLabel!.text = "It ends now"
+                    //voldemort
+                case 3: //streak 4, after defeating voldemort
+                    self.resultsExclamationLabel.text = "... you did it"
+                    self.resultsTextLabel.text = "YOU DID IT!!!! \nYou've helped Harry vanquish the Dark Lord once and for all. \nHarry and the Wizarding World are indebted to you!"
+                    self.playAgainButton.titleLabel!.text = "Continue"
                 default:
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nWould you like to play again"
+                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nWould you like to play again?"
                     self.playAgainButton.titleLabel!.text = "I'm ready!"
                 }
             } else {
                 self.resultsExclamationLabel.text = "HOORAY! 🎉"
-                self.resultsTextLabel.text = "You and Harry have escaped Deatheaters! \nBut the battle is far from over... \n\nReady for the next level?"
+                self.resultsTextLabel.text = "You helped Harry escape the Deatheaters! \nBut the battle is far from over... \n\nReady for the next level?"
                 self.playAgainButton.titleLabel!.text = "I'm ready!"
             }
             
@@ -131,6 +135,7 @@ class HangmanGameResultsViewController: UIViewController {
         }
         
         destinationVC?.game = finishedGame
+        //SET UP DIFFERENT THINGS HERE?
     }
  
 

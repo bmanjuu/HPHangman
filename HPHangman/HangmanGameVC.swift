@@ -198,13 +198,13 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         case 2:
             self.duelLabel.text = "Be careful!"
         case 3:
-            self.duelLabel.text = "Hang in there!"
+            self.duelLabel.text = "Hang in there \(game.player!.name)!"
             self.duelLabel.textColor = UIColor.yellow
         case 4:
             self.duelLabel.text = "We need to recover, quick!"
             self.duelLabel.textColor = UIColor.orange
         case 5:
-            self.duelLabel.text = "It's do or die now -- YOU CAN DO THIS!"
+            self.duelLabel.text = "It's do or die now -- YOU CAN DO THIS \(game.player!.name.uppercased())!"
             self.duelLabel.textColor = UIColor.red
         case 6:
             self.duelLabel.text = "Game Over"
