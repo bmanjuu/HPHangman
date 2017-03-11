@@ -113,6 +113,8 @@ extension Game {
         try! Realm().write {
             chosenWord = randomWord.uppercased()
             concealedWord = String(repeating: "___  ", count: chosenWord.characters.count)
+            
+            //if word is a phrase and contains a " ", separate the word based on this space first, then make concealedWord, then join them again with " "
         }
         
         print("THE CHOSEN ONE --> \(chosenWord) for level: \(currentLevel)")

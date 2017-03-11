@@ -43,10 +43,14 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        BackgroundMusic.playSong("DuringGameplay")
-        self.startNewGame()
-        self.setupViewForNewGame()
+        if aurorMode! {
+            //set up aurorMode stuff here 
+        } else {
+            BackgroundMusic.playSong("DuringGameplay")
+        }
         
+        self.startGame()
+        self.setupViewForGame()
     }
     
     
@@ -142,16 +146,21 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     }
 
     
-    func startNewGame() {
+    func startGame() {
         game.retrieveRandomWord(currentLevel: game.currentLevel)
     }
     
-    func setupViewForNewGame() {
+    func setupViewForGame() {
         
         self.scrollView.alwaysBounceVertical = false
-        
-        self.duelLabel.text = "Oh no... it's Deatheaters! Time to duel!"
         self.duelLabel.adjustsFontSizeToFitWidth = true
+        
+        if aurorMode! {
+            self.duelLabel.text = "Use your best spells against them, \(game.player!.name)!"
+            //CHANGE IMAGE HERE
+        } else {
+            self.duelLabel.text = "Oh no... it's Deatheaters! Time to duel!"
+        }
         
         self.flashRedView.alpha = 0.0
         //add gradient to the view so that the edges visually blend into everything better
