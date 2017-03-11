@@ -62,7 +62,7 @@ class HangmanGameResultsViewController: UIViewController {
                 self.resultsTextLabel.text = "We have a champion amongst us! You've emerged from this epic battle victoriously and Harry and the Wizarding World are indebted to you."
             } else {
                 self.resultsExclamationLabel.text = "HOORAY! 🎉"
-                self.resultsTextLabel.text = "You saved Harry and the Wizarding World from the wrath of Lord Voldemort!"
+                self.resultsTextLabel.text = "You saved Harry from the Deatheaters! But the battle is far from over... \nReady for the next level?"
             }
             
             self.moneyResultsLabel.text! = "The Ministry of Magic has awarded you with:"
@@ -75,11 +75,6 @@ class HangmanGameResultsViewController: UIViewController {
             self.displayWinningsLabel.text = "\(userGringottsAccount.galleons)\n\(userGringottsAccount.sickles)\n\(userGringottsAccount.knuts)"
         }
         
-        let upcomingLevel = finishedGame.currentLevel //we already increased/decreased a level in the wonGame and lostGame functions of Game 
-        if upcomingLevel < 10 {
-            self.playAgainButton.titleLabel?.text = "Next"
-            //next also doesn't seem right to put here... need to think of a better way to transition into the next game         
-        }
     }
     
     func adjustButtonFontSize() {

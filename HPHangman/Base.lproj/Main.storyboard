@@ -474,10 +474,10 @@ Knuts</string>
                                     <constraint firstItem="NO0-cH-gDW" firstAttribute="height" secondItem="OqZ-rz-wjT" secondAttribute="height" id="wAt-Mz-wdZ"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lme-0e-LIo">
-                                <rect key="frame" x="16" y="28.5" width="343" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lme-0e-LIo">
+                                <rect key="frame" x="16" y="38" width="343" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <color key="textColor" red="0.76446492519999998" green="0.77528633440000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vTK-Ne-ZVJ">
@@ -502,7 +502,7 @@ for results text :)</string>
                                     <constraint firstAttribute="width" constant="100" id="5Oj-Ma-JSg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <state key="normal" title="Play Again">
+                                <state key="normal" title="I'm ready!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -523,7 +523,7 @@ for results text :)</string>
                             <constraint firstItem="yVF-d9-pf1" firstAttribute="leading" secondItem="Mw0-Jm-9pX" secondAttribute="leadingMargin" constant="-16" id="KyP-7J-d77"/>
                             <constraint firstItem="uBO-oU-bZ4" firstAttribute="top" secondItem="vTK-Ne-ZVJ" secondAttribute="bottom" constant="282" id="LTC-YW-DtH"/>
                             <constraint firstItem="8qs-QG-3ia" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="Lnq-wT-uBZ"/>
-                            <constraint firstItem="yVF-d9-pf1" firstAttribute="top" secondItem="lme-0e-LIo" secondAttribute="bottom" constant="21" id="M7q-93-pk0"/>
+                            <constraint firstItem="yVF-d9-pf1" firstAttribute="top" secondItem="lme-0e-LIo" secondAttribute="bottom" constant="8" id="M7q-93-pk0"/>
                             <constraint firstItem="vTK-Ne-ZVJ" firstAttribute="centerX" secondItem="Mw0-Jm-9pX" secondAttribute="centerX" id="MKd-h3-T8u"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yVF-d9-pf1" secondAttribute="trailing" constant="-16" id="Nk3-Tz-sIl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vTK-Ne-ZVJ" secondAttribute="trailing" id="PvN-Xi-O7t"/>
