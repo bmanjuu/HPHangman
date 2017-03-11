@@ -42,11 +42,11 @@ class HomeScreenVC: UIViewController, UITextFieldDelegate {
         if usernameTextField.text!.isEmpty {
             self.present(HangmanAlerts.enterName(), animated: true, completion: nil)
         } else {
-            self.nameLabel.text = "\(usernameTextField.text!.lowercased().capitalized),"
+            self.nameLabel.text = "\(usernameTextField.text!.capitalized),"
             
             let realm = try! Realm()
             try! realm.write {
-                self.newGame!.player!.name = usernameTextField.text!
+                self.newGame!.player!.name = usernameTextField.text!.capitalized
             }
             
             self.revealStoryline()

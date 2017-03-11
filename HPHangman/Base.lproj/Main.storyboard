@@ -497,10 +497,10 @@ for results text
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qs-QG-3ia">
-                                <rect key="frame" x="140" y="445" width="95" height="29"/>
+                                <rect key="frame" x="136" y="445" width="103" height="29"/>
                                 <color key="backgroundColor" red="0.76446492519999998" green="0.77528633440000005" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="95" id="5Oj-Ma-JSg"/>
+                                    <constraint firstAttribute="width" constant="103" id="5Oj-Ma-JSg"/>
                                     <constraint firstAttribute="height" constant="29" id="g0b-i0-GrO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
@@ -549,11 +549,41 @@ for results text
                         <outlet property="resultsImage" destination="yVF-d9-pf1" id="a9s-fs-mx5"/>
                         <outlet property="resultsTextLabel" destination="vTK-Ne-ZVJ" id="27h-5y-P93"/>
                         <outlet property="wizardingDenominationsLabel" destination="NO0-cH-gDW" id="APl-gU-8fu"/>
+                        <segue destination="6Jz-oe-mFV" kind="show" id="Xjk-Mh-lOi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MS0-Km-dAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1668" y="108.39580209895054"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UY0-nZ-T2i">
+            <objects>
+                <viewController id="6Jz-oe-mFV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="A8G-35-XYy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Aiq-Vh-uk4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lKk-lq-h5X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="darkClouds" translatesAutoresizingMaskIntoConstraints="NO" id="veC-y0-iKu">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="veC-y0-iKu" firstAttribute="centerY" secondItem="lKk-lq-h5X" secondAttribute="centerY" id="EzT-8d-zQM"/>
+                            <constraint firstItem="veC-y0-iKu" firstAttribute="width" secondItem="lKk-lq-h5X" secondAttribute="width" id="OpY-54-Toi"/>
+                            <constraint firstItem="veC-y0-iKu" firstAttribute="centerX" secondItem="lKk-lq-h5X" secondAttribute="centerX" id="eZD-cU-C2O"/>
+                            <constraint firstItem="veC-y0-iKu" firstAttribute="height" secondItem="lKk-lq-h5X" secondAttribute="height" id="gNx-tn-00O"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AVF-Bi-ygF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2424.8000000000002" y="107.49625187406298"/>
         </scene>
     </scenes>
     <resources>

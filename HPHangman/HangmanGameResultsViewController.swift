@@ -53,42 +53,40 @@ class HangmanGameResultsViewController: UIViewController {
     func setupViewsFor(_ gameWonStatus: Bool) {
         
         let userGringottsAccount = finishedGame.player!.gringottsAccount!
+        self.playAgainButton.setTitle("I'm ready!", for: .normal) //default button text
         
         if gameWonStatus {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             
-            if finishedGame.currentLevel == 10 {
-                
+            if finishedGame.currentLevel == 11 {
                 switch finishedGame.finalLevelStreak {
                     //this should feel darker than the rest of the game so far
                 case 0: //streak 1
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                    self.resultsTextLabel.text = "Have you considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \nBut wait... what is that?"
-                    self.playAgainButton.titleLabel!.text = "What?"
+                    self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \nBut wait... what is that?"
+                    self.playAgainButton.setTitle("What?", for: .normal)
                     //bellatrix, screams when they press the button? or would that be too scary... maybe evil laughter
                 case 1: //streak 2, after defeating bellatrix
                     self.resultsExclamationLabel.text = "Phew, that was close..."
                     self.resultsTextLabel.text = "I think I saw Nagini slithering in the shadows over there... \nWe have to find her, she'll lead us to Voldemort"
-                    self.playAgainButton.titleLabel!.text = "Let's go"
+                    self.playAgainButton.setTitle("Let's go", for: .normal)
                     //nagini
                 case 2: //streak 3, after defeating nagini
                     self.resultsExclamationLabel.text = "Goodbye Nagini"
-                    self.resultsTextLabel.text = "You know what we need to do next, don't you \(self.finishedGame.player!.name)? \nWhenever you're ready...\nI'll be right there with you"
-                    self.playAgainButton.titleLabel!.text = "It ends now"
+                    self.resultsTextLabel.text = "You know what we need to do next, \ndon't you \(self.finishedGame.player!.name)? \nWhenever you're ready... I'll be right there with you"
+                    self.playAgainButton.setTitle("It ends now", for: .normal)
                     //voldemort
                 case 3: //streak 4, after defeating voldemort
-                    self.resultsExclamationLabel.text = "... you did it"
-                    self.resultsTextLabel.text = "YOU DID IT!!!! \nYou've helped Harry vanquish the Dark Lord once and for all. \nHarry and the Wizarding World are indebted to you!"
-                    self.playAgainButton.titleLabel!.text = "Continue"
+                    self.resultsExclamationLabel.text = "... YOU DID IT"
+                    self.resultsTextLabel.text = "You've helped Harry vanquish the Dark Lord once and for all. \nThe Wizarding World is indebted to you, \(finishedGame.player!.name)!"
+                    self.playAgainButton.setTitle("Next", for: .normal)
                 default:
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
                     self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nWould you like to play again?"
-                    self.playAgainButton.titleLabel!.text = "I'm ready!"
                 }
             } else {
                 self.resultsExclamationLabel.text = "HOORAY! 🎉"
                 self.resultsTextLabel.text = "You helped Harry escape the Deatheaters! \nBut the battle is far from over... \n\nReady for the next level?"
-                self.playAgainButton.titleLabel!.text = "I'm ready!"
             }
             
             self.moneyResultsLabel.text! = "The Ministry of Magic has awarded you with:"
@@ -125,6 +123,9 @@ class HangmanGameResultsViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as? HangmanGameVC
+        if finishedGame.currentLevel == 11 {
+            destinationVC?.aurorMode = true
+        }
         
         //reset current game values and pass that back to the game property of HangmanGameVC
         let realm = try! Realm()

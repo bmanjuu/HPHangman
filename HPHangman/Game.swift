@@ -68,9 +68,9 @@ extension Game {
                     DispatchQueue.main.async {
                         try! Realm().write {
                             self.words = self.backupWords
+                            self.words.append("LEVEL 11: expelliarmus\nprotego\nimpedimenta\nstupefy\nreducto\nconfrigo\nexpulso\nlevicorpus\nsectumsempra\nreparo")
                         }
                     }
-                    self.finishedPopulatingWordsForGame = true
                     
                 } else if !responseWords.isEmpty {
                     //instead of just an else statement, we need a condition to confirm that responseWords is not empty because when we are using backup words and i>1, responseWords will still be empty but it will not satisfy the conditions of the if statement above 
@@ -83,6 +83,9 @@ extension Game {
                     }
                 }
             }
+        }
+        try! Realm().write {
+            words.append("LEVEL 11: expelliarmus\nprotego\nimpedimenta\nstupefy\nreducto\nconfrigo\nexpulso\nlevicorpus\nsectumsempra\nreparo")
         }
         self.finishedPopulatingWordsForGame = true //this is not persisted in realm so it does not need to be in the write statement. it can also only be true after calling the API 10 times, so it needs to be outside the for loop
     }
@@ -321,11 +324,10 @@ extension Game {
             playerAccount.galleons += galleonsEarned
             playerAccount.sickles += sicklesEarned
             playerAccount.knuts += knutsEarned
-            if currentLevel < 10 {
+            if currentLevel < 11 {
                 currentLevel += 1
-            } else if currentLevel == 10 && finalLevelStreak == 0 {
-                words.append("LEVEL 11: expelliarmus\nprotego\nimpedimenta\nstupefy\nreducto\nconfrigo\nexpulso\nlevicorpus\nsectumsempra\nreparo")
             } else {
+                print("INCREASING WINNING STREAK COUNT")
                 finalLevelStreak += 1
             }
         }
