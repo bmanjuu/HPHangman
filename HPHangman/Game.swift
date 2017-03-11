@@ -323,12 +323,15 @@ extension Game {
             playerAccount.knuts += knutsEarned
             if currentLevel < 10 {
                 currentLevel += 1
+            } else if currentLevel == 10 && finalLevelStreak == 0 {
+                words.append("LEVEL 11: expelliarmus\nprotego\nimpedimenta\nstupefy\nreducto\nconfrigo\nexpulso\nlevicorpus\nsectumsempra\nreparo")
+            } else {
+                finalLevelStreak += 1
             }
         }
     }
     
     func lostGame() {
-        
         try! Realm().write {
             concealedWord = chosenWord
             if currentLevel > 1 {
@@ -337,11 +340,4 @@ extension Game {
         }
         
     }
-    
-    func aurorMode() {
-        try! Realm().write {
-            finalLevelStreak += 1
-        }
-    }
-
 }

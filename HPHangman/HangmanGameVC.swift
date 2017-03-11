@@ -30,6 +30,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     var game: Game!
     var displayAlert: UIAlertController?
+    var aurorMode: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()

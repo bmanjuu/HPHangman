@@ -58,10 +58,29 @@ class HangmanGameResultsViewController: UIViewController {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             
             if finishedGame.currentLevel == 10 {
-                self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nBut wait... what is that?"
-                self.playAgainButton.titleLabel!.text = "What?"
                 
+                switch finishedGame.finalLevelStreak {
+                case 0:
+                    self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
+                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you! \nBut wait... what is that?"
+                    self.playAgainButton.titleLabel!.text = "What?"
+                case 1:
+                    self.resultsExclamationLabel.text = "YES!! 🎉"
+                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nBut wait... what is that?"
+                    self.playAgainButton.titleLabel!.text = "Let's go"
+                case 2:
+                    self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
+                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nBut wait... what is that?"
+                    self.playAgainButton.titleLabel!.text = "It ends here"
+                case 3:
+                    self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
+                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nBut wait... what is that?"
+                    self.playAgainButton.titleLabel!.text = "What?"
+                default:
+                    self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
+                    self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nWould you like to play again"
+                    self.playAgainButton.titleLabel!.text = "I'm ready!"
+                }
             } else {
                 self.resultsExclamationLabel.text = "HOORAY! 🎉"
                 self.resultsTextLabel.text = "You and Harry have escaped Deatheaters! \nBut the battle is far from over... \n\nReady for the next level?"
