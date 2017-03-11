@@ -59,10 +59,13 @@ class HangmanGameResultsViewController: UIViewController {
             
             if finishedGame.currentLevel == 10 {
                 self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                self.resultsTextLabel.text = "We have a champion amongst us! You've emerged from this epic battle victoriously and Harry and the Wizarding World are indebted to you."
+                self.resultsTextLabel.text = "We have a champion Auror amongst us! Harry and the Wizarding World are indebted to you... \nBut wait... what is that?"
+                self.playAgainButton.titleLabel!.text = "What?"
+                
             } else {
                 self.resultsExclamationLabel.text = "HOORAY! 🎉"
-                self.resultsTextLabel.text = "You saved Harry from the Deatheaters! But the battle is far from over... \nReady for the next level?"
+                self.resultsTextLabel.text = "You and Harry have escaped Deatheaters! \nBut the battle is far from over... \n\nReady for the next level?"
+                self.playAgainButton.titleLabel!.text = "I'm ready!"
             }
             
             self.moneyResultsLabel.text! = "The Ministry of Magic has awarded you with:"
