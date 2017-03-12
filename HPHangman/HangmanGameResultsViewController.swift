@@ -66,11 +66,15 @@ class HangmanGameResultsViewController: UIViewController {
             //if next game will be level 11
             if finishedGame.currentLevel == 11 {
                 switch finishedGame.finalLevelStreak {
+                    //music options: 
+                    // sound effect: horror - ambient hum pitched, hallow wind
+                    
                 case 0: //streak 1 
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                    self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \n\nBut wait... what is that?"
+                    self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \n\nBut wait... do you hear that?"
                     self.playAgainButton.setTitle("What?", for: .normal)
-                    //dementors or bellatrix, screams when they press the button? or would that be too scary... maybe evil laughter ... OPTION: answer should always be expecto patronum?
+                    //dementors -- sound when pressed: swoosh from sound effects
+                    //OPTION: answer should always be expecto patronum
                 case 1: //streak 2, after defeating dementors
                     self.resultsExclamationLabel.text = "Phew, that was close..."
                     self.resultsTextLabel.text = "I think I saw Nagini slithering in the shadows over there... \nWe have to find her, she'll lead us to Voldemort"
@@ -145,6 +149,7 @@ class HangmanGameResultsViewController: UIViewController {
             destinationVC?.game = finishedGame
         } else {
             let destinationVC = segue.destination as? HangmanFinalVC
+            destinationVC?.endGame = finishedGame
         }
         
     }
