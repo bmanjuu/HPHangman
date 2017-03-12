@@ -584,7 +584,7 @@ for results text
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BWK-0G-Tde" kind="show" id="NSi-y2-vsw"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="wQ1-cl-tno"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Result Of Auror Mode Here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Iv7-QC-B3H">
@@ -670,6 +670,6 @@ Knuts</string>
         <image name="hpBattleImage" width="640" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NSi-y2-vsw"/>
+        <segue reference="EWY-bu-mEh"/>
     </inferredMetricsTieBreakers>
 </document>
