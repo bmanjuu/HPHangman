@@ -66,19 +66,19 @@ class HangmanGameResultsViewController: UIViewController {
             if finishedGame.currentLevel == 11 {
                 switch finishedGame.finalLevelStreak {
                     //this should feel darker than the rest of the game so far
-                case 0: //streak 1
+                case 0: //streak 1 
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
                     self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \n\nBut wait... what is that?"
                     self.playAgainButton.setTitle("What?", for: .normal)
-                    //bellatrix, screams when they press the button? or would that be too scary... maybe evil laughter
-                case 1: //streak 2, after defeating bellatrix
+                    //dementors or bellatrix, screams when they press the button? or would that be too scary... maybe evil laughter ... OPTION: answer should always be expecto patronum?
+                case 1: //streak 2, after defeating dementors
                     self.resultsExclamationLabel.text = "Phew, that was close..."
                     self.resultsTextLabel.text = "I think I saw Nagini slithering in the shadows over there... \nWe have to find her, she'll lead us to Voldemort"
                     self.playAgainButton.setTitle("Let's go", for: .normal)
                     //nagini
                 case 2: //streak 3, after defeating nagini
                     self.resultsExclamationLabel.text = "Goodbye Nagini"
-                    self.resultsTextLabel.text = "You know what we need to do next, \ndon't you \(self.finishedGame.player!.name)? \nWhenever you're ready... I'll be right there with you"
+                    self.resultsTextLabel.text = "You know what we need to do next, \nright \(self.finishedGame.player!.name)? \nWhenever you're ready... I'll be right there with you"
                     self.playAgainButton.setTitle("It ends now", for: .normal)
                     //voldemort
                 case 3: //streak 4, after defeating voldemort

@@ -44,7 +44,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         if aurorMode! {
-            //set up aurorMode stuff here 
+            //music here
         } else {
             BackgroundMusic.playSong("DuringGameplay")
         }
@@ -158,6 +158,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         if aurorMode! {
             self.duelLabel.text = "Use your best spells against them, \(game.player!.name)!"
             //CHANGE IMAGE HERE
+            //OPTION: for last level with voldemort, everything should be in reverse! with every incorrect guess, picture of voldemort gets clearer (should start with some opacity so user doesn't think there's an error with the screen/its lacking an image)
         } else {
             self.duelLabel.text = "Oh no... it's Deatheaters! Time to duel!"
         }
@@ -174,6 +175,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         self.userInput.layer.borderWidth = 1.0
         self.userInput.layer.borderColor = UIColor.blue.cgColor
+        self.userInput.layer.cornerRadius = 6
         
         self.secretWordLabel.text = game.concealedWord
         self.guessesLabel.text = game.guessesSoFar
