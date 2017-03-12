@@ -22,14 +22,14 @@ class HangmanFinalVC: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let destinationVC = segue.destination as? HomeScreenVC
+        //SHOULD MODIFY HOME SCREEN A LITTLE HERE SO USER DOESNT HAVE TO INPUT THEIR NAME AGAIN 
     }
-    */
+    
 
 }

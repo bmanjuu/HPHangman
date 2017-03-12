@@ -63,9 +63,9 @@ class HangmanGameResultsViewController: UIViewController {
         if gameWonStatus {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             
+            //if next game will be level 11
             if finishedGame.currentLevel == 11 {
                 switch finishedGame.finalLevelStreak {
-                    //this should feel darker than the rest of the game so far
                 case 0: //streak 1 
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
                     self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \n\nBut wait... what is that?"

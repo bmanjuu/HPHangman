@@ -30,7 +30,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     var game: Game!
     var displayAlert: UIAlertController?
-    var aurorMode: Bool?
+    var aurorMode: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if aurorMode! {
+        if aurorMode {
             //music here
         } else {
             BackgroundMusic.playSong("DuringGameplay")
@@ -155,10 +155,8 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.scrollView.alwaysBounceVertical = false
         self.duelLabel.adjustsFontSizeToFitWidth = true
         
-        if aurorMode! {
-            self.duelLabel.text = "Use your best spells against them, \(game.player!.name)!"
-            //CHANGE IMAGE HERE
-            //OPTION: for last level with voldemort, everything should be in reverse! with every incorrect guess, picture of voldemort gets clearer (should start with some opacity so user doesn't think there's an error with the screen/its lacking an image)
+        if aurorMode {
+            self.setupAurorModeView()
         } else {
             self.duelLabel.text = "Oh no... it's Deatheaters! Time to duel!"
         }
@@ -188,6 +186,24 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.guessButton.layer.cornerRadius = 6
         self.buyALetterButton.layer.cornerRadius = 6
         
+    }
+    
+    func setupAurorModeView() {
+        //OPTION: for last level with voldemort, everything should be in reverse! with every incorrect guess, picture of voldemort gets clearer (should start with some opacity so user doesn't think there's an error with the screen/its lacking an image)
+        switch game.finalLevelStreak {
+            //change image and text for each game within auror mode
+        case 0: //dementors
+            self.duelLabel.text = "It's a dementor--think happy thoughts, \(game.player!.name)!"
+            self.hangmanImage.image = UIImage(named: "dementor")
+        case 1: //nagini
+            self.duelLabel.text = "Found her!! Don't let her escape!"
+            self.hangmanImage.image = UIImage(named: "nagini")
+        case 2: //voldemort
+            self.duelLabel.text = "You can do this, \(game.player!.name)!"
+            self.hangmanImage.image = UIImage(named: "harryVSvoldemortBattle")
+        default:
+            return
+        }
     }
     
     func incorrectGuessShakeAnimation() {
