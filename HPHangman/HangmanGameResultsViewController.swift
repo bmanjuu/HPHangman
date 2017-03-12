@@ -136,7 +136,9 @@ class HangmanGameResultsViewController: UIViewController {
         
         if segue.identifier == "playAgain" {
             let destinationVC = segue.destination as? HangmanGameVC
+            
             if game.currentLevel == 11 {
+                //technically, the user is in auror mode at level > 10 but this only needs to be written once so only set this in level 11 
                 try! realm.write {
                     game.aurorMode = true
                 }
