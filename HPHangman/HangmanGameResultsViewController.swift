@@ -11,7 +11,7 @@ import RealmSwift
 
 class HangmanGameResultsViewController: UIViewController {
     
-    var finishedGame: Game!
+    var game: Game!
     
     @IBOutlet weak var playAgainButton: UIButton!
     @IBOutlet weak var resultsImage: UIImageView!
@@ -32,7 +32,7 @@ class HangmanGameResultsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        let gameStatus = finishedGame.wonGameStatus
+        let gameStatus = game.wonGameStatus
         
         if gameStatus {
             BackgroundMusic.playSong("Win")
@@ -46,7 +46,7 @@ class HangmanGameResultsViewController: UIViewController {
     
     
     @IBAction func playAgainButtonTapped(_ sender: Any) {
-        if finishedGame.finalLevelStreak < 3 {
+        if game.finalLevelStreak < 3 {
             self.performSegue(withIdentifier: "playAgain", sender:nil)
         } else {
             self.performSegue(withIdentifier: "finalSegue", sender: nil)
@@ -57,21 +57,21 @@ class HangmanGameResultsViewController: UIViewController {
     
     func setupViewsFor(_ gameWonStatus: Bool) {
         
-        let userGringottsAccount = finishedGame.player!.gringottsAccount!
+        let userGringottsAccount = game.player!.gringottsAccount!
         self.playAgainButton.setTitle("I'm ready!", for: .normal) //default button text
         
         if gameWonStatus {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             
             //if next game will be level 11
-            if finishedGame.currentLevel == 11 {
-                switch finishedGame.finalLevelStreak {
+            if game.currentLevel == 11 {
+                switch game.finalLevelStreak {
                     //music options: 
                     // sound effect: horror - ambient hum pitched, hallow wind
                     
                 case 0: //streak 1 
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                    self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(finishedGame.player!.name)? You'd be great at it! \n\nBut wait... do you hear that?"
+                    self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(game.player!.name)? You'd be great at it! \n\nBut wait... do you hear that?"
                     self.playAgainButton.setTitle("What?", for: .normal)
                     //dementors -- sound when pressed: swoosh from sound effects
                     //OPTION: answer should always be expecto patronum
@@ -82,12 +82,12 @@ class HangmanGameResultsViewController: UIViewController {
                     //nagini
                 case 2: //streak 3, after defeating nagini
                     self.resultsExclamationLabel.text = "Goodbye Nagini"
-                    self.resultsTextLabel.text = "You know what we need to do next, \nright \(self.finishedGame.player!.name)? \nWhenever you're ready... I'll be right there with you"
+                    self.resultsTextLabel.text = "You know what we need to do next, \nright \(self.game.player!.name)? \nWhenever you're ready..."
                     self.playAgainButton.setTitle("It ends now", for: .normal)
                     //voldemort
                 case 3: //streak 4, after defeating voldemort
                     self.resultsExclamationLabel.text = "... YOU DID IT"
-                    self.resultsTextLabel.text = "You've helped Harry vanquish the Dark Lord once and for all. \nThe Wizarding World is indebted to you, \(finishedGame.player!.name)!"
+                    self.resultsTextLabel.text = "You've helped Harry vanquish the Dark Lord once and for all. \nThe Wizarding World is indebted to you, \(game.player!.name)!"
                     self.playAgainButton.setTitle("Next", for: .normal)
                 default:
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
@@ -99,7 +99,7 @@ class HangmanGameResultsViewController: UIViewController {
             }
             
             self.moneyResultsLabel.text! = "The Ministry of Magic has awarded you with:"
-            self.displayWinningsLabel.text = "\(finishedGame.galleonsEarned)\n\(finishedGame.sicklesEarned)\n\(finishedGame.knutsEarned)"
+            self.displayWinningsLabel.text = "\(game.galleonsEarned)\n\(game.sicklesEarned)\n\(game.knutsEarned)"
         } else {
             self.resultsImage.image = UIImage(named: "hpLostGame")
             self.resultsExclamationLabel.text = "AHHHHH! 😱"
@@ -132,24 +132,27 @@ class HangmanGameResultsViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        let realm = try! Realm()
+        
         if segue.identifier == "playAgain" {
             let destinationVC = segue.destination as? HangmanGameVC
-            if finishedGame.currentLevel == 11 {
-                destinationVC?.aurorMode = true
+            if game.currentLevel == 11 {
+                try! realm.write {
+                    game.aurorMode = true
+                }
             }
             
             //reset current game values and pass that back to the game property of HangmanGameVC
-            let realm = try! Realm()
             try! realm.write {
-                finishedGame.guessesSoFar = ""
-                finishedGame.incorrectGuessCount = 0
-                finishedGame.wonGameStatus = false
+                game.guessesSoFar = ""
+                game.incorrectGuessCount = 0
+                game.wonGameStatus = false
             }
             
-            destinationVC?.game = finishedGame
+            destinationVC?.game = game
         } else {
             let destinationVC = segue.destination as? HangmanFinalVC
-            destinationVC?.endGame = finishedGame
+            destinationVC?.endGame = game
         }
         
     }

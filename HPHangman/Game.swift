@@ -23,6 +23,8 @@ class Game: Object {
     dynamic var guessesSoFar: String = ""
     dynamic var maxIncorrectGuesses: Int = 6
     dynamic var incorrectGuessCount: Int = 0
+    
+    dynamic var aurorMode: Bool = false
     dynamic var finalLevelStreak: Int = 0
     
     var finishedPopulatingWordsForGame: Bool = false //does not need to be persisted in realm

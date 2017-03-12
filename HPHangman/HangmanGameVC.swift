@@ -30,7 +30,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     var game: Game!
     var displayAlert: UIAlertController?
-    var aurorMode: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +42,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if aurorMode {
+        if game.aurorMode {
             //music here
         } else {
             BackgroundMusic.playSong("DuringGameplay")
@@ -155,7 +154,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.scrollView.alwaysBounceVertical = false
         self.duelLabel.adjustsFontSizeToFitWidth = true
         
-        if aurorMode {
+        if game.aurorMode {
             self.setupAurorModeView()
         } else {
             self.duelLabel.text = "Oh no... it's Deatheaters! Time to duel!"
@@ -193,13 +192,13 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         switch game.finalLevelStreak {
             //change image and text for each game within auror mode
         case 0: //dementors
-            self.duelLabel.text = "It's a dementor--think happy thoughts, \(game.player!.name)!"
+            self.duelLabel.text = "A dementor--think happy thoughts, \(game.player!.name)!"
             self.hangmanImage.image = UIImage(named: "dementor")
         case 1: //nagini
             self.duelLabel.text = "Found her!! Don't let her escape!"
             self.hangmanImage.image = UIImage(named: "nagini")
         case 2: //voldemort
-            self.duelLabel.text = "You can do this, \(game.player!.name)!"
+            self.duelLabel.text = "I'm with you, \(game.player!.name)!"
             self.hangmanImage.image = UIImage(named: "harryVSvoldemortBattle")
         default:
             return
@@ -296,7 +295,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as? HangmanGameResultsViewController
-        destinationVC?.finishedGame = game
+        destinationVC?.game = game
      }
     
     
