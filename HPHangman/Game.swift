@@ -87,7 +87,7 @@ extension Game {
             }
         }
         try! Realm().write {
-            words.append("LEVEL 11: expelliarmus\nprotego\nimpedimenta\nstupefy\nreducto\nconfrigo\nexpulso\nlevicorpus\nsectumsempra\nreparo")
+            words.append(aurorModeWords)
         }
         self.finishedPopulatingWordsForGame = true //this is not persisted in realm so it does not need to be in the write statement. it can also only be true after calling the API 10 times, so it needs to be outside the for loop
     }
@@ -159,6 +159,10 @@ extension Game {
 
         //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously, need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way. 
         //the first object of this array will always be an empty string b/c words starts with 'LEVEL'
+    }
+    
+    var aurorModeWords: String {
+        return ""
     }
     
     var backupWords: String {

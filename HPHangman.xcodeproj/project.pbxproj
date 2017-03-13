@@ -22,6 +22,12 @@
 		A490D0FA1E55E842004CE638 /* HangmanGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0F91E55E842004CE638 /* HangmanGameVC.swift */; };
 		A490D0FE1E55F03F004CE638 /* WordListAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D0FD1E55F03F004CE638 /* WordListAPIClient.swift */; };
 		A490D1021E560F06004CE638 /* HomeScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A490D1011E560F06004CE638 /* HomeScreenVC.swift */; };
+		A4925D3A1E7744BA0063A8F9 /* aurorModeLose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4925D341E7744B90063A8F9 /* aurorModeLose.mp3 */; };
+		A4925D3B1E7744BA0063A8F9 /* aurorModeWin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4925D351E7744BA0063A8F9 /* aurorModeWin.mp3 */; };
+		A4925D3C1E7744BA0063A8F9 /* aurorModeTransition.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4925D361E7744BA0063A8F9 /* aurorModeTransition.mp3 */; };
+		A4925D3D1E7744BA0063A8F9 /* HarryVoldemortBattle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4925D371E7744BA0063A8F9 /* HarryVoldemortBattle.mp3 */; };
+		A4925D3E1E7744BA0063A8F9 /* NaginiBattle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4925D381E7744BA0063A8F9 /* NaginiBattle.mp3 */; };
+		A4925D3F1E7744BA0063A8F9 /* DementorBattle.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A4925D391E7744BA0063A8F9 /* DementorBattle.mp3 */; };
 		A4B04B521E5A24CA000447D6 /* HangmanAlerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B04B511E5A24CA000447D6 /* HangmanAlerts.swift */; };
 		A4E8C3671E57D67A0081E6AA /* HangmanGameResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E8C3661E57D67A0081E6AA /* HangmanGameResultsViewController.swift */; };
 		A4FB04781E592394006EBE79 /* BackgroundMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4FB04771E592393006EBE79 /* BackgroundMusic.swift */; };
@@ -51,6 +57,12 @@
 		A490D0F91E55E842004CE638 /* HangmanGameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameVC.swift; sourceTree = "<group>"; };
 		A490D0FD1E55F03F004CE638 /* WordListAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListAPIClient.swift; sourceTree = "<group>"; };
 		A490D1011E560F06004CE638 /* HomeScreenVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenVC.swift; sourceTree = "<group>"; };
+		A4925D341E7744B90063A8F9 /* aurorModeLose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aurorModeLose.mp3; sourceTree = "<group>"; };
+		A4925D351E7744BA0063A8F9 /* aurorModeWin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aurorModeWin.mp3; sourceTree = "<group>"; };
+		A4925D361E7744BA0063A8F9 /* aurorModeTransition.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = aurorModeTransition.mp3; sourceTree = "<group>"; };
+		A4925D371E7744BA0063A8F9 /* HarryVoldemortBattle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = HarryVoldemortBattle.mp3; sourceTree = "<group>"; };
+		A4925D381E7744BA0063A8F9 /* NaginiBattle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NaginiBattle.mp3; sourceTree = "<group>"; };
+		A4925D391E7744BA0063A8F9 /* DementorBattle.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = DementorBattle.mp3; sourceTree = "<group>"; };
 		A4B04B511E5A24CA000447D6 /* HangmanAlerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanAlerts.swift; sourceTree = "<group>"; };
 		A4E8C3661E57D67A0081E6AA /* HangmanGameResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HangmanGameResultsViewController.swift; sourceTree = "<group>"; };
 		A4FB04771E592393006EBE79 /* BackgroundMusic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundMusic.swift; sourceTree = "<group>"; };
@@ -163,6 +175,12 @@
 				A4FB047C1E5932D4006EBE79 /* Intro.mp3 */,
 				A4FB047D1E5932D4006EBE79 /* Lose.mp3 */,
 				A4FB047E1E5932D4006EBE79 /* Win.mp3 */,
+				A4925D341E7744B90063A8F9 /* aurorModeLose.mp3 */,
+				A4925D351E7744BA0063A8F9 /* aurorModeWin.mp3 */,
+				A4925D361E7744BA0063A8F9 /* aurorModeTransition.mp3 */,
+				A4925D371E7744BA0063A8F9 /* HarryVoldemortBattle.mp3 */,
+				A4925D381E7744BA0063A8F9 /* NaginiBattle.mp3 */,
+				A4925D391E7744BA0063A8F9 /* DementorBattle.mp3 */,
 			);
 			name = Music;
 			sourceTree = "<group>";
@@ -244,13 +262,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4925D3A1E7744BA0063A8F9 /* aurorModeLose.mp3 in Resources */,
 				A4FB047F1E5932D4006EBE79 /* DuringGameplay.mp3 in Resources */,
 				A4FB04811E5932D4006EBE79 /* Lose.mp3 in Resources */,
+				A4925D3F1E7744BA0063A8F9 /* DementorBattle.mp3 in Resources */,
+				A4925D3D1E7744BA0063A8F9 /* HarryVoldemortBattle.mp3 in Resources */,
+				A4925D3B1E7744BA0063A8F9 /* aurorModeWin.mp3 in Resources */,
 				A490D0E31E55E135004CE638 /* LaunchScreen.storyboard in Resources */,
 				A4FB04821E5932D4006EBE79 /* Win.mp3 in Resources */,
 				A490D0E01E55E135004CE638 /* Assets.xcassets in Resources */,
+				A4925D3C1E7744BA0063A8F9 /* aurorModeTransition.mp3 in Resources */,
 				A4FB04801E5932D4006EBE79 /* Intro.mp3 in Resources */,
 				A490D0DB1E55E135004CE638 /* Main.storyboard in Resources */,
+				A4925D3E1E7744BA0063A8F9 /* NaginiBattle.mp3 in Resources */,
 				A46C636F1E6C5CBA001CFD42 /* HPHangman_Words.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
