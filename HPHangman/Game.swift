@@ -62,21 +62,17 @@ extension Game {
     func populateWordsInStore() {
         
         for i in 1...10 {
-            
             WordListAPIClient.retrieveWords(level: i) { (responseWords, nil) in
-                
                 if responseWords.isEmpty && i == 1 {
                     //if responseWords is empty, then the user is not connected to the internet and we will be using backup words instead
                     DispatchQueue.main.async {
                         try! Realm().write {
                             self.words = self.backupWords
-                            self.words.append("LEVEL 11: expelliarmus")
+                            self.words.append(self.aurorModeWords)
                         }
                     }
-                    
                 } else if !responseWords.isEmpty {
-                    //instead of just an else statement, we need a condition to confirm that responseWords is not empty because when we are using backup words and i>1, responseWords will still be empty but it will not satisfy the conditions of the if statement above 
-                    
+                    //instead of just an else statement, we need a condition to confirm that responseWords is not empty because when we are using backup words and i>1, responseWords will still be empty but it will not satisfy the conditions of the if statement above
                     DispatchQueue.main.async {
                         try! Realm().write {
                             self.words.append("LEVEL \(i): \(responseWords)") //persist all words onto realm as one large string, as before but with something indicating that the words belong to a certain difficulty level. So upon retrieving words, maybe one can search for "LEVEL __"
@@ -87,7 +83,7 @@ extension Game {
             }
         }
         try! Realm().write {
-            words.append(aurorModeDetails["words"])
+            words.append(aurorModeWords)
         }
         self.finishedPopulatingWordsForGame = true //this is not persisted in realm so it does not need to be in the write statement. it can also only be true after calling the API 10 times, so it needs to be outside the for loop
     }
@@ -105,18 +101,30 @@ extension Game {
         
         let wordsArray = wordsAtCurrentLevel.components(separatedBy: "\n")
         var randomWord = ""
+        var randomPhrase = [String]()
         
         repeat {
             print("random word: \(randomWord), count: \(randomWord.characters.count)")
             let randomIndex = Int(arc4random_uniform(UInt32(wordsArray.count-1)))
             randomWord = wordsArray[randomIndex].uppercased()
-        } while randomWord.characters.count < 3 || randomWord.characters.count > (self.currentLevel + 5) || randomWord.contains(" ")
+        } while randomWord.characters.count < 3 || randomWord.characters.count < self.currentLevel || randomWord.characters.count > (self.currentLevel + 7)
+        
+        
+        //if randomWord is a phrase (it contains a " "), separate the word based on this space first, then format it to look like a concealedWord, then join them again with " " before writing it to Realm
+        if randomWord.contains(" ") {
+            let randomWordArray = randomWord.components(separatedBy: " ")
+            for word in randomWordArray {
+                randomPhrase.append(String(repeating: "___  ", count: word.characters.count))
+            }
+        }
         
         try! Realm().write {
             chosenWord = randomWord.uppercased()
-            concealedWord = String(repeating: "___  ", count: chosenWord.characters.count)
-            
-            //if word is a phrase and contains a " ", separate the word based on this space first, then make concealedWord, then join them again with " "
+            if randomPhrase.isEmpty {
+                concealedWord = String(repeating: "___  ", count: chosenWord.characters.count)
+            } else {
+                concealedWord = randomPhrase.joined(separator: " ")
+            }
         }
         
         print("THE CHOSEN ONE --> \(chosenWord) for level: \(currentLevel)")
@@ -150,6 +158,11 @@ extension Game {
         return (6-incorrectGuessCount) * 15
     }
     
+    var aurorModeWords: String {
+        //here, I am preserving the format of words similar to how they would have been if they were returned from the API
+        return "LEVEL 11: expecto patronumLEVEL 12: arresto momentum\nimpedimenta\nvipera evanesca\nvulnera sanentur\nconfringoLEVEL 13: expelliarmus\nprotego\nstupefy\nreducto\nrelashio\nexpulso\nsectumsempra"
+    }
+    
     var wordsByLevel: [String] {
         
         let levels = words.components(separatedBy: "LEVEL ")
@@ -159,10 +172,6 @@ extension Game {
 
         //made a computed property that returns an array of strings separated based on difficulty level. since words are being retrieved and populated in this array asynchronously, need to sort it first!! since the numerical indications of each level are still present, the elements of the array will be sorted in this way. 
         //the first object of this array will always be an empty string b/c words starts with 'LEVEL'
-    }
-    
-    var aurorModeWords: String {
-        return "LEVEL 11: expecto patronumLEVEL 12: arresto momentum\nimpedimenta\nvipera evanesca\nvulnera sanentur\nconfringoLEVEL 13: expelliarmus\nprotego\nstupefy\nreducto\nrelashio\nexpulso\nsectumsempra"
     }
     
     var backupWords: String {
@@ -184,17 +193,17 @@ extension Game {
     func isValidInput(_ input: String, from viewController: UIViewController) -> Bool {
         
         let validLetters = CharacterSet.letters
-        let userInput = input.replacingOccurrences(of: " ", with: "").uppercased()
+        //let userInput = input.replacingOccurrences(of: " ", with: "").uppercased()
         
-        if input.isEmpty || (userInput.trimmingCharacters(in: validLetters) != "") {
+        if input.isEmpty || (input.replacingOccurrences(of: " ", with: "").trimmingCharacters(in: validLetters) != "") {
             viewController.present(HangmanAlerts.invalidGuess(), animated: true, completion: nil)
             return false
         }
         
         //check that input is only 1 letter or a guess for the whole word
-        if userInput.characters.count == 1 || userInput.characters.count == chosenWord.characters.count {
-            if guessesSoFar.contains(userInput) || concealedWord.contains(userInput) {
-                print("guessed \(userInput) already")
+        if input.characters.count == 1 || input.characters.count == chosenWord.characters.count {
+            if guessesSoFar.contains(input) || concealedWord.contains(input) {
+                print("guessed \(input) already")
                 viewController.present(HangmanAlerts.duplicateGuess(), animated: true, completion: nil)
                 return false
             } else {
