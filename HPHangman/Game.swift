@@ -70,7 +70,7 @@ extension Game {
                     DispatchQueue.main.async {
                         try! Realm().write {
                             self.words = self.backupWords
-                            self.words.append("LEVEL 11: expelliarmus\nprotego\nimpedimenta\nstupefy\nreducto\nconfrigo\nexpulso\nlevicorpus\nsectumsempra\nreparo")
+                            self.words.append("LEVEL 11: expelliarmus")
                         }
                     }
                     
@@ -87,7 +87,7 @@ extension Game {
             }
         }
         try! Realm().write {
-            words.append(aurorModeWords)
+            words.append(aurorModeDetails["words"])
         }
         self.finishedPopulatingWordsForGame = true //this is not persisted in realm so it does not need to be in the write statement. it can also only be true after calling the API 10 times, so it needs to be outside the for loop
     }
@@ -162,7 +162,7 @@ extension Game {
     }
     
     var aurorModeWords: String {
-        return ""
+        return "LEVEL 11: expecto patronumLEVEL 12: arresto momentum\nimpedimenta\nvipera evanesca\nvulnera sanentur\nconfringoLEVEL 13: expelliarmus\nprotego\nstupefy\nreducto\nrelashio\nexpulso\nsectumsempra"
     }
     
     var backupWords: String {

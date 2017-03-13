@@ -71,7 +71,7 @@ class HangmanGameResultsViewController: UIViewController {
                     
                 case 0: //streak 1 
                     self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
-                    self.resultsTextLabel.text = "Have you ever considered becoming an Auror, \(game.player!.name)? You'd be great at it! \n\nBut wait... do you hear that?"
+                    self.resultsTextLabel.text = "Have you considered becoming an Auror, \(game.player!.name)? You'd be great! \n\nBut wait... do you feel that?"
                     self.playAgainButton.setTitle("What?", for: .normal)
                     //dementors -- sound when pressed: swoosh from sound effects
                     //OPTION: answer should always be expecto patronum
