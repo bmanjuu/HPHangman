@@ -175,7 +175,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.userInput.layer.borderColor = UIColor.blue.cgColor
         self.userInput.layer.cornerRadius = 6
         
-        self.secretWordLabel.text = game.concealedWord
+        self.secretWordLabel.text = game.concealedWord.replacingOccurrences(of: "+", with: "    ")
         self.guessesLabel.text = game.guessesSoFar
         self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
         self.galleonsBalance.text = "\(game.player!.gringottsAccount!.galleons)"

@@ -70,8 +70,6 @@ struct WordListAPIClient {
             print("ERROR: could not use backup words file")
         }
         
-        print("backup words: \(backupWords)")
-        
         return backupWords
     }
 

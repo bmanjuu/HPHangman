@@ -88,8 +88,6 @@ extension Game {
     }
     
     func retrieveRandomWord(currentLevel: Int) {
-        print("words at level \(currentLevel): \(self.wordsByLevel[currentLevel])")
-        
         var wordsAtCurrentLevel = self.wordsByLevel[currentLevel]
         //since the first object of this array is an empty string, we can just index the array by currentLevel and not currentLevel-1
         
@@ -97,10 +95,8 @@ extension Game {
         let offsetLength = String(currentLevel).characters.count + 2
         let stringRange = wordsAtCurrentLevel.index(wordsAtCurrentLevel.startIndex, offsetBy: offsetLength)..<wordsAtCurrentLevel.endIndex
         wordsAtCurrentLevel = wordsAtCurrentLevel.substring(with: stringRange)
-        print("WORDS AT CURRENT LEVEL: \(wordsAtCurrentLevel)")
         
         let wordsArray = wordsAtCurrentLevel.components(separatedBy: "\n")
-        print("WORDS ARRAY: \(wordsArray)")
         var randomWord = ""
         var randomPhrase = [String]()
         
@@ -112,25 +108,22 @@ extension Game {
         
         
         //if randomWord is a phrase (it contains a " "), separate the word based on this space first, then format it to look like a concealedWord, then join them again with " " before writing it to Realm
-        print("RANDOM WORD: \(randomWord)")
         if randomWord.contains(" ") {
             let randomWordArray = randomWord.components(separatedBy: " ")
-            print("WORD PHRASE ARRAY: \(randomWordArray)")
             for word in randomWordArray {
                 randomPhrase.append(String(repeating: "___  ", count: word.characters.count))
             }
         }
         
-        print("PHRASE: \(randomPhrase)")
         try! Realm().write {
             chosenWord = randomWord.uppercased()
             if randomPhrase.isEmpty {
                 concealedWord = String(repeating: "___  ", count: chosenWord.characters.count)
             } else {
-                concealedWord = randomPhrase.joined(separator: "    ")
+                concealedWord = randomPhrase.joined(separator: "+") //using a '+' instead of 4 spaces here because the latter generates errors when the user submits a correct guess. in a correct guess, the letters of the word are currently being separated by 2 spaces, so this results in an extra underscore once the correct guess has been updated... will need to find a different approach to this to make it cleaner/more efficient/understandable
             }
         }
-        print("CONCEALED WORD: \(concealedWord)")
+        
         print("THE CHOSEN ONE --> \(chosenWord) for level: \(currentLevel)")
         
     }
@@ -278,7 +271,7 @@ extension Game {
     
     func updateConcealedWord(to word: String)  {
         try! Realm().write {
-            concealedWord = word.replacingOccurrences(of: "+", with: "    ")
+            concealedWord = word
         }
     }
     
@@ -303,16 +296,18 @@ extension Game {
     }
     
     func correctGuess(userGuess: String) {
-        var phrase = ""
         var concealedWordArray = [String]()
-        
-        if concealedWord.contains("    ") {
-            phrase = concealedWord.replacingOccurrences(of: "    ", with: "+")
-            concealedWordArray = phrase.components(separatedBy: "  ")
+
+        if concealedWord.contains("+") {
+            let phraseArray = concealedWord.components(separatedBy: "+")
+            for word in phraseArray {
+                concealedWordArray.append(contentsOf: word.components(separatedBy: "  "))
+            }
         } else {
             concealedWordArray = concealedWord.components(separatedBy: "  ")
         }
         //there are 2 spaces between each underscore
+        
         
         // check if input letter matches letters in secretWord
         for (index, letter) in chosenWord.characters.enumerated() {
@@ -354,7 +349,7 @@ extension Game {
             playerAccount.galleons += galleonsEarned
             playerAccount.sickles += sicklesEarned
             playerAccount.knuts += knutsEarned
-            if currentLevel < 14 { // the 14th level is to account for when a user wins a level 13 game
+            if currentLevel < 14 { // the 14th level accounts for when a user wins a level 13 game
                 currentLevel += 1
             }
             
@@ -373,6 +368,5 @@ extension Game {
                 currentLevel -= 1
             }
         }
-        
     }
 }
