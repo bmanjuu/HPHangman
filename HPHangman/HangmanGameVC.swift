@@ -158,6 +158,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             self.setupAurorModeView()
         } else {
             self.duelLabel.text = "Oh no... it's Deatheaters! Time to duel!"
+            self.hangmanImage.image = UIImage(named: "hpBattleImage")
         }
         
         self.flashRedView.alpha = 0.0

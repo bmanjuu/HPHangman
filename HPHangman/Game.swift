@@ -25,7 +25,6 @@ class Game: Object {
     dynamic var incorrectGuessCount: Int = 0
     
     dynamic var aurorMode: Bool = false
-    dynamic var finalLevelStreak: Int = 0
     
     var finishedPopulatingWordsForGame: Bool = false //does not need to be persisted in realm
     
@@ -89,17 +88,19 @@ extension Game {
     }
     
     func retrieveRandomWord(currentLevel: Int) {
-        print("wordsByLevel: \(self.wordsByLevel)")
+        print("words at level: \(self.wordsByLevel[currentLevel])")
         
         var wordsAtCurrentLevel = self.wordsByLevel[currentLevel]
         //since the first object of this array is an empty string, we can just index the array by currentLevel and not currentLevel-1
         
         //still need to remove the level number. determine offset by length of currentLevel string (1 or 2 characters) + length of colon and space after (2 characters)
         let offsetLength = String(currentLevel).characters.count + 2
-        let stringRange = wordsAtCurrentLevel.index(wordsAtCurrentLevel.startIndex, offsetBy: offsetLength)..<wordsAtCurrentLevel.index(before: wordsAtCurrentLevel.endIndex)
+        let stringRange = wordsAtCurrentLevel.index(wordsAtCurrentLevel.startIndex, offsetBy: offsetLength)..<wordsAtCurrentLevel.endIndex
         wordsAtCurrentLevel = wordsAtCurrentLevel.substring(with: stringRange)
+        print("WORDS AT CURRENT LEVEL: \(wordsAtCurrentLevel)")
         
         let wordsArray = wordsAtCurrentLevel.components(separatedBy: "\n")
+        print("WORDS ARRAY: \(wordsArray)")
         var randomWord = ""
         var randomPhrase = [String]()
         
@@ -107,26 +108,29 @@ extension Game {
             print("random word: \(randomWord), count: \(randomWord.characters.count)")
             let randomIndex = Int(arc4random_uniform(UInt32(wordsArray.count-1)))
             randomWord = wordsArray[randomIndex].uppercased()
-        } while randomWord.characters.count < 3 || randomWord.characters.count < self.currentLevel || randomWord.characters.count > (self.currentLevel + 7)
+        } while randomWord.characters.count < 3 || randomWord.characters.count > (self.currentLevel + 7)
         
         
         //if randomWord is a phrase (it contains a " "), separate the word based on this space first, then format it to look like a concealedWord, then join them again with " " before writing it to Realm
+        print("RANDOM WORD: \(randomWord)")
         if randomWord.contains(" ") {
             let randomWordArray = randomWord.components(separatedBy: " ")
+            print("WORD PHRASE ARRAY: \(randomWordArray)")
             for word in randomWordArray {
                 randomPhrase.append(String(repeating: "___  ", count: word.characters.count))
             }
         }
         
+        print("PHRASE: \(randomPhrase)")
         try! Realm().write {
             chosenWord = randomWord.uppercased()
             if randomPhrase.isEmpty {
                 concealedWord = String(repeating: "___  ", count: chosenWord.characters.count)
             } else {
-                concealedWord = randomPhrase.joined(separator: " ")
+                concealedWord = randomPhrase.joined(separator: "    ")
             }
         }
-        
+        print("CONCEALED WORD: \(concealedWord)")
         print("THE CHOSEN ONE --> \(chosenWord) for level: \(currentLevel)")
         
     }
@@ -274,7 +278,7 @@ extension Game {
     
     func updateConcealedWord(to word: String)  {
         try! Realm().write {
-            concealedWord = word
+            concealedWord = word.replacingOccurrences(of: "+", with: "    ")
         }
     }
     
@@ -299,7 +303,16 @@ extension Game {
     }
     
     func correctGuess(userGuess: String) {
-        var concealedWordArray = concealedWord.components(separatedBy: "  ") //there are 2 spaces between each underscore
+        var phrase = ""
+        var concealedWordArray = [String]()
+        
+        if concealedWord.contains("    ") {
+            phrase = concealedWord.replacingOccurrences(of: "    ", with: "+")
+            concealedWordArray = phrase.components(separatedBy: "  ")
+        } else {
+            concealedWordArray = concealedWord.components(separatedBy: "  ")
+        }
+        //there are 2 spaces between each underscore
         
         // check if input letter matches letters in secretWord
         for (index, letter) in chosenWord.characters.enumerated() {
@@ -341,11 +354,14 @@ extension Game {
             playerAccount.galleons += galleonsEarned
             playerAccount.sickles += sicklesEarned
             playerAccount.knuts += knutsEarned
-            if currentLevel < 11 {
+            if currentLevel < 13 {
                 currentLevel += 1
+            }
+            
+            if currentLevel >= 11 {
+                aurorMode = true
             } else {
-                print("INCREASING WINNING STREAK COUNT")
-                finalLevelStreak += 1
+                aurorMode = false
             }
         }
     }

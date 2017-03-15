@@ -63,7 +63,11 @@ class HangmanGameResultsViewController: UIViewController {
         if gameWonStatus {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             
-            //if next game will be level 11
+//            switch game.currentLevel {
+//            case 10:
+//            case 11:
+//                
+//            }
             if game.currentLevel == 11 {
                 switch game.finalLevelStreak {
                     //music options: 
@@ -136,13 +140,6 @@ class HangmanGameResultsViewController: UIViewController {
         
         if segue.identifier == "playAgain" {
             let destinationVC = segue.destination as? HangmanGameVC
-            
-            if game.currentLevel == 11 {
-                //technically, the user is in auror mode at level > 10 but this only needs to be written once so only set this in level 11 
-                try! realm.write {
-                    game.aurorMode = true
-                }
-            }
             
             //reset current game values and pass that back to the game property of HangmanGameVC
             try! realm.write {
