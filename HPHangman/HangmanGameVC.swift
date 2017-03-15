@@ -190,15 +190,15 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     func setupAurorModeView() {
         //OPTION: for last level with voldemort, everything should be in reverse! with every incorrect guess, picture of voldemort gets clearer (should start with some opacity so user doesn't think there's an error with the screen/its lacking an image)
-        switch game.finalLevelStreak {
+        switch game.currentLevel {
             //change image and text for each game within auror mode
-        case 0: //dementors
+        case 11: //dementors
             self.duelLabel.text = "A dementor--think happy thoughts, \(game.player!.name)!"
             self.hangmanImage.image = UIImage(named: "dementor")
-        case 1: //nagini
+        case 12: //nagini
             self.duelLabel.text = "Found her!! Don't let her escape!"
             self.hangmanImage.image = UIImage(named: "nagini")
-        case 2: //voldemort
+        case 13: //voldemort
             self.duelLabel.text = "I'm with you, \(game.player!.name)!"
             self.hangmanImage.image = UIImage(named: "harryVSvoldemortBattle")
         default:

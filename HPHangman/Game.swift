@@ -358,7 +358,7 @@ extension Game {
                 currentLevel += 1
             }
             
-            if currentLevel >= 11 {
+            if currentLevel > 10 {
                 aurorMode = true
             } else {
                 aurorMode = false
