@@ -34,12 +34,7 @@ class HangmanGameResultsViewController: UIViewController {
         
         let gameStatus = game.wonGameStatus
         
-        if gameStatus {
-            BackgroundMusic.playSong("Win")
-        } else {
-            BackgroundMusic.playSong("Lose")
-        }
- 
+        setupMusicFor(gameStatus)
         setupViewsFor(gameStatus)
         
     }
@@ -54,6 +49,27 @@ class HangmanGameResultsViewController: UIViewController {
         
     }
     
+    func setupMusicFor(_ gameWonStatus: Bool) {
+        
+        if gameWonStatus {
+            switch game.currentLevel {
+            case 11...13:
+                BackgroundMusic.playSong("aurorModeTransition")
+            case 14:
+                BackgroundMusic.playSong("aurorModeWin")
+            default:
+                BackgroundMusic.playSong("Win")
+            }
+        } else {
+            switch game.currentLevel {
+            case 11...14:
+                BackgroundMusic.playSong("aurorModeLose")
+            default:
+                BackgroundMusic.playSong("Lose")
+            }
+        }
+    }
+    
     
     func setupViewsFor(_ gameWonStatus: Bool) {
         
@@ -61,38 +77,53 @@ class HangmanGameResultsViewController: UIViewController {
         self.playAgainButton.setTitle("I'm ready!", for: .normal) //default button text
         
         if gameWonStatus {
-            self.resultsImage.image = UIImage(named: "hpWonGame")
+            //WON GAME
             
             switch game.currentLevel {
-            case 1...10:
-                self.resultsExclamationLabel.text = "HOORAY! 🎉"
-                self.resultsTextLabel.text = "You helped Harry escape the Deatheaters! \nBut the battle is far from over... \n\nReady for the next level?"
             case 11: //entering level 11
                 self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
                 self.resultsTextLabel.text = "Have you considered becoming an Auror, \(game.player!.name)? You'd be great! \n\nBut wait... do you feel that?"
                 self.playAgainButton.setTitle("What?", for: .normal)
             case 12:
+                self.resultsImage.image = UIImage(named: "findNagini")
                 self.resultsExclamationLabel.text = "Phew, that was close..."
                 self.resultsTextLabel.text = "I think I saw Nagini slithering in the shadows over there... \nWe have to find her, she'll lead us to Voldemort"
                 self.playAgainButton.setTitle("Let's go", for: .normal)
             case 13:
-                self.resultsExclamationLabel.text = "Goodbye Nagini"
+                self.resultsImage.image = UIImage(named: "harryVSVoldemortPreBattle")
+                self.resultsExclamationLabel.text = "We found Voldemort"
                 self.resultsTextLabel.text = "You know what we need to do next, \nright \(self.game.player!.name)? \nWhenever you're ready..."
                 self.playAgainButton.setTitle("It ends now", for: .normal)
             case 14:
+                //NEED IMAGE HERE
                 self.resultsExclamationLabel.text = "... YOU DID IT"
                 self.resultsTextLabel.text = "You've helped Harry vanquish the Dark Lord once and for all. \nThe Wizarding World is indebted to you, \(game.player!.name)!"
                 self.playAgainButton.setTitle("Next", for: .normal)
-            default:
-                return
+            default: //levels 1-10
+                self.resultsImage.image = UIImage(named: "hpWonGame")
+                self.resultsExclamationLabel.text = "HOORAY! 🎉"
+                self.resultsTextLabel.text = "You helped Harry escape the Deatheaters! \nBut the battle is far from over... \n\nReady for the next level?"
             }
             
             self.moneyResultsLabel.text! = "The Ministry of Magic has awarded you with:"
             self.displayWinningsLabel.text = "\(game.galleonsEarned)\n\(game.sicklesEarned)\n\(game.knutsEarned)"
         } else {
-            self.resultsImage.image = UIImage(named: "hpLostGame")
-            self.resultsExclamationLabel.text = "AHHHHH! 😱"
-            self.resultsTextLabel.text = "Voldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"
+            
+            //LOST GAME
+            switch game.currentLevel {
+                //need to change images accordingly! 
+            case 11:
+                self.resultsExclamationLabel.text = "Help is on the way, \(game.player!.name)!"
+            case 12:
+                self.resultsExclamationLabel.text = "Are you ok, \(game.player!.name)?"
+            case 13:
+                self.resultsExclamationLabel.text = "I can't believe it..."
+            default:
+                self.resultsImage.image = UIImage(named: "hpLostGame")
+                self.resultsExclamationLabel.text = "AHHHHH! 😱"
+                self.resultsTextLabel.text = "Voldemort got a hold of Harry! \nYou still have another chance to save him! \nWould you like to play again?"
+            }
+            
             self.moneyResultsLabel.text! = "Your Gringott's balance is currently:"
             self.displayWinningsLabel.text = "\(userGringottsAccount.galleons)\n\(userGringottsAccount.sickles)\n\(userGringottsAccount.knuts)"
         }

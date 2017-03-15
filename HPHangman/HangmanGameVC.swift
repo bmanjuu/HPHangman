@@ -42,12 +42,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        if game.aurorMode {
-            //music here
-        } else {
-            BackgroundMusic.playSong("DuringGameplay")
-        }
-        
+        self.setupMusic()
         self.startGame()
         self.setupViewForGame()
     }
@@ -64,7 +59,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         game.playGame(with: userInput.text!)
         self.guessesLabel.text = game.guessesSoFar
         self.chancesLabel.text = "\(6-game.incorrectGuessCount)"
-        self.secretWordLabel.text = game.concealedWord
+        self.secretWordLabel.text = game.concealedWord.replacingOccurrences(of: "+", with: "    ")
         self.updateDuelLabel(incorrectGuessCount: game.incorrectGuessCount)
         
         if game.incorrectGuessCount > incorrectGuessCountBeforeTurn {
@@ -154,9 +149,17 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.scrollView.alwaysBounceVertical = false
         self.duelLabel.adjustsFontSizeToFitWidth = true
         
-        if game.aurorMode {
-            self.setupAurorModeView()
-        } else {
+        switch game.currentLevel {
+        case 11: //dementors
+            self.duelLabel.text = "A dementor--think happy thoughts, \(game.player!.name)!"
+            self.hangmanImage.image = UIImage(named: "dementor")
+        case 12: //nagini
+            self.duelLabel.text = "Found her!! Don't let her escape!"
+            self.hangmanImage.image = UIImage(named: "nagini")
+        case 13: //voldemort
+            self.duelLabel.text = "I'm with you, \(game.player!.name)!"
+            self.hangmanImage.image = UIImage(named: "harryVSvoldemortBattle")
+        default: //text and image for levels 1-10
             self.duelLabel.text = "Oh no... it's Deatheaters! Time to duel!"
             self.hangmanImage.image = UIImage(named: "hpBattleImage")
         }
@@ -189,20 +192,18 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
     }
     
     func setupAurorModeView() {
-        //OPTION: for last level with voldemort, everything should be in reverse! with every incorrect guess, picture of voldemort gets clearer (should start with some opacity so user doesn't think there's an error with the screen/its lacking an image)
+            }
+    
+    func setupMusic() {
         switch game.currentLevel {
-            //change image and text for each game within auror mode
-        case 11: //dementors
-            self.duelLabel.text = "A dementor--think happy thoughts, \(game.player!.name)!"
-            self.hangmanImage.image = UIImage(named: "dementor")
-        case 12: //nagini
-            self.duelLabel.text = "Found her!! Don't let her escape!"
-            self.hangmanImage.image = UIImage(named: "nagini")
-        case 13: //voldemort
-            self.duelLabel.text = "I'm with you, \(game.player!.name)!"
-            self.hangmanImage.image = UIImage(named: "harryVSvoldemortBattle")
-        default:
-            return
+        case 11:
+            BackgroundMusic.playSong("DementorBattle")
+        case 12:
+            BackgroundMusic.playSong("NaginiBattle")
+        case 13:
+            BackgroundMusic.playSong("HarryVoldemortBattle")
+        default: //music for levels 1-10
+            BackgroundMusic.playSong("DuringGameplay")
         }
     }
     
