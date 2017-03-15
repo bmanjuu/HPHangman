@@ -66,8 +66,8 @@ extension Game {
                     //if responseWords is empty, then the user is not connected to the internet and we will be using backup words instead
                     DispatchQueue.main.async {
                         try! Realm().write {
-                            self.words = self.backupWords
-                            self.words.append(self.aurorModeWords)
+                            self.words.append(self.backupWords)
+                            //backup words need to be appended instead of being assigned to the words property because it overwrites the addition of auror words, which occurs first due to the asynchronous nature of the API call
                         }
                     }
                 } else if !responseWords.isEmpty {
@@ -88,6 +88,7 @@ extension Game {
     }
     
     func retrieveRandomWord(currentLevel: Int) {
+        print("ALL WORDS: \(wordsByLevel)")
         print("words at level: \(self.wordsByLevel[currentLevel])")
         
         var wordsAtCurrentLevel = self.wordsByLevel[currentLevel]
