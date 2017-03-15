@@ -88,8 +88,7 @@ extension Game {
     }
     
     func retrieveRandomWord(currentLevel: Int) {
-        print("ALL WORDS: \(wordsByLevel)")
-        print("words at level: \(self.wordsByLevel[currentLevel])")
+        print("words at level \(currentLevel): \(self.wordsByLevel[currentLevel])")
         
         var wordsAtCurrentLevel = self.wordsByLevel[currentLevel]
         //since the first object of this array is an empty string, we can just index the array by currentLevel and not currentLevel-1
@@ -355,7 +354,7 @@ extension Game {
             playerAccount.galleons += galleonsEarned
             playerAccount.sickles += sicklesEarned
             playerAccount.knuts += knutsEarned
-            if currentLevel < 13 {
+            if currentLevel < 14 { // the 14th level is to account for when a user wins a level 13 game
                 currentLevel += 1
             }
             

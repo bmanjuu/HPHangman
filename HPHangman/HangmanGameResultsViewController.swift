@@ -46,7 +46,7 @@ class HangmanGameResultsViewController: UIViewController {
     
     
     @IBAction func playAgainButtonTapped(_ sender: Any) {
-        if game.currentLevel < 13 {
+        if game.currentLevel < 14 {
             self.performSegue(withIdentifier: "playAgain", sender:nil)
         } else {
             self.performSegue(withIdentifier: "finalSegue", sender: nil)
@@ -64,27 +64,25 @@ class HangmanGameResultsViewController: UIViewController {
             self.resultsImage.image = UIImage(named: "hpWonGame")
             
             switch game.currentLevel {
-            case 1...9:
+            case 1...10:
                 self.resultsExclamationLabel.text = "HOORAY! 🎉"
                 self.resultsTextLabel.text = "You helped Harry escape the Deatheaters! \nBut the battle is far from over... \n\nReady for the next level?"
-            case 10: //entering level 11
+            case 11: //entering level 11
                 self.resultsExclamationLabel.text = "HEAR YE, HEAR YE! 🎉"
                 self.resultsTextLabel.text = "Have you considered becoming an Auror, \(game.player!.name)? You'd be great! \n\nBut wait... do you feel that?"
                 self.playAgainButton.setTitle("What?", for: .normal)
-            case 11:
+            case 12:
                 self.resultsExclamationLabel.text = "Phew, that was close..."
                 self.resultsTextLabel.text = "I think I saw Nagini slithering in the shadows over there... \nWe have to find her, she'll lead us to Voldemort"
                 self.playAgainButton.setTitle("Let's go", for: .normal)
-            case 12:
+            case 13:
                 self.resultsExclamationLabel.text = "Goodbye Nagini"
                 self.resultsTextLabel.text = "You know what we need to do next, \nright \(self.game.player!.name)? \nWhenever you're ready..."
                 self.playAgainButton.setTitle("It ends now", for: .normal)
-            case 13:
+            default: //after winning level 13
                 self.resultsExclamationLabel.text = "... YOU DID IT"
                 self.resultsTextLabel.text = "You've helped Harry vanquish the Dark Lord once and for all. \nThe Wizarding World is indebted to you, \(game.player!.name)!"
                 self.playAgainButton.setTitle("Next", for: .normal)
-            default:
-                return
             }
             
             self.moneyResultsLabel.text! = "The Ministry of Magic has awarded you with:"
