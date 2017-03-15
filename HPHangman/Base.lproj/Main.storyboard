@@ -288,7 +288,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="place secret word in here :)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="QUE-Sz-kSz">
-                                        <rect key="frame" x="37" y="306" width="301" height="54"/>
+                                        <rect key="frame" x="16" y="306" width="343" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="3st-MO-P8G"/>
                                         </constraints>
@@ -369,7 +369,7 @@
                                     <constraint firstItem="9UK-Fm-wkT" firstAttribute="leading" secondItem="11L-aa-0bn" secondAttribute="leading" id="RwY-Jb-Jy7"/>
                                     <constraint firstItem="eRT-94-azs" firstAttribute="centerX" secondItem="1ie-2Z-Zho" secondAttribute="centerX" id="Trv-Up-cMM"/>
                                     <constraint firstItem="DhG-Zx-IUf" firstAttribute="top" secondItem="t2M-sc-rEt" secondAttribute="bottom" constant="7" id="YP0-go-9BG"/>
-                                    <constraint firstItem="QUE-Sz-kSz" firstAttribute="leading" secondItem="qUo-Bn-Vs6" secondAttribute="leading" constant="37" id="abG-I0-utP"/>
+                                    <constraint firstItem="QUE-Sz-kSz" firstAttribute="leading" secondItem="qUo-Bn-Vs6" secondAttribute="leading" constant="16" id="abG-I0-utP"/>
                                     <constraint firstAttribute="bottom" secondItem="xoZ-NZ-0ch" secondAttribute="bottom" id="af9-oA-lKa"/>
                                     <constraint firstAttribute="trailing" secondItem="uTW-75-fVJ" secondAttribute="trailing" constant="19" id="azL-Gq-K0H"/>
                                     <constraint firstItem="xoZ-NZ-0ch" firstAttribute="top" secondItem="qUo-Bn-Vs6" secondAttribute="top" id="bF9-6E-2L5"/>
@@ -385,7 +385,7 @@
                                     <constraint firstItem="11L-aa-0bn" firstAttribute="top" secondItem="9UK-Fm-wkT" secondAttribute="bottom" constant="8" symbolic="YES" id="k7z-de-pIU"/>
                                     <constraint firstAttribute="trailing" secondItem="1ie-2Z-Zho" secondAttribute="trailing" id="kl5-Qz-Q7b"/>
                                     <constraint firstItem="qBZ-kt-e8f" firstAttribute="bottom" secondItem="1ie-2Z-Zho" secondAttribute="bottom" id="lUw-sY-taT"/>
-                                    <constraint firstAttribute="trailing" secondItem="QUE-Sz-kSz" secondAttribute="trailing" constant="37" id="m6G-I6-bir"/>
+                                    <constraint firstAttribute="trailing" secondItem="QUE-Sz-kSz" secondAttribute="trailing" constant="16" id="m6G-I6-bir"/>
                                     <constraint firstItem="11L-aa-0bn" firstAttribute="leading" secondItem="t2M-sc-rEt" secondAttribute="leading" id="mdf-lZ-I5V"/>
                                     <constraint firstItem="xoZ-NZ-0ch" firstAttribute="centerY" secondItem="qUo-Bn-Vs6" secondAttribute="centerY" id="qz6-jr-syT"/>
                                     <constraint firstItem="qBZ-kt-e8f" firstAttribute="leading" secondItem="1ie-2Z-Zho" secondAttribute="leading" id="uRH-aG-L8b"/>

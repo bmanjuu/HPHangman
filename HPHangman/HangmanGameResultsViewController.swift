@@ -79,10 +79,12 @@ class HangmanGameResultsViewController: UIViewController {
                 self.resultsExclamationLabel.text = "Goodbye Nagini"
                 self.resultsTextLabel.text = "You know what we need to do next, \nright \(self.game.player!.name)? \nWhenever you're ready..."
                 self.playAgainButton.setTitle("It ends now", for: .normal)
-            default: //after winning level 13
+            case 14:
                 self.resultsExclamationLabel.text = "... YOU DID IT"
                 self.resultsTextLabel.text = "You've helped Harry vanquish the Dark Lord once and for all. \nThe Wizarding World is indebted to you, \(game.player!.name)!"
                 self.playAgainButton.setTitle("Next", for: .normal)
+            default:
+                return
             }
             
             self.moneyResultsLabel.text! = "The Ministry of Magic has awarded you with:"
