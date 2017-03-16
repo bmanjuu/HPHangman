@@ -41,16 +41,13 @@ class HangmanGameResultsViewController: UIViewController {
     
     
     @IBAction func playAgainButtonTapped(_ sender: Any) {
-        if game.currentLevel < 11 || (game.currentLevel > 10 && game.currentLevel < 14 && game.wonGameStatus) {
-            //in auror mode, the user is only able to play the next game if they win the current level
-            self.performSegue(withIdentifier: "playAgain", sender:nil)
-        } else if (game.currentLevel > 10 && game.currentLevel <= 14) && !game.wonGameStatus {
-            //if the user loses a game during auror mode, they will go to the final screen and will need to start over
+        
+        if game.currentLevel == 14 {
             self.performSegue(withIdentifier: "finalSegue", sender: nil)
         } else {
-            //this is to accomodate for when the user wins the final level of the game
-            self.performSegue(withIdentifier: "finalSegue", sender: nil)
+            self.performSegue(withIdentifier: "playAgain", sender:nil)
         }
+        
     }
     
     func setupMusicFor(_ gameWonStatus: Bool) {
@@ -59,8 +56,8 @@ class HangmanGameResultsViewController: UIViewController {
             switch game.currentLevel {
             case 11...13:
                 BackgroundMusic.playSong("aurorModeTransition")
-//            case 14: //move to final
-//                BackgroundMusic.playSong("aurorModeWin")
+            case 14:
+                BackgroundMusic.playSong("aurorModeWin")
             default:
                 BackgroundMusic.playSong("Win")
             }
@@ -95,8 +92,7 @@ class HangmanGameResultsViewController: UIViewController {
                 self.resultsTextLabel.text = "You know what we need to do next, \nright \(self.game.player!.name)? \nWhenever you're ready..."
                 self.playAgainButton.setTitle("It ends now", for: .normal)
             case 14:
-                //MOVE THIS TO FINAL VC!
-                self.resultsExclamationLabel.text = "... YOU DID IT"
+                self.resultsExclamationLabel.text = "... YOU DID IT!!!   🎉"
                 self.resultsTextLabel.text = "You've helped Harry vanquish the Dark Lord once and for all. \nThe Wizarding World is indebted to you, \(game.player!.name)!"
                 self.playAgainButton.setTitle("Next", for: .normal)
             default: //levels 1-10

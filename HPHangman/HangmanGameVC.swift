@@ -94,8 +94,14 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         if displayAlert != nil {
             let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
                 (result : UIAlertAction) -> Void in
-                print("ok tapped")
-                self.performSegue(withIdentifier: "presentResultsVC", sender: nil)
+                
+                if self.game.currentLevel < 11 || (self.game.currentLevel > 10 && self.game.currentLevel <= 14 && self.game.wonGameStatus) {
+                    //segue to results VC if user is not in auror mode, otherwise, only segue if the user has won a game
+                    self.performSegue(withIdentifier: "showResults", sender:nil)
+                } else if (self.game.currentLevel > 10 && self.game.currentLevel <= 14) && !self.game.wonGameStatus {
+                    //if the user loses a game during auror mode, they will go to the final screen and will need to start over
+                    self.performSegue(withIdentifier: "showFinal", sender: nil)
+                } 
             }
             
             displayAlert!.addAction(okButtonTapped)
@@ -294,9 +300,13 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //different VCs for different segues 
-        let destinationVC = segue.destination as? HangmanGameResultsViewController
-        destinationVC?.game = game
+        if segue.identifier == "showResults" {
+            let destinationVC = segue.destination as? HangmanGameResultsViewController
+            destinationVC?.game = game
+        } else {
+            let destinationVC = segue.destination as? HangmanFinalVC
+            destinationVC?.endGame = game
+        }
      }
     
     

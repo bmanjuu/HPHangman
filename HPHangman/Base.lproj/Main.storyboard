@@ -423,7 +423,8 @@
                         <outlet property="stormyBackgroundImage" destination="xoZ-NZ-0ch" id="bJv-f3-0fD"/>
                         <outlet property="userCurrentLevelLabel" destination="5vX-sb-f6Z" id="z7T-cd-bCg"/>
                         <outlet property="userInput" destination="9UK-Fm-wkT" id="1C4-Ey-S6B"/>
-                        <segue destination="BqB-mw-Oy4" kind="show" identifier="presentResultsVC" id="t0C-j9-lma"/>
+                        <segue destination="BqB-mw-Oy4" kind="show" identifier="showResults" id="DWV-79-itI"/>
+                        <segue destination="6Jz-oe-mFV" kind="show" identifier="showFinal" id="XtM-8s-DzB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aZ-ej-A9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -554,7 +555,7 @@ for results text
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MS0-Km-dAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1668" y="108.39580209895054"/>
+            <point key="canvasLocation" x="1782" y="109"/>
         </scene>
         <!--Hangman FinalVC-->
         <scene sceneID="UY0-nZ-T2i">
@@ -682,7 +683,7 @@ Knuts</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVF-Bi-ygF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2432.8000000000002" y="107.49625187406298"/>
+            <point key="canvasLocation" x="1782" y="901"/>
         </scene>
     </scenes>
     <resources>
@@ -691,6 +692,7 @@ Knuts</string>
         <image name="hpBattleImage" width="640" height="360"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="XtM-8s-DzB"/>
         <segue reference="EWY-bu-mEh"/>
     </inferredMetricsTieBreakers>
 </document>

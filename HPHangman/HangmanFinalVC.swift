@@ -29,7 +29,7 @@ class HangmanFinalVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if endGame.wonGameStatus {
-            BackgroundMusic.playSong("aurorModeWin")
+            BackgroundMusic.playSong("FinalScreenWin")
             self.aurorModeResultLabel.text = "✨ The End ✨"
             self.aurorModeResultText.text = "We are only as strong as we are united, as weak as we are divided. \nYou have fought valiantly, \(endGame.player!.name)... Thank you."
         } else {
