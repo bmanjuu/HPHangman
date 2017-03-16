@@ -85,6 +85,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         if game.wonGameStatus {
             self.secretWordLabel.textColor = UIColor.green
             displayAlert = HangmanAlerts.endGameAlert(wonGameStatus: true, chosenWord: game.chosenWord)
+            //handle segue to final VC if user is in auror mode here
         } else if game.incorrectGuessCount == 6 {
             self.secretWordLabel.textColor = UIColor.red
             displayAlert = HangmanAlerts.endGameAlert(wonGameStatus: false, chosenWord: game.chosenWord)
@@ -151,7 +152,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         
         switch game.currentLevel {
         case 11: //dementors
-            self.duelLabel.text = "A dementor--think happy thoughts, \(game.player!.name)!"
+            self.duelLabel.text = "A dementor--stay strong, \(game.player!.name)!"
             self.hangmanImage.image = UIImage(named: "dementor")
         case 12: //nagini
             self.duelLabel.text = "Found her!! Don't let her escape!"
@@ -190,9 +191,6 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.buyALetterButton.layer.cornerRadius = 6
         
     }
-    
-    func setupAurorModeView() {
-            }
     
     func setupMusic() {
         switch game.currentLevel {
@@ -296,6 +294,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //different VCs for different segues 
         let destinationVC = segue.destination as? HangmanGameResultsViewController
         destinationVC?.game = game
      }

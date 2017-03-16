@@ -41,12 +41,16 @@ class HangmanGameResultsViewController: UIViewController {
     
     
     @IBAction func playAgainButtonTapped(_ sender: Any) {
-        if game.currentLevel < 14 {
+        if game.currentLevel < 11 || (game.currentLevel > 10 && game.currentLevel < 14 && game.wonGameStatus) {
+            //in auror mode, the user is only able to play the next game if they win the current level
             self.performSegue(withIdentifier: "playAgain", sender:nil)
+        } else if (game.currentLevel > 10 && game.currentLevel <= 14) && !game.wonGameStatus {
+            //if the user loses a game during auror mode, they will go to the final screen and will need to start over
+            self.performSegue(withIdentifier: "finalSegue", sender: nil)
         } else {
+            //this is to accomodate for when the user wins the final level of the game
             self.performSegue(withIdentifier: "finalSegue", sender: nil)
         }
-        
     }
     
     func setupMusicFor(_ gameWonStatus: Bool) {
@@ -55,18 +59,13 @@ class HangmanGameResultsViewController: UIViewController {
             switch game.currentLevel {
             case 11...13:
                 BackgroundMusic.playSong("aurorModeTransition")
-            case 14:
-                BackgroundMusic.playSong("aurorModeWin")
+//            case 14: //move to final
+//                BackgroundMusic.playSong("aurorModeWin")
             default:
                 BackgroundMusic.playSong("Win")
             }
         } else {
-            switch game.currentLevel {
-            case 11...14:
-                BackgroundMusic.playSong("aurorModeLose")
-            default:
-                BackgroundMusic.playSong("Lose")
-            }
+            BackgroundMusic.playSong("Lose")
         }
     }
     
@@ -78,6 +77,7 @@ class HangmanGameResultsViewController: UIViewController {
         
         if gameWonStatus {
             //WON GAME
+            self.resultsImage.image = UIImage(named: "hpWonGame")
             
             switch game.currentLevel {
             case 11: //entering level 11
@@ -90,17 +90,16 @@ class HangmanGameResultsViewController: UIViewController {
                 self.resultsTextLabel.text = "I think I saw Nagini slithering in the shadows over there... \nWe have to find her, she'll lead us to Voldemort"
                 self.playAgainButton.setTitle("Let's go", for: .normal)
             case 13:
-                self.resultsImage.image = UIImage(named: "harryVSVoldemortPreBattle")
+                self.resultsImage.image = UIImage(named: "harryVSvoldemortPreBattle")
                 self.resultsExclamationLabel.text = "We found Voldemort"
                 self.resultsTextLabel.text = "You know what we need to do next, \nright \(self.game.player!.name)? \nWhenever you're ready..."
                 self.playAgainButton.setTitle("It ends now", for: .normal)
             case 14:
-                //NEED IMAGE HERE
+                //MOVE THIS TO FINAL VC!
                 self.resultsExclamationLabel.text = "... YOU DID IT"
                 self.resultsTextLabel.text = "You've helped Harry vanquish the Dark Lord once and for all. \nThe Wizarding World is indebted to you, \(game.player!.name)!"
                 self.playAgainButton.setTitle("Next", for: .normal)
             default: //levels 1-10
-                self.resultsImage.image = UIImage(named: "hpWonGame")
                 self.resultsExclamationLabel.text = "HOORAY! 🎉"
                 self.resultsTextLabel.text = "You helped Harry escape the Deatheaters! \nBut the battle is far from over... \n\nReady for the next level?"
             }
@@ -110,7 +109,7 @@ class HangmanGameResultsViewController: UIViewController {
         } else {
             
             //LOST GAME
-            switch game.currentLevel {
+            switch (game.currentLevel+1) { //need to add one b/c when a user loses a game, the level decreases by 1 within the game VC, but I dont want it to affect the results VC
                 //need to change images accordingly! 
             case 11:
                 self.resultsExclamationLabel.text = "Help is on the way, \(game.player!.name)!"
