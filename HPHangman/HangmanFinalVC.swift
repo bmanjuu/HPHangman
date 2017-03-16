@@ -29,11 +29,13 @@ class HangmanFinalVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         if endGame.wonGameStatus {
-            BackgroundMusic.playSong("FinalScreenWin")
+            BackgroundMusic.playSong("finalVictory")
+            self.finalImage.image = UIImage(named: "raiseWands")
             self.aurorModeResultLabel.text = "✨ The End ✨"
-            self.aurorModeResultText.text = "We are only as strong as we are united, as weak as we are divided. \nYou have fought valiantly, \(endGame.player!.name)... Thank you."
+            self.aurorModeResultText.text = "We are only as strong as we are united, as weak as we are divided. \nYou have fought valiantly alongside us, \(endGame.player!.name)... Thank you."
         } else {
             BackgroundMusic.playSong("aurorModeLose")
+            self.finalImage.image = UIImage(named: "battleContinues")
             self.aurorModeResultLabel.text = "... The war continues ..."
             self.aurorModeResultText.text = "It is important to fight and fight again, and keep fighting, for only then can evil be kept at bay though never quite eradicated."
             //It is the unknown we fear when we look upon death and darkness. Nothing more.

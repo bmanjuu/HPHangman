@@ -68,6 +68,19 @@ struct HangmanAlerts {
         return alertController
     }
     
+//    static func aurorAlert(playerName: String) -> UIAlertController {
+//        let alertController = UIAlertController(title: "BONUS ROUND", message: "You are now entering", preferredStyle: UIAlertControllerStyle.alert)
+//        
+//        let okButtonTapped = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+//            (result : UIAlertAction) -> Void in
+//            print("OK button tapped")
+//        }
+//        
+//        alertController.addAction(okButtonTapped)
+//        
+//        return alertController
+//    }
+    
     static func endGameAlert(wonGameStatus: Bool, chosenWord: String) -> UIAlertController {
         
         var alertTitle = ""

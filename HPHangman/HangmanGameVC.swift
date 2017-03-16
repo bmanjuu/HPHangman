@@ -161,7 +161,7 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
             self.duelLabel.text = "A dementor--stay strong, \(game.player!.name)!"
             self.hangmanImage.image = UIImage(named: "dementor")
         case 12: //nagini
-            self.duelLabel.text = "Found her!! Don't let her escape!"
+            self.duelLabel.text = "Gotcha!! Don't let her escape!"
             self.hangmanImage.image = UIImage(named: "nagini")
         case 13: //voldemort
             self.duelLabel.text = "I'm with you, \(game.player!.name)!"
@@ -191,7 +191,11 @@ class HangmanGameVC: UIViewController, UITextFieldDelegate {
         self.galleonsBalance.text = "\(game.player!.gringottsAccount!.galleons)"
         self.sicklesBalance.text = "\(game.player!.gringottsAccount!.sickles)"
         self.knutsBalance.text = "\(game.player!.gringottsAccount!.knuts)"
-        self.userCurrentLevelLabel.text = "\(game.currentLevel)"
+        if game.currentLevel > 10 {
+            self.userCurrentLevelLabel.text = "AUROR"
+        } else {
+            self.userCurrentLevelLabel.text = "\(game.currentLevel)"
+        }
         
         self.guessButton.layer.cornerRadius = 6
         self.buyALetterButton.layer.cornerRadius = 6
